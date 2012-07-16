@@ -45,7 +45,7 @@ var users_schema = new Schema({
 	v2						: Number, //Que es esto?
 	created					: Date,
 	modified				: Date,
-	profile 				: [Profile]
+	profile 				: [Profile]  //Deberia ser parte del user ??
 
 
 })
