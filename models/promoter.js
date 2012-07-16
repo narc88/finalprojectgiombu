@@ -4,6 +4,7 @@ var mongoose        = require('mongoose')
   , db              = mongoose.createConnection(db_lnk)
 
 var User = require('user')
+var Promoter_text = require('promoter_text')
 
 var Schema = require('mongoose').Schema
 
@@ -19,6 +20,7 @@ var promoters_schema = new Schema({
 	sponsored_count			: { type: Number, required: true, min: 0},
 	subscriber_count		: { type: Number, required: true, min: 0},
 	parent_id				: [{ type: Schema.ObjectId, ref: 'User' }],
+	promoter_text 			: [promoter_text], //Son varios o es una sola instancia???
 	created					: Date,
 	modified				: Date
 
