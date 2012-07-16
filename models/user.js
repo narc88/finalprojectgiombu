@@ -1,0 +1,53 @@
+// Creación de la Conexión
+var mongoose        = require('mongoose')
+  , db_lnk          = 'mongodb://localhost/giombu'
+  , db              = mongoose.createConnection(db_lnk)
+
+//Referencio los schemes que voy a usar, tanto embebiendo como referenciando
+//Verificar si es necesario hacer un require de los que vamos a referenciar,
+//o solo es necesario para los que vamos a embeber
+var Profile = require('profile')
+var Promoter = require('promoter')
+var Franchise = require('franchise')
+var Franchisor = require('franchisor')
+
+var Schema = require('mongoose').Schema
+
+var users_schema = new Schema({
+	fullname				: { type: String, required: true},
+	username				: { type: String, required: true},
+	email					: { type: String, required: true},
+	password				: { type: String, required: true},
+	facebook_id				: { type: Number, required: true},
+	reset_password_token	: String,
+	reset_password_sent_at	: Date,
+	sign_in_count			: { type: Number, required: true, min:0},
+	last_sign_in_at			: Date,
+	current_sign_in_at		: Date,
+	last_sign_in_ip			: String,
+	//Verificar estos campos
+	is_admin				: Boolean,
+	is_superadmin			: Boolean,
+	is_country_manager		: Boolean,
+	is_city_manager			: Boolean,
+	is_seller				: Boolean,
+	//is_promoter				: Boolean,
+	is_partner				: Boolean,
+	is_active				: Boolean,
+	is_active_promoter		: Boolean,
+	confirm_promoter_token	: String,
+	wizard					: Boolean, //Que es esto?
+	promoter 				: [Promoter],
+	//Verificar si guardamos la Franchise dentro del Franchisor, de ser asi solo
+	//se debe referenciar al Franchisor
+	franchisor				: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
+	franchise				: [{ type: Schema.ObjectId, ref: 'Franchise' }],
+	v2						: Number, //Que es esto?
+	created					: Date,
+	modified				: Date,
+	profile 				: [Profile]  //Deberia ser parte del user ??
+
+
+})
+
+module.exports = users_schema
