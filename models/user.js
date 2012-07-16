@@ -10,6 +10,7 @@ var Profile = require('profile')
 var Promoter = require('promoter')
 var Franchise = require('franchise')
 var Franchisor = require('franchisor')
+var Seller = require('seller')
 
 var Schema = require('mongoose').Schema
 
@@ -30,18 +31,16 @@ var users_schema = new Schema({
 	is_superadmin			: Boolean,
 	is_country_manager		: Boolean,
 	is_city_manager			: Boolean,
-	is_seller				: Boolean,
+	//is_seller				: Boolean,
 	//is_promoter				: Boolean,
+	seller					: [Seller]
 	is_partner				: Boolean,
 	is_active				: Boolean,
 	is_active_promoter		: Boolean,
 	confirm_promoter_token	: String,
 	wizard					: Boolean, //Que es esto?
 	promoter 				: [Promoter],
-	//Verificar si guardamos la Franchise dentro del Franchisor, de ser asi solo
-	//se debe referenciar al Franchisor
 	franchisor				: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
-	franchise				: [{ type: Schema.ObjectId, ref: 'Franchise' }],
 	v2						: Number, //Que es esto?
 	created					: Date,
 	modified				: Date,
