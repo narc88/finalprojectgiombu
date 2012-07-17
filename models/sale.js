@@ -3,7 +3,7 @@ var mongoose        = require('mongoose')
   , db_lnk          = 'mongodb://localhost/giombu'
   , db              = mongoose.createConnection(db_lnk)
 
-
+var Coupon = require('coupon')
 var Schema = require('mongoose').Schema
 
 var sale_schema = new Schema({
@@ -15,6 +15,7 @@ var sale_schema = new Schema({
 	payment_method		: { type: String },
 	status				: { type: String },
 	user	   			: [{ type: Schema.ObjectId, ref: 'Franchise' }],
+	coupons       : [Coupon],
 	created        :   Date,
 	modified        :   Date	
 })
