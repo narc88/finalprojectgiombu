@@ -19,9 +19,6 @@ var mailing_schema = new Schema({
 	type				: { type: Number, required: true},
 	created				: { type: Number, required: true},
 	modified			: { type: Number, required: true}
-
-
-	modifiend        	:   Date
 })
 
 module.exports =  mailing_schema
