@@ -23,10 +23,10 @@ var product_schema = new Schema({
 	status				: { type: String },
 	sale_count			: { type: Number, required: true, min:0},
 	shipping_cost		: { type: Number, required: true, min:0},
-	store   			: [{ type: Schema.ObjectId, ref: 'Store' }],
-	seller   			: [{ type: Schema.ObjectId, ref: 'Seller' }],
-	franchisor   		: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
-	currency	   		: [{ type: Schema.ObjectId, ref: 'Currency' }],
+	store   			: { type: Schema.ObjectId, ref: 'Store' },
+	seller   			: { type: Schema.ObjectId, ref: 'Seller' },
+	franchisor   		: [{ type: Schema.ObjectId, ref: 'Franchisor' }], //Representa la union franchises_products
+	currency	   		: { type: Schema.ObjectId, ref: 'Currency' },
 	created    		    :   Date,
 	modifiend        	:   Date
 })

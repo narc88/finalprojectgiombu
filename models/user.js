@@ -32,7 +32,7 @@ var users_schema = new Schema({
 	is_country_manager		: Boolean,
 	is_city_manager			: Boolean,
 	//is_seller				: Boolean,
-	//is_promoter				: Boolean,
+	//is_promoter			: Boolean,
 	seller					: [Seller]
 	is_partner				: Boolean,
 	is_active				: Boolean,
@@ -40,7 +40,7 @@ var users_schema = new Schema({
 	confirm_promoter_token	: String,
 	wizard					: Boolean, //Que es esto?
 	promoter 				: [Promoter],
-	franchisor				: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
+	franchisor				: [{ type: Schema.ObjectId, ref: 'Franchisor' }], //Deberia referenciar a franchise
 	v2						: Number, //Que es esto?
 	created					: Date,
 	modified				: Date,
