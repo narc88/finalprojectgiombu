@@ -7,7 +7,6 @@ var Coupon = require('coupon')
 var Schema = require('mongoose').Schema
 
 var sale_schema = new Schema({
-	amount				: { type: Number, required: true, min:0},
 	coupon_count		: { type: Number, required: true, min:0},
 	deal   				: [{ type: Schema.ObjectId, ref: 'Deal' }],
 	product   			: [{ type: Schema.ObjectId, ref: 'Product' }],

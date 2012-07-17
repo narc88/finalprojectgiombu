@@ -3,7 +3,7 @@ var mongoose        = require('mongoose')
   , db_lnk          = 'mongodb://localhost/giombu'
   , db              = mongoose.createConnection(db_lnk)
 
-
+var Image = require('image')
 var Schema = require('mongoose').Schema
 
 var product_schema = new Schema({

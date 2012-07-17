@@ -20,8 +20,8 @@ var guest_schema = new Schema({
 	user				: [{ type: Schema.ObjectId, ref: 'User' }],
 	promoter			: [{ type: Schema.ObjectId, ref: 'User' }],
 	bounce				: [{ type: Schema.ObjectId, ref: 'Bounce' }],
-	created        :   Date,
-	modified        :   Date	
+	created       		:   Date,
+	modified      		:   Date	
 })
 
 module.exports = guest_schema

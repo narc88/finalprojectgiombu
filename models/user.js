@@ -26,6 +26,12 @@ var users_schema = new Schema({
 	last_sign_in_at			: Date,
 	current_sign_in_at		: Date,
 	last_sign_in_ip			: String,
+	profile 				: [Profile],
+	seller					: [Seller],
+	promoter 				: [Promoter],
+	franchisor				: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
+	created					: Date,
+	modified				: Date,
 	//Verificar estos campos
 	is_admin				: Boolean,
 	is_superadmin			: Boolean,
@@ -33,20 +39,13 @@ var users_schema = new Schema({
 	is_city_manager			: Boolean,
 	//is_seller				: Boolean,
 	//is_promoter				: Boolean,
-	seller					: [Seller]
 	is_partner				: Boolean,
 	is_active				: Boolean,
 	is_active_promoter		: Boolean,
 	confirm_promoter_token	: String,
 	wizard					: Boolean, //Que es esto?
-	promoter 				: [Promoter],
-	franchisor				: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
-	v2						: Number, //Que es esto?
-	created					: Date,
-	modified				: Date,
-	profile 				: [Profile]  //Deberia ser parte del user ??
-
-
+	v2						: Number //Que es esto?
+	  //Deberia ser parte del user ?
 })
 
 module.exports = users_schema
