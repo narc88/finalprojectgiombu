@@ -8,7 +8,7 @@ var Schema = require('mongoose').Schema
 
 var sellers_stores_schema = new Schema({
 	store				: [{ type: Schema.ObjectId, ref: 'Store' }],
-	seller				: [{ type: Schema.ObjectId, ref: 'Seller' }],
+	//seller				: [{ type: Schema.ObjectId, ref: 'Seller' }],
 	begin_date			: Date,
 	end_date			: Date,
 	created				: Date,
