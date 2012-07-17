@@ -6,13 +6,7 @@ var mongoose        = require('mongoose')
 
 var Schema = require('mongoose').Schema
 
-var image_schema = new Schema({
-	filename			: { type: String , required: true},
-	is_default			: { type: Boolean },
-	is_active			: { type: Boolean },
-	created      		:   Date,
-	modified			:   Date	
-})	
+var Image = require('image')
 
 
 
@@ -42,7 +36,7 @@ var deal_schema = new Schema({
 	seller   			: [{ type: Schema.ObjectId, ref: 'Seller' }],
 	franchisor   		: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
 	currency	   		: [{ type: Schema.ObjectId, ref: 'Currency' }],
-	images 				: [image_schema],
+	images 				: [Image],
 	created    		    :   Date,
 	modifiend        	:   Date
 })

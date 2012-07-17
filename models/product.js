@@ -27,6 +27,7 @@ var product_schema = new Schema({
 	seller   			: [{ type: Schema.ObjectId, ref: 'Seller' }],
 	franchisor   		: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
 	currency	   		: [{ type: Schema.ObjectId, ref: 'Currency' }],
+	images 				: [Image],
 	created    		    :   Date,
 	modifiend        	:   Date
 })
