@@ -13,10 +13,11 @@ var sale_schema = new Schema({
 	user	   			: [{ type: Schema.ObjectId, ref: 'User' }],
 	payment_method		: { type: String },
 	status				: { type: String },
+	currency	   		: [{ type: Schema.ObjectId, ref: 'Currency' }],
 	user	   			: [{ type: Schema.ObjectId, ref: 'Franchise' }],
-	coupons       : [Coupon],
-	created        :   Date,
-	modified        :   Date	
+	coupons      		: [Coupon],
+	created       		:   Date,
+	modified        	:   Date	
 })
 
 module.exports = sale_schema

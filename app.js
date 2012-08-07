@@ -6,6 +6,11 @@
 var express = require('express')
   , routes = require('./routes');
 
+//Controlllers
+
+var deals = require('./controllers/deals_controller')
+
+
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -27,9 +32,18 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
+
+
+
 // Routes
 
 app.get('/', routes.index);
+
+//Functions
+
+app.get('/deals/create' , deals.create);
+app.post('/deals/add' , deals.add);
+
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

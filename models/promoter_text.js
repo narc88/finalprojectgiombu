@@ -7,7 +7,9 @@ var mongoose        = require('mongoose')
 var Schema = require('mongoose').Schema
 
 var promoters_texts_schema = new Schema({
-	store				: [{ type: Schema.ObjectId, ref: 'Store' }],
+	promoter			: [{ type: Schema.ObjectId, ref: 'Promoter' }],
+	page_title			: { type: String, required: true},
+	page_body			: { type: String, required: true},
 	subscribers_invite	: { type: String, required: true},
 	created				: Date,
 	modified			: Date

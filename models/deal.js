@@ -3,7 +3,7 @@ var mongoose        = require('mongoose')
   , db_lnk          = 'mongodb://localhost/giombu'
   , db              = mongoose.createConnection(db_lnk)
 
-var Image = require('image')
+var image_schema = require('./image')
 var Schema = require('mongoose').Schema
 
 var deal_schema = new Schema({
@@ -28,13 +28,14 @@ var deal_schema = new Schema({
 	sale_count			: { type: Number, required: true, min:0},
 	coupon_count		: { type: Number, required: true, min:0},
 	shipping_cost		: { type: Number, required: true, min:0},
-	store   			: [{ type: Schema.ObjectId, ref: 'Store' }],
-	seller   			: [{ type: Schema.ObjectId, ref: 'Seller' }],
-	franchisor   		: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
+	store   			: { type: Schema.ObjectId, ref: 'Store' },
+	seller   			: { type: Schema.ObjectId, ref: 'Seller' },
+	franchisor   		: { type: Schema.ObjectId, ref: 'Franchisor' },
+	franchise  			: [{ type: Schema.ObjectId, ref: 'Franchise' }],
 	currency	   		: [{ type: Schema.ObjectId, ref: 'Currency' }],
-	images 				: [Image],
-	created    		    :   Date,
-	modifiend        	:   Date
+	images 				: [image_schema],
+	created    		    : { type: Date, default: Date.now },
+	modifiend        	: { type: Date, default: Date.now }
 })
 
 module.exports = deal_schema

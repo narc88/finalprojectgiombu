@@ -6,7 +6,8 @@ var mongoose        = require('mongoose')
 var Schema = require('mongoose').Schema
 
 var event_schema = new Schema({
-	body		: { type: String },
+	name		: { type: String , required: true},
+	body		: { type: String , required: true},
 	type		: { type: String },
 	created     :   Date,
 	modified    :   Date	

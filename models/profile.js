@@ -29,7 +29,6 @@ var profiles_schema = new Schema({
 	bank_number			: { type: String, required: true},
 	curp				: { type: String, required: true},
 	ife 				: { type: String, required: true},
-	user_id				: [{ type: Schema.ObjectId, ref: 'User' }],
 	created				: Date,
 	modified			: Date
 

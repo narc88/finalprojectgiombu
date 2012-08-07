@@ -9,7 +9,7 @@ var Schema = require('mongoose').Schema
 var feed_schema = new Schema({
 	from_user  	: [{ type: Schema.ObjectId, ref: 'User' }],
 	to_user  	: [{ type: Schema.ObjectId, ref: 'User' }],
-	event  	: [{ type: Schema.ObjectId, ref: 'Event' }],
+	event  		: [{ type: Schema.ObjectId, ref: 'Event' }],
 	created     :   Date,
 	modified    :   Date	
 })
