@@ -14,7 +14,7 @@ var franchise_schema = new Schema({
 	user_count			: { type: Number, min:0},
 	subscriber_count	: { type: Number, min:0},
 	store_count			: { type: Number, min:0},
-	created      		:   Date,
+	created    		    :  {type: Date, default: Date.now },
 	modified			:   Date	
 })	
 
@@ -35,8 +35,8 @@ var franchisor_schema = new Schema({
 	country	   			: [{ type: Schema.ObjectId, ref: 'Country' }],
 	currency   			: [{ type: Schema.ObjectId, ref: 'Crrency' }],
 	franchises			:  [franchise_schema],
-	created      		:   Date,
+	created    		    :  {type: Date, default: Date.now },
 	modified			:   Date	
 })	
 
-module.exports = store_schema
+module.exports = franchisor_schema

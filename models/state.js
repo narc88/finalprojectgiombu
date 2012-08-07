@@ -3,7 +3,7 @@ var mongoose        = require('mongoose')
   , db_lnk          = 'mongodb://localhost/giombu'
   , db              = mongoose.createConnection(db_lnk)
 
-var City = require('city')
+var City = require('./city')
 var Schema = require('mongoose').Schema
 
 var state_schema = new Schema({

@@ -7,29 +7,26 @@ var mongoose        = require('mongoose')
 var Schema = require('mongoose').Schema
 
 var profiles_schema = new Schema({
-	fname				: { type: String, required: true},
-	mname				: { type: String, required: true},
+	name				: { type: String, required: true},
 	lname				: { type: String, required: true},
 	code				: { type: String, required: true},
-	picture				: { type: String, required: true},
-	picture_from		: { type: String, required: true},
+	pic					: { type: String, required: true},
+	pic_origin			: { type: String, required: true},
 	birthday			: Date,
 	gender				: { type: String, required: true},
 	phone				: { type: String, required: true},
 	mobile				: { type: String, required: true},
-	adress				: { type: String, required: true},
-	location			: { type: String, required: true},
+	address				: { type: String, required: true},
+	city				: { type: String, required: true},
 	zip					: { type: String, required: true},
-	page_title			: { type: String, required: true},
-	page_body			: { type: String, required: true},
-	page_visits			: { type: Number, required: true, min:0},
-	bank_name			: { type: String, required: true},
-	bank_clabe			: { type: String, required: true},
-	bank_rute			: { type: String, required: true},
-	bank_number			: { type: String, required: true},
-	curp				: { type: String, required: true},
-	ife 				: { type: String, required: true},
-	created				: Date,
+
+	bank_name			: { type: String},
+	bank_clabe			: { type: String},
+	bank_rute			: { type: String},
+	bank_number			: { type: String},
+	curp				: { type: String},
+	ife 				: { type: String},
+	created    		    :  {type: Date, default: Date.now },
 	modified			: Date
 
 })

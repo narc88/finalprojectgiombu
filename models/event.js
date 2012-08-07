@@ -9,7 +9,7 @@ var event_schema = new Schema({
 	name		: { type: String , required: true},
 	body		: { type: String , required: true},
 	type		: { type: String },
-	created     :   Date,
+	created    	:  {type: Date, default: Date.now },
 	modified    :   Date	
 })
 

@@ -10,7 +10,7 @@ var level_schema = new Schema({
 	name    			: { type: String, required: true },
 	bonus				: { type: Number, required: true, min:0},
 	description	   		: { type: String },
-	created    		    :   Date,
+	created    		    :  {type: Date, default: Date.now }
 	modifiend        	:   Date
 })
 

@@ -17,8 +17,8 @@ var mailing_schema = new Schema({
 	status				: { type: String, required: true},//Ver porque es un enum
 	priority			: { type: Number, required: true},
 	type				: { type: Number, required: true},
-	created				: { type: Number, required: true},
-	modified			: { type: Number, required: true}
+	created    		    :  {type: Date, default: Date.now },
+	created    		    :  {type: Date, default: Date.now },
 })
 
 module.exports =  mailing_schema

@@ -27,7 +27,7 @@ var product_schema = new Schema({
 	seller   			: { type: Schema.ObjectId, ref: 'Seller' },
 	franchisor   		: [{ type: Schema.ObjectId, ref: 'Franchisor' }], //Representa la union franchises_products
 	currency	   		: { type: Schema.ObjectId, ref: 'Currency' },
-	created    		    :   Date,
+	created    		    :  {type: Date, default: Date.now },
 	modifiend        	:   Date
 })
 

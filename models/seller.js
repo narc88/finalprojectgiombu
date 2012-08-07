@@ -5,7 +5,7 @@ var mongoose        = require('mongoose')
 
 
 var Schema = require('mongoose').Schema
-var Seller_store = require('sellers_stores')
+//var Seller_store = require('sellers_stores')
 
 var sellers_stores_schema = new Schema({
 	store				: [{ type: Schema.ObjectId, ref: 'Store' }],
@@ -22,7 +22,7 @@ var sellers_schema = new Schema({
 	store_count			: { type: Number, required: true, min:0 },
 	prospect_count		: { type: Number, required: true, min:0 },
 	deal_count			: { type: Number, required: true, min:0 },
-	stores				: [sellers_stores_schema], //Embeber relaciones temporales a las diferentes stores 
+	//stores				: [sellers_stores_schema], //Embeber relaciones temporales a las diferentes stores 
 	created				: Date,
 	modified			: Date
 })

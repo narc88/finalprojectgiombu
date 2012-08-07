@@ -4,11 +4,18 @@
  */
 
 var express = require('express')
-  , routes = require('./routes');
+  , routes = require('./routes'),
+  crypto      = require('crypto'), // for cryptographic tools
+    url         = require('url'), // for parsing urls
+    querystring = require('querystring'); // for extracting query strings
+ 
+var hash , algorithms = ['md5', 'sha1', 'sha256', 'sha512'];
 
 //Controlllers
 
 var deals = require('./controllers/deals_controller')
+var users = require('./controllers/users_controller')
+
 
 
 var app = module.exports = express.createServer();
@@ -41,8 +48,16 @@ app.get('/', routes.index);
 
 //Functions
 
+
+//DEALS
 app.get('/deals/create' , deals.create);
 app.post('/deals/add' , deals.add);
+
+
+
+//USERS
+app.get('/users/register', users.register );
+app.post('/users/save', users.register );
 
 
 app.listen(3000, function(){

@@ -5,10 +5,10 @@ var mongoose        = require('mongoose')
 
 var Schema = require('mongoose').Schema
 
-var sale_schema = new Schema({
+var city_schema = new Schema({
 	name				: { type: String, required: true},
 	created        		:   Date,
 	modified       		:   Date	
 })
 
-module.exports = sale_schema
+module.exports = city_schema

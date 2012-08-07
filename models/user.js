@@ -6,16 +6,14 @@ var mongoose        = require('mongoose')
 //Referencio los schemes que voy a usar, tanto embebiendo como referenciando
 //Verificar si es necesario hacer un require de los que vamos a referenciar,
 //o solo es necesario para los que vamos a embeber
-var Profile = require('profile')
-var Promoter = require('promoter')
-var Franchise = require('franchise')
-var Franchisor = require('franchisor')
-var Seller = require('seller')
+var Profile = require('./profile')
+var Promoter = require('./promoter')
+var Franchisor = require('./franchisor')
+var Seller = require('./seller')
 
 var Schema = require('mongoose').Schema
 
 var users_schema = new Schema({
-	fullname				: { type: String, required: true},
 	username				: { type: String, required: true},
 	email					: { type: String, required: true},
 	password				: { type: String, required: true},
@@ -29,6 +27,7 @@ var users_schema = new Schema({
 	profile 				: [Profile],
 	seller					: [Seller],
 	promoter 				: [Promoter],
+	//partner 				: [partner],
 	franchisor				: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
 	created					: Date,
 	modified				: Date,
@@ -37,7 +36,6 @@ var users_schema = new Schema({
 	is_superadmin			: Boolean,
 	is_country_manager		: Boolean,
 	is_city_manager			: Boolean,
-	is_partner				: Boolean,
 	is_active				: Boolean,
 	wizard					: Boolean, //Que es esto
 	 

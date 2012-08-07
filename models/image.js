@@ -10,7 +10,7 @@ var image_schema = new Schema({
 	filename			: { type: String , required: true},
 	default				: { type: Boolean },
 	active				: { type: Boolean },
-	created      		:   Date,
+	created    		    :  {type: Date, default: Date.now },
 	modified			:   Date	
 })	
 

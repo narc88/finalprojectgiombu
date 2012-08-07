@@ -20,7 +20,7 @@ var guest_schema = new Schema({
 	user				: [{ type: Schema.ObjectId, ref: 'User' }],
 	promoter			: [{ type: Schema.ObjectId, ref: 'User' }],
 	bounce				: [{ type: Schema.ObjectId, ref: 'Bounce' }],
-	created       		:   Date,
+	created    		    :  {type: Date, default: Date.now },
 	modified      		:   Date	
 })
 

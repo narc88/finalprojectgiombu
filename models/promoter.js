@@ -3,8 +3,8 @@ var mongoose        = require('mongoose')
   , db_lnk          = 'mongodb://localhost/giombu'
   , db              = mongoose.createConnection(db_lnk)
 
-var User = require('user')
-var Promoter_text = require('promoter_text')
+var promoter_text_schema = require('./promoter_text')
+var image_schema = require('./image')
 
 var Schema = require('mongoose').Schema
 
@@ -17,7 +17,7 @@ var promoters_schema = new Schema({
 	sponsored_count			: { type: Number, required: true, min: 0},
 	subscriber_count		: { type: Number, required: true, min: 0},
 	parent					: [{ type: Schema.ObjectId, ref: 'User' }],
-	promoter_text 			: promoters_texts_schema,
+	promoter_text 			: [promoter_text_schema],
 	images					: [image_schema],
 	created					: Date,
 	modified				: Date
