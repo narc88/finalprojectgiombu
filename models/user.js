@@ -1,7 +1,5 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
+var mongoose = require('mongoose');
 
 //Referencio los schemes que voy a usar, tanto embebiendo como referenciando
 //Verificar si es necesario hacer un require de los que vamos a referenciar,

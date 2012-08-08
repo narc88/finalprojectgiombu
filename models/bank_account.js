@@ -1,8 +1,5 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
-
+var mongoose = require('mongoose');
 
 var Schema = require('mongoose').Schema
 
@@ -11,7 +8,7 @@ var bank_account_schema = new Schema({
 })
 
 var bank_data_schema = new Schema({
-	account_data		: bank_account_schema,
+	account_data		: [bank_account_schema],
 	created    		    : {type: Date, default: Date.now },
 	modified			: Date
 })
