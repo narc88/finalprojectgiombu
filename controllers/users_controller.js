@@ -6,8 +6,8 @@ exports.register = function (req, res, next) {
 }
 
 exports.add = function (req, res, next) {
-  user_new = new User();
-  profile_new = new Profile();
+  var user_new = new User();
+  var profile_new = new Profile();
   user_new.username = req.body.username
   profile_new.name = req.body.name
   profile_new.lname = req.body.lname

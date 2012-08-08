@@ -6,7 +6,7 @@ exports.create = function (req, res, next) {
 }
 
 exports.add = function (req, res, next) {
-  deal_new = new Deal();
+  var deal_new = new Deal();
   deal_new.title = req.body.title
   deal_new.tagline = req.body.tagline
   deal_new.slug = req.body.slug
