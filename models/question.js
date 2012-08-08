@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 var Schema = require('mongoose').Schema
 
-var question_schema = new Schema({
+var QuestionSchema = exports.QuestionSchema = new Schema({
 	deal  			: [{ type: Schema.ObjectId, ref: 'Deal' }],
 	user  			: [{ type: Schema.ObjectId, ref: 'User' }],
 	partner 		: [{ type: Schema.ObjectId, ref: 'User' }],
@@ -15,4 +15,4 @@ var question_schema = new Schema({
 	modified  		:   Date	
 })
 
-module.exports = question_schema
+exports.QuestionModel = mongoose.model('Question', exports.QuestionSchema);

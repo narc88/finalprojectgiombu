@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 var Schema = require('mongoose').Schema
 
-var mailing_schema = new Schema({
+var MailingSchema = exports.MailingSchema = new Schema({
 	from_id				: { type: Number, required: true },
 	to 					: { type: Number, required: true},
 	bcc					: { type: String, required: true},
@@ -18,4 +18,4 @@ var mailing_schema = new Schema({
 	created    		    :  {type: Date, default: Date.now },
 })
 
-module.exports =  mailing_schema
+exports.MailingModel = mongoose.model('Mailing', exports.MailingSchema);

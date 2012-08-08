@@ -3,10 +3,10 @@ var mongoose = require('mongoose');
 
 var Schema = require('mongoose').Schema
 
-var city_schema = new Schema({
+var CitySchema = exports.CitySchema = new Schema({
 	name				: { type: String, required: true},
 	created        		:   Date,
 	modified       		:   Date	
 })
 
-module.exports = city_schema
+exports.CityModel = mongoose.model('City', exports.CitySchema);

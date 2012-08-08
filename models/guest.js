@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 var Schema = require('mongoose').Schema
 
-var guest_schema = new Schema({
+var GuestSchema = exports.GuestSchema = new Schema({
 	name				: { type: Number, required: true, min:0},
 	email				: { type: Number, required: true, min:0},
 	subject   			: { type: String },
@@ -21,4 +21,4 @@ var guest_schema = new Schema({
 	modified      		:   Date	
 })
 
-module.exports = guest_schema
+exports.GuestModel = mongoose.model('Guest', exports.GuestSchema);

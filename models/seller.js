@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var Schema = require('mongoose').Schema
 //var Seller_store = require('sellers_stores')
 
-var sellers_stores_schema = new Schema({
+var SellerStoreSchema = exports.SellerStoreSchema = new Schema({
 	store				: [{ type: Schema.ObjectId, ref: 'Store' }],
 	begin_date			: Date,
 	end_date			: Date,
@@ -13,7 +13,9 @@ var sellers_stores_schema = new Schema({
 	modified			: Date
 })	
 
-var sellers_schema = new Schema({
+exports.SellerStoreModel = mongoose.model('SellerStore', exports.SellerStoreSchema);
+
+var SellerSchema = exports.SellerSchema = new Schema({
 	is_dr				: { type: Boolean, required: true},
 	is_dn				: { type: Boolean, required: true},
 	is_active			: { type: Boolean, required: true},
@@ -25,4 +27,5 @@ var sellers_schema = new Schema({
 	modified			: Date
 })
 
-module.exports = sellers_schema
+exports.SellerModel = mongoose.model('Seller', exports.SellerSchema);
+

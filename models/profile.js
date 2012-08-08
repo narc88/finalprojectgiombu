@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 var Schema = require('mongoose').Schema
 
-var profiles_schema = new Schema({
+var ProfileSchema = exports.ProfileSchema = new Schema({
 	name				: { type: String, required: true},
 	lname				: { type: String, required: true},
 	code				: { type: String, required: true},
@@ -18,15 +18,9 @@ var profiles_schema = new Schema({
 	city				: { type: String},
 	zip					: { type: String},
 
-	bank_name			: { type: String},
-	bank_clabe			: { type: String},
-	bank_rute			: { type: String},
-	bank_number			: { type: String},
-	curp				: { type: String},
-	ife 				: { type: String},
 	created    		    :  {type: Date, default: Date.now },
 	modified			: Date
 
 })
 
-module.exports = profiles_schema
+exports.ProfileModel = mongoose.model('Profile', exports.ProfileSchema);

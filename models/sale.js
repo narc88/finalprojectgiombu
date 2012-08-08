@@ -1,10 +1,10 @@
 // Creación de la Conexión
 var mongoose = require('mongoose');
 
-var Coupon = require('coupon')
+var CouponSchema = require('./coupon').CouponSchema;
 var Schema = require('mongoose').Schema
 
-var sale_schema = new Schema({
+var SaleSchema = exports.SaleSchema = new Schema({
 	coupon_count		: { type: Number, required: true, min:0},
 	deal   				: [{ type: Schema.ObjectId, ref: 'Deal' }],
 	product   			: [{ type: Schema.ObjectId, ref: 'Product' }],
@@ -13,9 +13,9 @@ var sale_schema = new Schema({
 	status				: { type: String },
 	currency	   		: [{ type: Schema.ObjectId, ref: 'Currency' }],
 	user	   			: [{ type: Schema.ObjectId, ref: 'Franchise' }],
-	coupons      		: [Coupon],
+	coupons      		: [CouponSchema],
 	created       		:   Date,
 	modified        	:   Date	
 })
 
-module.exports = sale_schema
+exports.SaleModel = mongoose.model('Sale', exports.SaleSchema);

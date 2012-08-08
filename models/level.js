@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 var Schema = require('mongoose').Schema
 
-var level_schema = new Schema({
+var LevelSchema = exports.LevelSchema = new Schema({
 	number				: { type: String, required: true },
 	name    			: { type: String, required: true },
 	bonus				: { type: Number, required: true, min:0},
@@ -12,4 +12,4 @@ var level_schema = new Schema({
 	modifiend        	:   Date
 })
 
-module.exports =  level_schema
+exports.LevelModel = mongoose.model('Level', exports.LevelSchema);

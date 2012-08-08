@@ -1,16 +1,13 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
-
-var state_schema = require('./state')
+var mongoose = require('mongoose');
 var Schema = require('mongoose').Schema
+var StateSchema = require('./state').StateSchema;
 
-var country_schema = new Schema({
+var CountrySchema = exports.CountrySchema = new Schema({
 	name				: { type: String},
-	states      		: [state_schema],
+	states      		: [StateSchema],
 	created        		:   Date,
 	modified       		:   Date	
 })
 
-module.exports = country_schema
+exports.CountryModel = mongoose.model('Country', exports.CountrySchema);
