@@ -10,12 +10,12 @@ exports.add = function (req, res, next) {
  
   
   user_new.save(function (err) {
-  if (!err) {
-      console.log(user_new)
-    } else {
-      console.log("Error: - " + err)
-    }
-    res.redirect('/')
-  })
+    if (!err) {
+        console.log(user_new)
+      } else {
+        console.log("Error: - " + err)
+      }
+      res.redirect('/')
+    });
   res.render('deals/create', {title: 'Cargar Oferta'})
 }
