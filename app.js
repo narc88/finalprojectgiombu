@@ -3,13 +3,9 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes'),
-  crypto      = require('crypto'), // for cryptographic tools
-    url         = require('url'), // for parsing urls
-    querystring = require('querystring'); // for extracting query strings
- 
-var hash , algorithms = ['md5', 'sha1', 'sha256', 'sha512'];
+var express = require('express'),
+    routes = require('./routes');
+
 
 //Controlllers
 
