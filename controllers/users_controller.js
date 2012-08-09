@@ -9,27 +9,32 @@ exports.register = function (req, res, next) {
 exports.add = function (req, res, next) {
   var user_new = new UserModel();
   var profile_new = new ProfileModel();
-  user_new.username = req.body.username
-  profile_new.name = req.body.name
-  profile_new.lname = req.body.lname
-  user_new.email = req.body.email
-  user_new.password = req.body.password
-  profile_new.gender = req.body.gender
-  profile_new.birthday = req.body.birthday
-  profile_new.phone = req.body.phone
-  profile_new.mobile = req.body.mobile
-  profile_new.address = req.body.address
-  profile_new.country = req.body.country
-  profile_new.city = req.body.city
-  profile_new.zip = req.body.zip
-  user_new.profile_new.push();
+
+  user_new.username = req.body.username;
+  user_new.email = req.body.email;
+  user_new.password = req.body.password;
+
+  profile_new.name = req.body.name;
+  profile_new.lname = req.body.lname;
+  profile_new.gender = req.body.gender;
+  profile_new.birthday = req.body.birthday;
+  profile_new.phone = req.body.phone;
+  profile_new.mobile = req.body.mobile;
+  profile_new.address = req.body.address;
+  profile_new.country = req.body.country;
+  profile_new.city = req.body.city;
+  profile_new.zip = req.body.zip;
+
+  user_new.profile = profile_new;
+
   user_new.save(function (err) {
-  if (!err) {
-      console.log(user_new)
+    if (!err) {
+      console.log(user_new);
     } else {
-      console.log("Error: - " + err)
+      console.log("Error: - " + err);
     }
-    res.redirect('/')
-  })
-  res.render('deals/create', {title: 'Cargar Oferta'})
+    res.redirect('/');
+  });
+
+  res.render('deals/create', {title: 'Cargar Oferta'});
 }

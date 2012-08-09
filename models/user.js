@@ -35,7 +35,8 @@ var UserSchema = exports.UserSchema = new Schema({
 	is_country_manager		: Boolean,
 	is_city_manager			: Boolean,
 	is_active				: Boolean,
-	wizard					: Boolean, //Que es esto
+	wizard					: Boolean //Que es esto
 	 
-})
+});
+
 exports.UserModel = mongoose.model('User', exports.UserSchema);
