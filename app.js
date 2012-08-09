@@ -4,6 +4,9 @@
  */
 var express = require('express'),
     routes = require('./routes');
+
+//Colores de la consola
+var colors = require('colors')
     
 //Instancio el server
 var app = module.exports = express.createServer();
@@ -46,5 +49,5 @@ app.post('/users/save', users.add );
 app.get('/bankAccount/add', bank_accounts.add );
 
 app.listen(3000, function(){
-  console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+  console.log("Express server listening on port %d in %s mode".cyan.bold, app.address().port, app.settings.env);
 });
