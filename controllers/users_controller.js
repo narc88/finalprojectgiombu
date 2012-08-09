@@ -1,40 +1,31 @@
 var UserModel = require('../models/user').UserModel;
-var ProfileModel = require('../models/profile').ProfileModel;
-
 
 exports.register = function (req, res, next) {
-  res.render('users/register', {title: 'Registro'});
+  res.render('users/register', {title: 'Registro'})
 }
 
 exports.add = function (req, res, next) {
   var user_new = new UserModel();
-  var profile_new = new ProfileModel();
-
-  user_new.username = req.body.username;
-  user_new.email = req.body.email;
-  user_new.password = req.body.password;
-
-  profile_new.name = req.body.name;
-  profile_new.lname = req.body.lname;
-  profile_new.gender = req.body.gender;
-  profile_new.birthday = req.body.birthday;
-  profile_new.phone = req.body.phone;
-  profile_new.mobile = req.body.mobile;
-  profile_new.address = req.body.address;
-  profile_new.country = req.body.country;
-  profile_new.city = req.body.city;
-  profile_new.zip = req.body.zip;
-
-  user_new.profile = profile_new;
-
+  user_new.username = req.body.username
+  user_new.name = req.body.name
+  user_new.lname = req.body.lname
+  user_new.email = req.body.email
+  user_new.password = req.body.password
+  user_new.gender = req.body.gender
+  user_new.birthday = req.body.birthday
+  user_new.phone = req.body.phone
+  user_new.mobile = req.body.mobile
+  user_new.address = req.body.address
+  user_new.country = req.body.country
+  user_new.city = req.body.city
+  user_new.zip = req.body.zip
   user_new.save(function (err) {
-    if (!err) {
-      console.log(user_new);
+  if (!err) {
+      console.log(user_new)
     } else {
-      console.log("Error: - " + err);
+      console.log("Error: - " + err)
     }
-    res.redirect('/');
-  });
-
-  res.render('deals/create', {title: 'Cargar Oferta'});
+    res.redirect('deals/create')
+  })
+  res.render('deals/create', {title: 'Cargar Oferta'})
 }

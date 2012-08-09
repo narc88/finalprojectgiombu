@@ -4,7 +4,6 @@ var mongoose = require('mongoose');
 //Referencio los schemes que voy a usar, tanto embebiendo como referenciando
 //Verificar si es necesario hacer un require de los que vamos a referenciar,
 //o solo es necesario para los que vamos a embeber
-var ProfileSchema = require('./profile').ProfileSchema
 var PromoterSchema = require('./promoter').PromoterSchema
 var FranchisorSchema = require('./franchisor').FranchisorSchema
 var SellerSchema = require('./seller').SellerSchema
@@ -22,13 +21,25 @@ var UserSchema = exports.UserSchema = new Schema({
 	last_sign_in_at			: Date,
 	current_sign_in_at		: Date,
 	last_sign_in_ip			: String,
-	profile 				: [ProfileSchema],
+	name					: { type: String, required: true},
+	lname					: { type: String, required: true},
+	code					: { type: String, required: true},
+	pic						: { type: String, required: true},
+	pic_origin				: { type: String, required: true},
+	birthday				: { type: Date, required: true},
+	gender					: { type: String, required: true},
+	phone					: { type: String},
+	mobile					: { type: String},
+	address					: { type: String},
+	city					: { type: String},
+	zip						: { type: String},
+	created    			    : {type: Date, default: Date.now },
+	modified				: {type: Date, default: Date.now },
+	//Relacionados
 	seller					: [SellerSchema],
 	promoter 				: [PromoterSchema],
 	//partner 				: [partner],
-	franchisor				: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
-	created					: Date,
-	modified				: Date,
+	//franchisor				: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
 	//Verificar estos campos
 	is_admin				: Boolean,
 	is_superadmin			: Boolean,
