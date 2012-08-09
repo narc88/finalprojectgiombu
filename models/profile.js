@@ -17,10 +17,8 @@ var ProfileSchema = exports.ProfileSchema = new Schema({
 	address				: { type: String},
 	city				: { type: String},
 	zip					: { type: String},
-
-	created    		    :  {type: Date, default: Date.now },
-	modified			: Date
-
+	created    		    : {type: Date, default: Date.now },
+	modified			: {type: Date, default: Date.now }
 })
 
 exports.ProfileModel = mongoose.model('Profile', exports.ProfileSchema);

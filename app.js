@@ -40,7 +40,7 @@ app.post('/deals/add' , deals.add);
 
 //USERS
 app.get('/users/register', users.register );
-app.post('/users/save', users.register );
+app.post('/users/save', users.add );
 
 //Bank accounts
 app.get('/bankAccount/add', bank_accounts.add );
