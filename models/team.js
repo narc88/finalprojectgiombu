@@ -1,11 +1,9 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
+var mongoose = require('mongoose');
 
 var Schema = require('mongoose').Schema
 
-var teams_schema = new Schema({
+var TeamSchema = exports.TeamSchema = new Schema({
 	name				: { type: String, required: true},
 	is_active			: { type: Boolean, required: true},
 	promoters_count		: { type: Number, required: true, min: 0},
@@ -17,4 +15,4 @@ var teams_schema = new Schema({
 
 })
 
-module.exports = teams_schema
+exports.TeamModel = mongoose.model('Team', exports.TeamSchema);

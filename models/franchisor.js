@@ -1,12 +1,10 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
+var mongoose = require('mongoose');
 
 
 var Schema = require('mongoose').Schema
 
-var franchise_schema = new Schema({
+var FranchiseSchema = exports.FranchiseSchema = new Schema({
 	name				: { type: String },
 	slug				: { type: String },
 	is_default			: { type: Boolean },
@@ -18,9 +16,9 @@ var franchise_schema = new Schema({
 	modified			:   Date	
 })	
 
+exports.FranchiseModel = mongoose.model('Franchise', exports.FranchiseSchema);
 
-
-var franchisor_schema = new Schema({
+var FranchisorSchema = exports.FranchisorSchema  = new Schema({
 	name				: { type: String },
 	domain				: { type: String },
 	secure_domain		: { type: String },
@@ -34,9 +32,8 @@ var franchisor_schema = new Schema({
 	franchise_count		: { type: Number, required: true, min:0},
 	country	   			: [{ type: Schema.ObjectId, ref: 'Country' }],
 	currency   			: [{ type: Schema.ObjectId, ref: 'Crrency' }],
-	franchises			:  [franchise_schema],
+	franchises			:  [FranchiseSchema],
 	created    		    :  {type: Date, default: Date.now },
 	modified			:   Date	
 })	
-
-module.exports = franchisor_schema
+exports.FranchisorModel = mongoose.model('Franchisor', exports.FranchisorSchema);

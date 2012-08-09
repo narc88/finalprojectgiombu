@@ -1,19 +1,17 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
+var mongoose = require('mongoose');
 
 //Referencio los schemes que voy a usar, tanto embebiendo como referenciando
 //Verificar si es necesario hacer un require de los que vamos a referenciar,
 //o solo es necesario para los que vamos a embeber
-var Profile = require('./profile')
-var Promoter = require('./promoter')
-var Franchisor = require('./franchisor')
-var Seller = require('./seller')
+var ProfileSchema = require('./profile').ProfileSchema
+var PromoterSchema = require('./promoter').PromoterSchema
+var FranchisorSchema = require('./franchisor').FranchisorSchema
+var SellerSchema = require('./seller').SellerSchema
 
 var Schema = require('mongoose').Schema
 
-var users_schema = new Schema({
+var UserSchema = exports.UserSchema = new Schema({
 	username				: { type: String, required: true},
 	email					: { type: String, required: true},
 	password				: { type: String, required: true},
@@ -40,5 +38,4 @@ var users_schema = new Schema({
 	wizard					: Boolean, //Que es esto
 	 
 })
-
-module.exports = users_schema
+exports.UserModel = mongoose.model('User', exports.UserSchema);

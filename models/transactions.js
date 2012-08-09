@@ -1,16 +1,14 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
+var mongoose = require('mongoose');
 
 
 var Schema = require('mongoose').Schema
 
-var transaction_schema = new Schema({
+var TransactionsSchema = exports.TransactionsSchema = new Schema({
 	transaction_data	: { any: Schema.Types.Mixed },
 	sale				: [{ type: Schema.ObjectId, ref: 'Sale' }],
 	created       		:   Date,
 	modified	        :   Date	
 })
 
-module.exports = transaction_schema
+exports.TransactionsModel = mongoose.model('Transactions', exports.TransactionsSchema);

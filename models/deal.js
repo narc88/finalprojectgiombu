@@ -1,12 +1,10 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
+var mongoose = require('mongoose');
 
-var image_schema = require('./image')
+var ImageSchema = require('./image').ImageSchema;
 var Schema = require('mongoose').Schema
 
-var deal_schema = new Schema({
+var DealSchema = exports.DealSchema = new Schema({
 	title				: { type: String, required: true },
 	tagline				: { type: String, required: true },
 	slug				: { type: String, required: true },
@@ -33,9 +31,9 @@ var deal_schema = new Schema({
 	franchisor   		: { type: Schema.ObjectId, ref: 'Franchisor' },
 	franchise  			: [{ type: Schema.ObjectId, ref: 'Franchise' }],
 	currency	   		: [{ type: Schema.ObjectId, ref: 'Currency' }],
-	images 				: [image_schema],
+	images 				: [ImageSchema],
 	created    		    : { type: Date, default: Date.now },
 	modifiend        	: { type: Date, default: Date.now }
 })
 
-module.exports = deal_schema
+exports.DealModel = mongoose.model('Deal', exports.DealSchema);

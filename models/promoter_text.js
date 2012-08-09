@@ -1,12 +1,10 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
+var mongoose = require('mongoose');
 
 
 var Schema = require('mongoose').Schema
 
-var promoters_texts_schema = new Schema({
+var PromoterTextSchema = exports.PromoterTextSchema = new Schema({
 	promoter			: [{ type: Schema.ObjectId, ref: 'Promoter' }],
 	page_title			: { type: String, required: true},
 	page_body			: { type: String, required: true},
@@ -16,4 +14,4 @@ var promoters_texts_schema = new Schema({
 	
 })	
 
-module.exports = promoters_texts_schema
+exports.PromoterTextModel = mongoose.model('PromoterText', exports.PromoterTextSchema);

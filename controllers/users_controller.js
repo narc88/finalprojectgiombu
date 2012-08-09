@@ -1,4 +1,5 @@
 var User = require('../models/user').User;
+var Profile = require('../models/profile').Profile;
 
 
 exports.register = function (req, res, next) {

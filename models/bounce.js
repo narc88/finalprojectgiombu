@@ -1,12 +1,10 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
+var mongoose = require('mongoose');
 
 var Schema = require('mongoose').Schema
 
 
-var bounce_schema = new Schema({
+var BounceSchema = exports.BounceSchema = new Schema({
 	email				: { type: String, required: true},
 	modified_email		: { type: String, required: true},
 	promoter			: { type: Schema.ObjectId, ref: 'Promoter'},
@@ -18,4 +16,4 @@ var bounce_schema = new Schema({
 
 })
 
-module.exports = bounce_schema
+exports.BounceModel = mongoose.model('Bounce', exports.BounceSchema);

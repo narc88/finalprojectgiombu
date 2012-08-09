@@ -1,9 +1,7 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
+var mongoose = require('mongoose');
 
-var City = require('./city')
+var CitySchema = require('./city').CitySchema;
 var Schema = require('mongoose').Schema
 
 var state_schema = new Schema({

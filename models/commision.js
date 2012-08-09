@@ -1,11 +1,9 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
+var mongoose = require('mongoose');
 
 var Schema = require('mongoose').Schema
 
-var commission_schema = new Schema({
+var CommissionSchema = exports.CommissionSchema = new Schema({
 	recipient_type		: { type: String, required: true },
 	recipient_id    	: { type: String, required: true },
 	sale				: [{ type: Schema.ObjectId, ref: 'Sale' }],
@@ -16,4 +14,4 @@ var commission_schema = new Schema({
 	modifiend        	:   Date
 })
 
-module.exports =  commission_schema
+exports.CommissionModel = mongoose.model('Commission', exports.CommissionSchema);

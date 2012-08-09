@@ -1,12 +1,10 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
+var mongoose = require('mongoose');
 
 
 var Schema = require('mongoose').Schema
 
-var branch_schema = new Schema({
+var BranchSchema = new Schema({
 	name				: { type: String },
 	address				: { type: String },
 	lat					: { type: Number, required: true},
@@ -23,9 +21,9 @@ var branch_schema = new Schema({
 	modified			:   Date	
 })	
 
+exports.BranchModel = mongoose.model('Branch', exports.BranchSchema);
 
-
-var store_schema = new Schema({
+var StoreSchema = exports.StoreSchema = new Schema({
 	name				: { type: String },
 	deal_count			: { type: Number, required: true, min:0},
 	branch_count		: { type: Number, required: true, min:0},
@@ -38,4 +36,4 @@ var store_schema = new Schema({
 	modified			:   Date	
 })	
 
-module.exports = store_schema
+exports.StoreModel = mongoose.model('Store', exports.StoreSchema);

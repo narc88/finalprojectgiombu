@@ -1,12 +1,10 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
+var mongoose = require('mongoose');
 
 var Schema = require('mongoose').Schema
 
 //Podria estar embebido en la franquicia
-var subscribers_schema = new Schema({
+var SubscriberSchema = exports.SubscriberSchema = new Schema({
 	name				: { type: String, required: true},
 	email				: { type: String, required: true},
 	subscribe_method	: { type: String, required: true},
@@ -24,4 +22,4 @@ var subscribers_schema = new Schema({
 
 })
 
-module.exports = subscribers_schema
+exports.SubscriberModel = mongoose.model('Subscriber', exports.SubscriberSchema);

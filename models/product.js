@@ -1,12 +1,10 @@
 // Creación de la Conexión
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
+var mongoose = require('mongoose');
 
 var Image = require('image')
 var Schema = require('mongoose').Schema
 
-var product_schema = new Schema({
+var ProductSchema = exports.ProductSchema = new Schema({
 	code				: { type: String, required: true },
 	brand   			: [{ type: Schema.ObjectId, ref: 'Brand' }],
 	slug				: { type: String, required: true },
@@ -31,4 +29,4 @@ var product_schema = new Schema({
 	modifiend        	:   Date
 })
 
-module.exports =  product_schema
+exports.ProductModel = mongoose.model('Product', exports.ProductSchema);

@@ -1,16 +1,14 @@
 
-var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/giombu'
-  , db              = mongoose.createConnection(db_lnk)
+var mongoose = require('mongoose');
 
 var Schema = require('mongoose').Schema
 
-var event_schema = new Schema({
+var EventSchema = exports.EventSchema =  new Schema({
 	name		: { type: String , required: true},
 	body		: { type: String , required: true},
 	type		: { type: String },
 	created    	:  {type: Date, default: Date.now },
-	modified    :   Date	
+	modified    :  {type: Date, default: Date.now }
 })
 
-module.exports = event_schema
+exports.EventModel = mongoose.model('Event', exports.EventSchema);
