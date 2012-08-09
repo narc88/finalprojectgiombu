@@ -1,4 +1,5 @@
 var DealModel = require('../models/deal').DealModel;
+var colors = require('colors');
 
 
 exports.create = function (req, res, next) {
@@ -6,6 +7,9 @@ exports.create = function (req, res, next) {
 }
 
 exports.add = function (req, res, next) {
+
+  console.log('deals - add'.cyan.bold);
+
   var deal_new = new Deal();
   deal_new.title = req.body.title
   deal_new.tagline = req.body.tagline
@@ -33,13 +37,64 @@ exports.add = function (req, res, next) {
   deal_new.franchise = req.body.franchise
   deal_new.currency = req.body.currency
   deal_new.images = req.body.images
+
   deal_new.save(function (err) {
     if (!err) {
-      console.log(deal_new)
+      console.log('deals - add - Guardo una nueva deal');
     } else {
-      console.log("Error: - " + err)
+      console.log('deals - add - '.red.bold + err);
+      res.redirect('/');
     }
-    res.redirect('/')
-  })
-  res.render('deals/create', {title: 'Cargar Oferta'})
+    
+  });
+
+
+  console.log('deals - add - Redirecciono a deals/create');
+  res.render('deals/create', {title: 'Cargar Oferta'});
+}
+
+exports.view = function(req, res, next){
+
+	console.log('deals - view'.cyan.bold);
+	console.log('deals - view - Busco el deal ( ' + req.body.deal_id +' )');
+
+	DealModel.findById( req.body.deal_id , function(err, deal){
+		if(!err){
+			if(deal){
+				console.log('deals - view - Se encontro el deal ( ' + req.body.deal_id +' )');
+				res.render('deals/view', {title: 'Deal', deal : deal});
+			}else{
+				console.log('deals - view - No se encontro el deal ( ' + req.body.deal_id +' )');
+			}
+		}else{
+			console.log('deals - view - '.red.bold + err);
+		}
+
+  });
+}
+
+
+exports.edit = function(req, res, next){
+
+	console.log('deals - edit'.cyan.bold);
+	console.log('deals - edit - Busco el deal ( ' + req.body.deal_id +' )');
+
+	DealModel.findById( req.body.deal_id , function(err, deal){
+		if(!err){
+			if(deal){
+				console.log('deals - edit - Se encontro el deal ( ' + req.body.deal_id +' )');
+				
+				//Edicion del deal
+
+
+
+			}else{
+				console.log('deals - edit - No se encontro el deal ( ' + req.body.deal_id +' )');
+			}
+		}else{
+			console.log('deals - edit - '.red.bold + err);
+		}
+
+  });
+
 }
