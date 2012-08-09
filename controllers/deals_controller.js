@@ -53,6 +53,8 @@ exports.add = function (req, res, next) {
   res.render('deals/create', {title: 'Cargar Oferta'});
 }
 
+
+
 exports.view = function(req, res, next){
 
 	console.log('deals - view'.cyan.bold);
@@ -74,6 +76,7 @@ exports.view = function(req, res, next){
 }
 
 
+
 exports.edit = function(req, res, next){
 
 	console.log('deals - edit'.cyan.bold);
@@ -93,6 +96,37 @@ exports.edit = function(req, res, next){
 			}
 		}else{
 			console.log('deals - edit - '.red.bold + err);
+		}
+
+  });
+
+}
+
+
+exports.delete = function(req, res, next){
+
+	console.log('deals - delete'.cyan.bold);
+	console.log('deals - delete - Busco el deal ( ' + req.body.deal_id +' )');
+
+	DealModel.findById( req.body.deal_id , function(err, deal){
+		if(!err){
+			if(deal){
+				console.log('deals - delete - Se encontro el deal ( ' + req.body.deal_id +' )');
+				
+				//Elimino el deal
+				deal.remove(function(err){
+					if(!err){
+						console.log('deals - delete - Se elimina el deal ( ' + req.body.deal_id +' )');
+					}else{
+						console.log('deals - delete - '.red.bold + err);
+					}
+				})
+
+			}else{
+				console.log('deals - delete - No se encontro el deal ( ' + req.body.deal_id +' )');
+			}
+		}else{
+			console.log('deals - delete - '.red.bold + err);
 		}
 
   });
