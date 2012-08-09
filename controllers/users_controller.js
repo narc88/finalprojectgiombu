@@ -1,5 +1,5 @@
-var User = require('../models/user').User;
-var Profile = require('../models/profile').Profile;
+var UserModel = require('../models/user').UserModel;
+var ProfileModel = require('../models/profile').ProfileModel;
 
 
 exports.register = function (req, res, next) {
