@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 
 var PromoterTextSchema = require('./promoter_text').PromoterTextSchema;
-var ImageSchema = require('./image').ImageSchema;
+
 
 var Schema = require('mongoose').Schema
 
@@ -16,7 +16,6 @@ var PromoterSchema = exports.PromoterSchema = new Schema({
 	subscriber_count		: { type: Number, required: true, min: 0},
 	parent_id 				: { type: Schema.ObjectId, ref: 'User' },
 	promoter_text 			: [PromoterTextSchema],
-	images					: [ImageSchema],
 	created					: Date,
 	modified				: Date
 })
