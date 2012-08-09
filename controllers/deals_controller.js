@@ -1,4 +1,4 @@
-var Deal = require('../models/deal').Deal;
+var DealModel = require('../models/deal').DealModel;
 
 
 exports.create = function (req, res, next) {
