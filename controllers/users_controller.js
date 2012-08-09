@@ -2,7 +2,7 @@ var User = require('../models/user').User;
 
 
 exports.register = function (req, res, next) {
-  res.render('users/register', {title: 'Registro'})
+  res.render('users/register', {title: 'Registro'});
 }
 
 exports.add = function (req, res, next) {

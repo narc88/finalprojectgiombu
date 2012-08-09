@@ -9,8 +9,8 @@ var express = require('express'),
 
 //Controlllers
 
-var deals = require('./controllers/deals_controller')
-var users = require('./controllers/users_controller')
+var deals = require('./controllers/deals_controller');
+var users = require('./controllers/users_controller');
 
 
 
