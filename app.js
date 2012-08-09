@@ -36,6 +36,16 @@ app.get('/', routes.index);
 
 //Functions
 
+//Autenticacion
+function checkAuth(req, res, next) {
+  console.log('checkAuth - User : '+ req.session.user_id);
+  if (!req.session.user_id) {
+    res.send('Error - Acceso no permitido');
+  } else {
+    next();
+  }
+}
+
 
 //DEALS
 app.get('/deals/create' , deals.create);
@@ -44,6 +54,8 @@ app.post('/deals/add' , deals.add);
 //USERS
 app.get('/users/register', users.register );
 app.post('/users/save', users.add );
+app.get('/users/login', users.login );
+app.post('/users/login_user', users.login_user );
 
 //Bank accounts
 app.get('/bankAccount/add', bank_accounts.add );
