@@ -1,7 +1,7 @@
 // Creación de la Conexión
 var mongoose = require('mongoose');
 
-var Image = require('image')
+var Image = require('image');
 var Schema = require('mongoose').Schema
 
 var ProductSchema = exports.ProductSchema = new Schema({

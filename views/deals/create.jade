@@ -1,80 +1,106 @@
-div( class='contenedor')
-	div( class='container_form')
-		form(method='post', action='/deals/create/')
+h2 #{title}
+.contenedor
+	.container_form
+		form(method='post', action='/deals/add')
 			label Titulo
-				input(name='title', type='text') 
-				br
+			br
+			input(name='title', type='text') 
+			br
 			label Tagline
-				input(name='tagline', type='text') 
-				br
+			br
+			input(name='tagline', type='text') 
+			br
 			label Slug
-				input(name='slug', type='text') 
-				br
+			br
+			input(name='slug', type='text') 
+			br
 			label Características
-				input(name='characteristics', type='text') 
-				br
+			br
+			input(name='characteristics', type='text') 
+			br
 			label Condiciones
-				input(name='conditions', type='text') 
-				br
+			br
+			input(name='conditions', type='text') 
+			br
 			label Precio
-				input(name='price', type='text') 
-				br
+			br
+			input(name='price', type='text') 
+			br
 			label Descuento
-				input(name='discount', type='text')
-				br 
+			br
+			input(name='discount', type='text')
+			br 
 			label Precio especial
-				input(name='special_price', type='text') 
-				br
+			br
+			input(name='special_price', type='text') 
+			br
 			label Fecha de comienzo
-				input(name='start_date', type='date') 
-				br
+			br
+			input(name='start_date', type='date') 
+			br
 			label Fecha de fin
-				input(name='end_date', type='date')
-				br
+			br
+			input(name='end_date', type='date')
+			br
 			label Inicio fecha de canje
-				input(name='start_redeem', type='date') 
-				br
+			br
+			input(name='start_redeem', type='date') 
+			br
 			label Fin fecha de canje
-				input(name='end_redeem', type='date') 
-				br
+			br
+			input(name='end_redeem', type='date') 
+			br
 			label Maximo de cupones
-				input(name='max_coupons', type='text') 
-				br
+			br
+			input(name='max_coupons', type='text') 
+			br
 			label Maximo de cupones por usuario
-				input(name='max_coupons_by_user', type='text') 
-				br
+			br
+			input(name='max_coupons_by_user', type='text') 
+			br
 			label Porcentaje para el vendedor
-				input(name='seller_percentage', type='text')
-				br 
+			br
+			input(name='seller_percentage', type='text')
+			br 
 			label Porcentaje giombu
-				input(name='giombu_percentage', type='text') 
-				br
+			br
+			input(name='giombu_percentage', type='text') 
+			br
 			label  Porcentaje para promotor
-				input(name='promoter_percentage', type='text') 
-				br
+			br
+			input(name='promoter_percentage', type='text') 
+			br
 			label Estado
-				input(name='status', type='text')
-				br 
+			br
+			input(name='status', type='text')
+			br 
 			label Costo de envío
-				input(name='shipping_cost', type='text') 
-				br
+			br
+			input(name='shipping_cost', type='text') 
+			br
 			label Negocio
-				input(name='store', type='text') 
-				br
+			br
+			input(name='store', type='text') 
+			br
 			label Vendedor
-				input(name='seller', type='text') 
-				br
+			br
+			input(name='seller', type='text') 
+			br
 			label Franquiciante
-				input(name='franchisor', type='text') 
-				br
+			br
+			input(name='franchisor', type='text') 
+			br
 			label Franquicias
-				input(name='franchises', type='text', multiple="multiple")
-				br 
+			br
+			input(name='franchises', type='text', multiple="multiple")
+			br 
 			label Moneda
-				input(name='currency', type='text') 
-				br
+			br
+			input(name='currency', type='text') 
+			br
 			label Imagenes
-				input(name='images', type='text') 
-				br
+			br
+			input(name='images', type='text') 
+			br
 			input(name='submit', type='submit') Enviar
-				br
+			br

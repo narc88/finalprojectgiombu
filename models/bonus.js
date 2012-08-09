@@ -1,6 +1,6 @@
 // Creación de la Conexión
 var mongoose = require('mongoose');
-var Schema = require('mongoose').Schema
+var Schema = require('mongoose').Schema;
 
 //Puede ir embebido dentro del promotor
 var BonusSchema = exports.BonusSchema = new Schema({
@@ -14,5 +14,6 @@ var BonusSchema = exports.BonusSchema = new Schema({
 	currency			: { type: Schema.ObjectId, ref: 'Currency'},
 	created				: { type: Date, required: true},
 	modified			: { type: Date, required: true}
-})
+});
+
 exports.BonusModel = mongoose.model('Bonus', exports.BonusSchema);
