@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 //Verificar si es necesario hacer un require de los que vamos a referenciar,
 //o solo es necesario para los que vamos a embeber
 var PromoterSchema = require('./promoter').PromoterSchema
+var RoleSchema = require('./promoter').RoleSchema
+var ImageSchema = require('./image').ImageSchema;
 //var FranchisorSchema = require('./franchisor').FranchisorSchema
 var SellerSchema = require('./seller').SellerSchema
 
@@ -24,8 +26,6 @@ var UserSchema = exports.UserSchema = new Schema({
 	name					: { type: String, required: true},
 	lname					: { type: String, required: true},
 	code					: { type: String, required: true},
-	pic						: { type: String, required: true},
-	pic_origin				: { type: String, required: true},
 	birthday				: { type: Date, required: true},
 	gender					: { type: String, required: true},
 	phone					: { type: String},
@@ -36,8 +36,10 @@ var UserSchema = exports.UserSchema = new Schema({
 	created    			    : {type: Date, default: Date.now },
 	modified				: {type: Date, default: Date.now },
 	//Relacionados
+	image 					: [ImageSchema],
 	seller					: [SellerSchema],
 	promoter 				: [PromoterSchema],
+	role 					: [RoleSchema],
 	//partner 				: [partner],
 	//franchisor				: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
 	//Verificar estos campos
