@@ -21,5 +21,6 @@ var FranchisorSchema = exports.FranchisorSchema  = new Schema({
 	franchises			:  [FranchiseSchema],
 	created    		    :  {type: Date, default: Date.now },
 	modified			:   Date	
-})	
+});
+
 exports.FranchisorModel = mongoose.model('Franchisor', exports.FranchisorSchema);
