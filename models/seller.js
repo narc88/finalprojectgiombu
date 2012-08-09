@@ -4,16 +4,8 @@ var mongoose = require('mongoose');
 
 var Schema = require('mongoose').Schema
 //var Seller_store = require('sellers_stores')
+var SellerStoreSchema = require('./seller_store').SellerStoreSchema;
 
-var SellerStoreSchema = exports.SellerStoreSchema = new Schema({
-	store				: [{ type: Schema.ObjectId, ref: 'Store' }],
-	begin_date			: Date,
-	end_date			: Date,
-	created				: Date,
-	modified			: Date
-})	
-
-exports.SellerStoreModel = mongoose.model('SellerStore', exports.SellerStoreSchema);
 
 var SellerSchema = exports.SellerSchema = new Schema({
 	is_dr				: { type: Boolean, required: true},
