@@ -4,6 +4,7 @@ exports.register = function (req, res, next) {
   res.render('users/register', {title: 'Registro'})
 }
 
+
 exports.add = function (req, res, next) {
   var user_new = new UserModel();
   user_new.username = req.body.username

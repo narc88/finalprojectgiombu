@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 //Verificar si es necesario hacer un require de los que vamos a referenciar,
 //o solo es necesario para los que vamos a embeber
 var PromoterSchema = require('./promoter').PromoterSchema
-var FranchisorSchema = require('./franchisor').FranchisorSchema
+//var FranchisorSchema = require('./franchisor').FranchisorSchema
 var SellerSchema = require('./seller').SellerSchema
 
 var Schema = require('mongoose').Schema
