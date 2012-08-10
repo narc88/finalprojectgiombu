@@ -11,6 +11,16 @@ exports.add = function (req, res, next) {
 
 	console.log('franchises - add'.cyan.bold);
 
+	var franchise_new = new FranchiseModel();
+
+	franchise_new.name				: req.body.name;
+	franchise_new.slug				: req.body.slug;
+	franchise_new.is_default		: req.body.is_default;
+	franchise_new.timezone			: req.body.timezone;
+	franchise_new.user_count		: req.body.user_count;
+	franchise_new.subscriber_count	: req.body.subscriber_count;
+	franchise_new.store_count		: req.body.store_count;
+
 	franchise_new.save(function (err) {
 		if (!err) {
 			console.log('franchises - add - Guardo una nueva franchise');
@@ -61,7 +71,14 @@ exports.edit = function(req, res, next){
 				console.log('franchises - edit - Se encontro el franchise ( ' + req.body.franchise_id +' )');
 				
 				//Edicion del franchise
-
+				//Hacer que solo se graben los campos editados
+				franchise.name				: req.body.name;
+				franchise.slug				: req.body.slug;
+				franchise.is_default		: req.body.is_default;
+				franchise.timezone			: req.body.timezone;
+				franchise.user_count		: req.body.user_count;
+				franchise.subscriber_count	: req.body.subscriber_count;
+				franchise.store_count		: req.body.store_count;
 
 
 			}else{

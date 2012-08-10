@@ -12,6 +12,7 @@ exports.add = function (req, res, next) {
 	console.log('deals - add'.cyan.bold);
 
 	var deal_new = new DealModel();
+	
 	deal_new.title = req.body.title
 	deal_new.tagline = req.body.tagline
 	deal_new.slug = req.body.slug
@@ -33,14 +34,15 @@ exports.add = function (req, res, next) {
 	deal_new.sale_count = 0; //Yo no lo pondria
 	deal_new.coupon_count = 0;
 	deal_new.shipping_cost = req.body.shipping_cost
+
+	//Validar los ids de los siguientes datos
+
 	//deal_new.store = req.body.store
 	//deal_new.seller = req.body.seller
 	//deal_new.franchisor = req.body.franchisor
 	//deal_new.franchise = req.body.franchise
 	//deal_new.currency = req.body.currency
 	//deal_new.images = req.body.images
-
-	console.log(deal_new);
 
 	deal_new.save(function (err) {
 		if (!err) {
