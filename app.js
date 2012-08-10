@@ -51,6 +51,11 @@ function checkAuth(req, res, next) {
 //INDEX
 app.get('/', routes.index);
 
+//Promotres
+
+app.get('/promoters/register' , promoters.register);
+app.post('/promoters/add' , promoters.add);
+
 //DEALS
 app.get('/deals/create' , deals.create);
 app.post('/deals/add' , deals.add);

@@ -1,4 +1,9 @@
 div( class='contenedor')
+	p #{title}
+	- if(typeof(error) != 'undefined')
+		p #{error}
+	- else
+		p Ingrese usuario y contraseña
 	div( class='container_form')
 		form(method='post', action='/users/login_user/')
 			label Usuario

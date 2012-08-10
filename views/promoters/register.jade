@@ -1,0 +1,17 @@
+div( class='contenedor')
+	div( class='container_form')
+		form(method='post', action='/promoters/add/')
+			label Titulo de tu página personal
+				input(name='page_title', type='text') 
+				br
+			label Cuerpo de la página personal
+				input(name='page_body', type='textarea') 
+				br
+			label Invitación a suscriptores
+				input(name='subscribers_invite', type='textarea') 
+				br
+			label Fuiste invitado por
+				input(name='parent_id', type='select') 
+				br
+			input(name='submit', type='submit') 
+				br
