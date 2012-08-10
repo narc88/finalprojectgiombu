@@ -18,9 +18,9 @@ app.mongoose = require('mongoose');
 var config = require('./config.js')(app, express);
 
 //Controlllers
-var deals = require('./controllers/deals_controller')
-var users = require('./controllers/users_controller')
-var bank_accounts = require('./controllers/bank_accounts_controller')
+var deals = require('./controllers/deals_controller');
+var users = require('./controllers/users_controller');
+var bank_accounts = require('./controllers/bank_accounts_controller');
 
 // Configuration
 app.configure('development', function(){

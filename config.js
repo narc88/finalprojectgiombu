@@ -37,7 +37,7 @@ var allowCrossDomain = function(req, res, next) {
     app.use(express.session( {cookie: {maxAge: 120000}, store: mongooseSessionStore, secret: "Osegredo!!!" }));
     app.use(app.router);
 */
-    app.use(express.session({ secret: 'your secret here' }));
+    app.use(express.session({cookie: {maxAge: 120000}, secret: 'CLavesecreta' }));
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
     
