@@ -41,12 +41,13 @@ exports.login_user = function(req, res, next){
       res.render('users/login', {title: 'Error'});
     }else{
       if(doc.password ==  Encrypter.encrypt(req.body.password)){
-        req.session = doc;
-        res.render('users/welcome', {title: 'Cargar Oferta'});
+        req.session.user = doc;
         console.log('Logged in'.yellow);
+        console.log( req.session);
+        res.render('users/welcome', {title: 'Cargar Oferta'});
       }else{
         res.render('users/login', {title: 'Error'});
-         console.log('Failed'.red);
+        console.log('Failed'.red);
       }
     }
     res.render('users/login', {title: 'Error'});
