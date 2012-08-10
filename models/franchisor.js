@@ -20,7 +20,7 @@ var FranchisorSchema = exports.FranchisorSchema  = new Schema({
 	currency   			: [{ type: Schema.ObjectId, ref: 'Crrency' }],
 	franchises			:  [FranchiseSchema],
 	created    		    :  {type: Date, default: Date.now },
-	modified			:   Date	
+	modified			:  {type: Date, default: Date.now }
 });
 
 exports.FranchisorModel = mongoose.model('Franchisor', exports.FranchisorSchema);
