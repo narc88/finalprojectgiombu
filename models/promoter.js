@@ -7,17 +7,13 @@ var PromoterTextSchema = require('./promoter_text').PromoterTextSchema;
 var Schema = require('mongoose').Schema
 
 var PromoterSchema = exports.PromoterSchema = new Schema({
-	username				: { type: String, required: true},
 	page_visits				: { type: Number, required: true, min: 0},
 	level					: { type: Schema.ObjectId, ref: 'Level' },
 	confirm_promoter_token	: { type: String, required: true},
-	is_active				: { type: Boolean, required: true},
-	sponsored_count			: { type: Number, required: true, min: 0},
-	subscriber_count		: { type: Number, required: true, min: 0},
 	parent_id 				: { type: Schema.ObjectId, ref: 'User' },
 	promoter_text 			: [PromoterTextSchema],
-	created					: Date,
-	modified				: Date
+	created    		 	    : {type: Date, default: Date.now },
+	modified				: {type: Date, default: Date.now }
 })
 
 exports.PromoterModel = mongoose.model('Promoter', exports.PromoterSchema);

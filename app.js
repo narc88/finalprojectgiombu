@@ -21,7 +21,7 @@ var config = require('./config.js')(app, express);
 var deals = require('./controllers/deals_controller');
 var users = require('./controllers/users_controller');
 var bank_accounts = require('./controllers/bank_accounts_controller');
-
+var promoters = require('./controllers/promoters_controller');
 // Configuration
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -46,6 +46,10 @@ function checkAuth(req, res, next) {
   }
 }
 
+
+//Promoters
+app.get('/promoters/register' , promoters.register);
+app.post('/promoters/add' , promoters.add);
 
 //DEALS
 app.get('/deals/create' , deals.create);

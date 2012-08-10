@@ -32,7 +32,7 @@ exports.add = function (req, res, next) {
 }
 
 exports.login = function (req, res, next){
-  res.render('users/login', {title: 'Autenticación'})
+  res.render('users/login', {title: 'Autenticacion'});
 }
 
 exports.login_user = function(req, res, next){
@@ -46,10 +46,10 @@ exports.login_user = function(req, res, next){
         console.log( req.session);
         res.render('users/welcome', {title: 'Cargar Oferta'});
       }else{
-        res.render('users/login', {title: 'Error'});
+        res.render('users/login', {title: 'Error', error:'Combinacion usuario/contraseña incorrecta, por favor, intente nuevamente.'});
         console.log('Failed'.red);
       }
     }
-    res.render('users/login', {title: 'Error'});
+   res.render('users/login', {title: 'Error', error:'Combinacion usuario/contraseña incorrecta, por favor, intente nuevamente.'});
   });
 }
