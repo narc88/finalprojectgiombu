@@ -40,7 +40,7 @@ var UserSchema = exports.UserSchema = new Schema({
 	promoter 				: [PromoterSchema],
 	role 					: [RoleSchema],
 	//partner 				: [partner],
-	//franchisor				: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
+	//franchisor			: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
 	//Verificar estos campos
 	is_admin				: Boolean,
 	is_superadmin			: Boolean,
