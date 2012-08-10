@@ -30,16 +30,17 @@ exports.add = function (req, res, next) {
 	deal_new.giombu_percentage = req.body.giombu_percentage
 	deal_new.promoter_percentage = req.body.promoter_percentage
 	deal_new.status = req.body.status
-	deal_new.sale_count = req.body.sale_count //Yo no lo pondria
-	deal_new.cupon_count = req.body.cupon_count
+	deal_new.sale_count = 0; //Yo no lo pondria
+	deal_new.coupon_count = 0;
 	deal_new.shipping_cost = req.body.shipping_cost
 	//deal_new.store = req.body.store
 	//deal_new.seller = req.body.seller
 	//deal_new.franchisor = req.body.franchisor
 	//deal_new.franchise = req.body.franchise
 	//deal_new.currency = req.body.currency
-	deal_new.images = req.body.images
+	//deal_new.images = req.body.images
 
+	console.log(deal_new);
 
 	deal_new.save(function (err) {
 		if (!err) {
