@@ -31,19 +31,21 @@ exports.add = function (req, res, next) {
 	deal_new.promoter_percentage = req.body.promoter_percentage
 	deal_new.status = req.body.status
 	deal_new.sale_count = req.body.sale_count //Yo no lo pondria
+	deal_new.cupon_count = req.body.cupon_count
 	deal_new.shipping_cost = req.body.shipping_cost
-	deal_new.store = req.body.store
-	deal_new.seller = req.body.seller
-	deal_new.franchisor = req.body.franchisor
-	deal_new.franchise = req.body.franchise
-	deal_new.currency = req.body.currency
+	//deal_new.store = req.body.store
+	//deal_new.seller = req.body.seller
+	//deal_new.franchisor = req.body.franchisor
+	//deal_new.franchise = req.body.franchise
+	//deal_new.currency = req.body.currency
 	deal_new.images = req.body.images
+
 
 	deal_new.save(function (err) {
 		if (!err) {
 			console.log('deals - add - Guardo una nueva deal');
 			console.log('deals - add - Redirecciono a deals/create');
-			res.render('deals/create', {title: 'Cargar Oferta'});
+			res.render('deals/view', {title: 'Deals View', deals : [deal_new]});
 		} else {
 			console.log('deals - add - '.red.bold + err);
 			console.log('deals - add - Redirecciono a /');

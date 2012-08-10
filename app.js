@@ -31,8 +31,7 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-// Routes
-app.get('/', routes.index);
+
 
 //Functions
 
@@ -47,6 +46,11 @@ function checkAuth(req, res, next) {
 }
 
 
+// ROUTES --------------------------------------------------------------------------
+
+//INDEX
+app.get('/', routes.index);
+
 //DEALS
 app.get('/deals/create' , deals.create);
 app.post('/deals/add' , deals.add);
@@ -59,6 +63,9 @@ app.post('/users/login_user', users.login_user );
 
 //Bank accounts
 app.get('/bankAccount/add', bank_accounts.add );
+
+
+// ROUTES --------------------------------------------------------------------------
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode".cyan.bold, app.address().port, app.settings.env);
