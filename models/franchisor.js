@@ -16,7 +16,7 @@ var FranchisorSchema = exports.FranchisorSchema  = new Schema({
 	language			: { type: String },
 	fanpage				: { type: String },
 	franchise_count		: { type: Number, required: true, min:0},
-	country	   			: [{ type: Schema.ObjectId, ref: 'Country' }],
+	country	   			: { type: Schema.ObjectId, ref: 'Country' },	//Un franchisor es para un solo pais/estado/ciudad
 	currency   			: [{ type: Schema.ObjectId, ref: 'Crrency' }],
 	franchises			:  [FranchiseSchema],
 	created    		    :  {type: Date, default: Date.now },

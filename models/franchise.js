@@ -12,7 +12,7 @@ var FranchiseSchema = exports.FranchiseSchema = new Schema({
 	subscriber_count	: { type: Number, min:0},
 	store_count			: { type: Number, min:0},
 	created    		    :  {type: Date, default: Date.now },
-	modified			:   Date	
+	modified			:  {type: Date, default: Date.now }	
 });	
 
 exports.FranchiseModel = mongoose.model('Franchise', exports.FranchiseSchema);

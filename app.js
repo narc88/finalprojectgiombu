@@ -21,7 +21,7 @@ var config = require('./config.js')(app, express);
 var deals = require('./controllers/deals_controller');
 var users = require('./controllers/users_controller');
 var bank_accounts = require('./controllers/bank_accounts_controller');
-var promoters = require('./controllers/promoters_controller');
+
 // Configuration
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -31,8 +31,7 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-// Routes
-app.get('/', routes.index);
+
 
 //Functions
 
@@ -47,9 +46,10 @@ function checkAuth(req, res, next) {
 }
 
 
-//Promoters
-app.get('/promoters/register' , promoters.register);
-app.post('/promoters/add' , promoters.add);
+// ROUTES --------------------------------------------------------------------------
+
+//INDEX
+app.get('/', routes.index);
 
 //DEALS
 app.get('/deals/create' , deals.create);
@@ -63,6 +63,9 @@ app.post('/users/login_user', users.login_user );
 
 //Bank accounts
 app.get('/bankAccount/add', bank_accounts.add );
+
+
+// ROUTES --------------------------------------------------------------------------
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode".cyan.bold, app.address().port, app.settings.env);

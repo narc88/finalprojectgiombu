@@ -1,4 +1,4 @@
-var DealModel = require('../models/franchisor').DealModel;
+var FranchisorModel = require('../models/franchisor').FranchisorModel;
 var colors = require('colors');
 
 
@@ -12,7 +12,7 @@ exports.add = function (req, res, next) {
 
 
 
-  deal_new.save(function (err) {
+  franchisor_new.save(function (err) {
     if (!err) {
       console.log('franchisor - add - Save');
     } else {
@@ -34,11 +34,11 @@ exports.view = function(req, res, next){
 	console.log('franchisor - view'.cyan.bold);
 	console.log('franchisor - view - Busco el franchisor ( ' + req.body.franchisor_id +' )');
 
-	DealModel.findById( req.body.franchisor_id , function(err, deal){
+	FranchisorModel.findById( req.body.franchisor_id , function(err, franchisor){
 		if(!err){
-			if(deal){
+			if(franchisor){
 				console.log('franchisor - view - Se encontro el franchisor ( ' + req.body.franchisor_id +' )');
-				res.render('franchisor/view', {title: 'Deal', deal : deal});
+				res.render('franchisor/view', {title: 'franchisor', franchisor : franchisor});
 			}else{
 				console.log('franchisor - view - No se encontro el franchisor ( ' + req.body.franchisor_id +' )');
 			}
@@ -54,19 +54,19 @@ exports.view = function(req, res, next){
 exports.edit = function(req, res, next){
 
 	console.log('franchisor - edit'.cyan.bold);
-	console.log('franchisor - edit - Busco el deal ( ' + req.body.franchisor_id +' )');
+	console.log('franchisor - edit - Busco el franchisor ( ' + req.body.franchisor_id +' )');
 
-	DealModel.findById( req.body.franchisor_id , function(err, deal){
+	FranchisorModel.findById( req.body.franchisor_id , function(err, franchisor){
 		if(!err){
-			if(deal){
-				console.log('franchisor - edit - Se encontro el deal ( ' + req.body.franchisor_id +' )');
+			if(franchisor){
+				console.log('franchisor - edit - Se encontro el franchisor ( ' + req.body.franchisor_id +' )');
 				
-				//Edicion del deal
+				//Edicion del franchisor
 
 
 
 			}else{
-				console.log('franchisor - edit - No se encontro el deal ( ' + req.body.franchisor_id +' )');
+				console.log('franchisor - edit - No se encontro el franchisor ( ' + req.body.franchisor_id +' )');
 			}
 		}else{
 			console.log('franchisor - edit - '.red.bold + err);
@@ -80,24 +80,24 @@ exports.edit = function(req, res, next){
 exports.delete = function(req, res, next){
 
 	console.log('franchisor - delete'.cyan.bold);
-	console.log('franchisor - delete - Busco el deal ( ' + req.body.franchisor_id +' )');
+	console.log('franchisor - delete - Busco el franchisor ( ' + req.body.franchisor_id +' )');
 
-	DealModel.findById( req.body.franchisor_id , function(err, deal){
+	FranchisorModel.findById( req.body.franchisor_id , function(err, franchisor){
 		if(!err){
-			if(deal){
-				console.log('franchisor - delete - Se encontro el deal ( ' + req.body.franchisor_id +' )');
+			if(franchisor){
+				console.log('franchisor - delete - Se encontro el franchisor ( ' + req.body.franchisor_id +' )');
 				
-				//Elimino el deal
-				deal.remove(function(err){
+				//Elimino el franchisor
+				franchisor.remove(function(err){
 					if(!err){
-						console.log('franchisor - delete - Se elimina el deal ( ' + req.body.franchisor_id +' )');
+						console.log('franchisor - delete - Se elimina el franchisor ( ' + req.body.franchisor_id +' )');
 					}else{
 						console.log('franchisor - delete - '.red.bold + err);
 					}
 				})
 
 			}else{
-				console.log('franchisor - delete - No se encontro el deal ( ' + req.body.franchisor_id +' )');
+				console.log('franchisor - delete - No se encontro el franchisor ( ' + req.body.franchisor_id +' )');
 			}
 		}else{
 			console.log('franchisor - delete - '.red.bold + err);
