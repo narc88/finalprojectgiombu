@@ -11,38 +11,21 @@ exports.add = function (req, res, next) {
 
 	console.log('deals - add'.cyan.bold);
 
-	var deal_new = new DealModel();
-	
-	deal_new.title = req.body.title
-	deal_new.tagline = req.body.tagline
-	deal_new.slug = req.body.slug
-	deal_new.characteristics = req.body.characteristics
-	deal_new.conditions = req.body.conditions
-	deal_new.price = req.body.price
-	deal_new.special_price = req.body.special_price
-	deal_new.discount = req.body.discount
-	deal_new.start_date = req.body.start_date
-	deal_new.end_date = req.body.end_date
-	deal_new.start_redeem = req.body.start_redeem
-	deal_new.end_redeem = req.body.end_redeem
-	deal_new.max_coupons = req.body.max_coupons
-	deal_new.max_coupons_by_user = req.body.max_coupons_by_user
-	deal_new.seller_percentage = req.body.seller_percentage
-	deal_new.giombu_percentage = req.body.giombu_percentage
-	deal_new.promoter_percentage = req.body.promoter_percentage
-	deal_new.status = req.body.status
-	deal_new.sale_count = 0; //Yo no lo pondria
+	var deal_new = new DealModel(req.param('deal'));
+		
+	deal_new.sale_count = 0; 	//Yo no lo pondria
 	deal_new.coupon_count = 0;
-	deal_new.shipping_cost = req.body.shipping_cost
+
 
 	//Validar los ids de los siguientes datos
-
-	//deal_new.store = req.body.store
-	//deal_new.seller = req.body.seller
-	//deal_new.franchisor = req.body.franchisor
-	//deal_new.franchise = req.body.franchise
-	//deal_new.currency = req.body.currency
-	//deal_new.images = req.body.images
+/*
+	deal_new.store = '';
+	deal_new.seller = '';
+	deal_new.franchisor = '';
+	deal_new.franchise = '';
+	deal_new.currency = '';
+	deal_new.images = '';
+*/
 
 	deal_new.save(function (err) {
 		if (!err) {

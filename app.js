@@ -22,6 +22,7 @@ var deals = require('./controllers/deals_controller');
 var users = require('./controllers/users_controller');
 var promoters = require('./controllers/promoters_controller');
 var bank_accounts = require('./controllers/bank_accounts_controller');
+var franchises = require('./controllers/franchises_controller');
 
 // Configuration
 app.configure('development', function(){
@@ -69,6 +70,10 @@ app.post('/users/login_user', users.login_user );
 
 //Bank accounts
 app.get('/bankAccount/add', bank_accounts.add );
+
+//FRANCHISES
+app.get('/franchises/create', franchises.create);
+app.post('/franchises/add', franchises.add);
 
 
 // ROUTES --------------------------------------------------------------------------
