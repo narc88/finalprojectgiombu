@@ -1,0 +1,34 @@
+h2 #{title}
+.container
+	.form_container
+		form(method='post', action='/franchises/add')
+			label Name
+			br
+			input(name='franchise[name]', type='text') 
+			br
+			label slug
+			br
+			input(name='franchise[slug]', type='text') 
+			br
+			label is_default
+			br
+			input(name='franchise[is_default]', type='text') 
+			br
+			label timezone
+			br
+			input(name='franchise[timezone]', type='text') 
+			br
+			label user_count
+			br
+			input(name='franchise[user_count]', type='text') 
+			br
+			label subscriber_count
+			br
+			input(name='franchise[subscriber_count]', type='text') 
+			br
+			label store_count
+			br
+			input(name='franchise[store_count]', type='text') 
+			br
+			br
+			input(type='submit', value='Save')
