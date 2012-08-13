@@ -60,8 +60,8 @@ app.get('/promoters/register' ,checkAuth , promoters.register);
 app.post('/promoters/add' ,checkAuth , promoters.add);
 
 //Roles
-app.get('/roles/register' ,checkAuth , roles.register);
-app.post('/roles/add' ,checkAuth , roles.add);
+app.get('/roles/create' , roles.create);
+app.post('/roles/add' , roles.add);
 
 //Sellers
 app.get('/sellers/register' ,checkAuth , sellers.register);
@@ -76,6 +76,8 @@ app.get('/users/register', users.register );
 app.post('/users/save', users.add );
 app.get('/users/login', users.login );
 app.post('/users/login_user' , users.login_user );
+app.get('/users/edit', users.edit );
+app.post('/users/update' , users.update );
 
 //Bank accounts
 app.get('/bankAccount/add',checkAuth , bank_accounts.add );
