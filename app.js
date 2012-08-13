@@ -89,6 +89,8 @@ app.post('/franchises/add', franchises.add);
 //FRANCHISORS
 app.get('/franchisors/create', franchisors.create);
 app.post('/franchisors/add', franchisors.add);
+app.get('/franchisors/list', franchisors.list);
+app.get('/franchisors/edit/:franchisor_id', franchisors.edit);
 
 
 // ROUTES --------------------------------------------------------------------------

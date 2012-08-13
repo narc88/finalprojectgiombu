@@ -12,17 +12,6 @@ exports.add = function (req, res, next) {
 
 	var franchisor_new = new FranchisorModel(req.param('franchisor'));
 
-	var franchisor = req.param('franchisor');
-
-	console.log(franchisor);
-
-	franchisor.forEach(function(field){
-
-		console.log(field);
-		console.log(franchisor.indexOf(field));
-
-	});
-
 	franchisor_new.franchise_count = 0;
 
 	//Validar los objetos embebidos
@@ -30,7 +19,6 @@ exports.add = function (req, res, next) {
 	//country	   			: req.body.country;
 	//currency   			: req.body.currency;
 	//franchises			: req.body.franchises;
-
 
 
 	franchisor_new.save(function (err) {
@@ -45,6 +33,27 @@ exports.add = function (req, res, next) {
 
 	});
 
+}
+
+
+
+exports.list = function(req, res, next){
+
+	console.log('franchisor - list'.cyan.bold);
+
+	FranchisorModel.find( {} , function(err, franchisors){
+		if(!err){
+			if(franchisors){
+				console.log('franchisor - list - Se envian los franchisors encontrados');
+				res.render('franchisors/view', {title: 'Lista de Franchisors', franchisors : franchisors});
+			}else{
+				console.log('franchisor - list - No hay franchisors');
+			}
+		}else{
+			console.log('franchisor - list - '.red.bold + err);
+		}
+
+  });
 }
 
 
@@ -73,30 +82,27 @@ exports.view = function(req, res, next){
 
 exports.edit = function(req, res, next){
 
+	var franchisor_id = req.params.franchisor_id;
 	console.log('franchisor - edit'.cyan.bold);
-	console.log('franchisor - edit - Busco el franchisor ( ' + req.body.franchisor_id +' )');
+	console.log('franchisor - edit - Busco el franchisor ( ' + franchisor_id +' )');
 
-	FranchisorModel.findById( req.body.franchisor_id , function(err, franchisor){
+	FranchisorModel.findById( franchisor_id , function(err, franchisor){
 		if(!err){
 			if(franchisor){
-				console.log('franchisor - edit - Se encontro el franchisor ( ' + req.body.franchisor_id +' )');
+				console.log('franchisor - edit - Se encontro el franchisor ( ' + franchisor_id +' )');
 				
 				//Edicion del franchisor
 				//Revisar cuales quieren ser editados
 
 				edited_franchisor = req.param('franchisor');
 
-				franchisor.name					= edited_franchisor.name;
-				franchisor.default_domain		= edited_franchisor.default_domain;
-				franchisor.secure_domain		= edited_franchisor.secure_domain;
-				franchisor.tlc					= edited_franchisor.tlc;
-				franchisor.email				= edited_franchisor.email;
-				franchisor.smtp					= edited_franchisor.smtp;
-				franchisor.default_timezone		= edited_franchisor.default_timezone;
-				franchisor.locale				= edited_franchisor.locale;
-				franchisor.language				= edited_franchisor.language;
-				franchisor.fanpage				= edited_franchisor.fanpage;
-				franchisor.franchise_count		= 0;
+
+				for (field in edited_franchisor){
+					if(edited_franchisor[field] != ''){
+						franchisor[field] = edited_franchisor[field];
+						console.log('franchisor - edit - Edito el campo '+ field);
+					}
+				}
 
 				//Validar los objetos embebidos
 
@@ -108,7 +114,7 @@ exports.edit = function(req, res, next){
 					if (!err) {
 					    console.log('franchisor - edit - Save');
 						console.log('franchisor - edit - Redirecciono a franchisors/view');
-						res.render('franchisors/view', {title: 'Franchises View', franchisors : [franchisor_new]});
+						res.render('franchisors/view', {title: 'Franchises View', franchisors : [franchisor]});
 					} else {
 					  console.log('franchisor - edit - '.red.bold + err);
 					  res.redirect('/');
