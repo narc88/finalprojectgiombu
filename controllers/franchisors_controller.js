@@ -12,6 +12,17 @@ exports.add = function (req, res, next) {
 
 	var franchisor_new = new FranchisorModel(req.param('franchisor'));
 
+	var franchisor = req.param('franchisor');
+
+	console.log(franchisor);
+
+	franchisor.forEach(function(field){
+
+		console.log(field);
+		console.log(franchisor.indexOf(field));
+
+	});
+
 	franchisor_new.franchise_count = 0;
 
 	//Validar los objetos embebidos
@@ -26,7 +37,7 @@ exports.add = function (req, res, next) {
 	if (!err) {
 	    console.log('franchisor - add - Save');
 		console.log('franchisor - add - Redirecciono a franchisors/view');
-		res.render('franchisors/view', {title: 'Franchises View', franchisors : [franchisor_new]});
+		res.render('franchisors/view', {title: 'Franchises View', franchisors : [franchisor]});
 	} else {
 	  console.log('franchisor - add - '.red.bold + err);
 	  res.redirect('/');

@@ -78,6 +78,22 @@ exports.edit = function(req, res, next){
 				
 				//Edicion del deal
 
+				edited_deal = req.param('deal');
+
+
+				deal.save(function (err) {
+					if (!err) {
+						console.log('deals - edit - Guardo una nueva deal');
+						console.log('deals - edit - Redirecciono a deals/create');
+						res.render('deals/view', {title: 'Deals View', deals : [deal_new]});
+					} else {
+						console.log('deals - edit - '.red.bold + err);
+						console.log('deals - edit - Redirecciono a /');
+						res.redirect('/');
+					}
+
+				});
+
 
 
 			}else{
