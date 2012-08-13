@@ -6,7 +6,7 @@ var FranchiseSchema = require('./franchise').FranchiseSchema;
 
 var FranchisorSchema = exports.FranchisorSchema  = new Schema({
 	name				: { type: String },
-	domain				: { type: String },
+	default_domain		: { type: String },
 	secure_domain		: { type: String },
 	tlc					: { type: String },
 	email				: { type: String },

@@ -1,0 +1,46 @@
+h2 #{title}
+.container
+	.form_container
+		form(method='post', action='/franchisors/add')
+			label name
+			br
+			input(name='franchisor[name]', type='text') 
+			br
+			label default_domain
+			br
+			input(name='franchisor[default_domain]', type='text') 
+			br
+			label secure_domain
+			br
+			input(name='franchisor[secure_domain]', type='text') 
+			br
+			label tlc
+			br
+			input(name='franchisor[tlc]', type='text') 
+			br
+			label email
+			br
+			input(name='franchisor[email]', type='text') 
+			br
+			label smtp
+			br
+			input(name='franchisor[smtp]', type='text') 
+			br
+			label default_timezone
+			br
+			input(name='franchisor[default_timezone]', type='text') 
+			br
+			label locale
+			br
+			input(name='franchisor[locale]', type='text') 
+			br
+			label language
+			br
+			input(name='franchisor[language]', type='text') 
+			br
+			label fanpage
+			br
+			input(name='franchisor[fanpage]', type='text')  
+			br
+			br
+			input(type='submit', value='Save')
