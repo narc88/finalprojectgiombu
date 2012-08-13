@@ -53,3 +53,4 @@ exports.login_user = function(req, res, next){
    res.render('users/login', {title: 'Error', error:'Combinacion usuario/contraseña incorrecta, por favor, intente nuevamente.'});
   });
 }
+
