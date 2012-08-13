@@ -10,6 +10,26 @@ exports.add = function (req, res, next) {
 
   console.log('franchisor - add'.cyan.bold);
 
+	var franchisor_new = new FranchisorModel();
+
+	franchisor_new.name					: req.body.name;
+	franchisor_new.domain				: req.body.domain;
+	franchisor_new.secure_domain		: req.body.secure_domain;
+	franchisor_new.tlc					: req.body.tlc;
+	franchisor_new.email				: req.body.email;
+	franchisor_new.smtp					: req.body.smtp;
+	franchisor_new.default_timezone		: req.body.default_timezone;
+	franchisor_new.locale				: req.body.locale;
+	franchisor_new.language				: req.body.language;
+	franchisor_new.fanpage				: req.body.fanpage;
+	franchisor_new.franchise_count		: 0;
+
+	//Validar los objetos embebidos
+
+	//country	   			: req.body.country;
+	//currency   			: req.body.currency;
+	//franchises			: req.body.franchises;
+
 
 
   franchisor_new.save(function (err) {
@@ -62,6 +82,25 @@ exports.edit = function(req, res, next){
 				console.log('franchisor - edit - Se encontro el franchisor ( ' + req.body.franchisor_id +' )');
 				
 				//Edicion del franchisor
+				//Revisar cuales quieren ser editados
+
+				franchisor.name					: req.body.name;
+				franchisor.domain				: req.body.domain;
+				franchisor.secure_domain		: req.body.secure_domain;
+				franchisor.tlc					: req.body.tlc;
+				franchisor.email				: req.body.email;
+				franchisor.smtp					: req.body.smtp;
+				franchisor.default_timezone		: req.body.default_timezone;
+				franchisor.locale				: req.body.locale;
+				franchisor.language				: req.body.language;
+				franchisor.fanpage				: req.body.fanpage;
+				franchisor.franchise_count		: 0;
+
+				//Validar los objetos embebidos
+
+				//country	   			: req.body.country;
+				//currency   			: req.body.currency;
+				//franchises			: req.body.franchises;
 
 
 
