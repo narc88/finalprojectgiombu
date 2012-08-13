@@ -54,3 +54,47 @@ exports.login_user = function(req, res, next){
   });
 }
 
+exports.edit = function(req, res, next){
+
+  UserModel.findById( req.session.user._id , function(err, user){
+    if(!err){
+      if(user){
+       res.render('users/edit', {title: 'Editar usuario', user : user});
+      }else{
+         console.log('Usuario no encontrado, cualquiera el error');
+      }
+    }else{
+      console.log('No lo encontre');
+    }
+  });
+}
+
+exports.update = function(req, res, next){
+
+  var user_new = new UserModel();
+  UserModel.findById( req.session.user._id , function(err, user){
+    
+    user_new = user;
+    user_new.username = req.body.username
+    user_new.name = req.body.name
+    user_new.lname = req.body.lname
+    user_new.email = req.body.email
+    user_new.phone = req.body.phone
+    user_new.mobile = req.body.mobile
+    user_new.address = req.body.address
+    user_new.country = req.body.country
+    user_new.city = req.body.city
+    user_new.zip = req.body.zip
+    console.log(user_new);
+    user_new.save(function(err){
+      if(!err){
+          console.log(user_new);
+        } else {
+          console.log("Error: - " + err);
+        }
+        res.render('users/welcome');
+    });
+  });
+  res.render('users/welcome', {title: 'Cargar Oferta'});
+  
+}

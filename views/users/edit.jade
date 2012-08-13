@@ -1,0 +1,39 @@
+div( class='contenedor')
+	div( class='container_form')
+		form(method='post', action='/users/update/')
+			label Nombre de Usuario
+				input(name='username', type='text', value='#{user.name}') 
+				br
+			label Nombre completo
+				input(name='name', type='text', value='#{user.name}') 
+				br
+			label Apellido(s)
+				input(name='lname', type='text', value='#{user.lname}') 
+				br
+			label Email
+				input(name='email', type='text', value='#{user.email}') 
+				br
+			label Phone
+				input(name='phone', type='text', value='#{user.phone}')
+				br 
+			label Cell Phone
+				input(name='mobile', type='text', value='#{user.mobile}') 
+				br
+			label Direccion 
+				input(name='address', type='text', value='#{user.address}') 
+				br
+			label Pais
+				input(name='country', type='select', value='#{user.country}')
+				br
+			label Provincia
+				input(name='state', type='select', value='#{user.state}')
+				br
+			label Ciudad
+				input(name='city', type='text', value='#{user.city}')
+				br
+			label Zip
+				input(name='zip', type='text', value='#{user.zip}') 
+				br
+			input(name='submit', type='submit') 
+				br
+				
