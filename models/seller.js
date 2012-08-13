@@ -8,15 +8,15 @@ var SellerStoreSchema = require('./seller_store').SellerStoreSchema;
 
 
 var SellerSchema = exports.SellerSchema = new Schema({
+	
+//ROLES
 	is_dr				: { type: Boolean, required: true},
 	is_dn				: { type: Boolean, required: true},
-	is_active			: { type: Boolean, required: true},
-	store_count			: { type: Number, required: true, min:0 },
-	prospect_count		: { type: Number, required: true, min:0 },
-	deal_count			: { type: Number, required: true, min:0 },
-	//stores				: [sellers_stores_schema], //Embeber relaciones temporales a las diferentes stores 
-	created				: Date,
-	modified			: Date
+	
+	//Campos donde calculaba cant prospectos, deals, y stores srerán ahora calculados en tiempo real
+		sellers_stores	: [SellerStoreSchema], //Embeber relaciones temporales a las diferentes stores 
+	created    		    : { type: Date, default: Date.now },
+	modifiend        	: { type: Date, default: Date.now }
 })
 
 exports.SellerModel = mongoose.model('Seller', exports.SellerSchema);

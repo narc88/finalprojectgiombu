@@ -7,8 +7,6 @@ var BranchSchema = require('./branch').BranchSchema;
 
 var StoreSchema = exports.StoreSchema = new Schema({
 	name				: { type: String },
-	deal_count			: { type: Number, required: true, min:0},
-	branch_count		: { type: Number, required: true, min:0},
 	sale_count			: { type: Number, required: true, min:0},
 	email				: { type: String },
 	seller	   			: [{ type: Schema.ObjectId, ref: 'User' }],

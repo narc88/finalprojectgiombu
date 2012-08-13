@@ -20,6 +20,7 @@ var config = require('./config.js')(app, express);
 //Controlllers
 var deals = require('./controllers/deals_controller');
 var users = require('./controllers/users_controller');
+var promoters = require('./controllers/promoters_controller');
 var bank_accounts = require('./controllers/bank_accounts_controller');
 
 // Configuration
