@@ -3,26 +3,27 @@ var colors = require('colors');
 
 
 exports.create = function (req, res, next) {
-  res.render('franchisor/create', {title: ''})
+  res.render('franchisors/create', {title: 'Create Franchisor'})
 }
 
 exports.add = function (req, res, next) {
 
   console.log('franchisor - add'.cyan.bold);
 
-	var franchisor_new = new FranchisorModel();
+	var franchisor_new = new FranchisorModel(req.param('franchisor'));
 
-	franchisor_new.name					: req.body.name;
-	franchisor_new.domain				: req.body.domain;
-	franchisor_new.secure_domain		: req.body.secure_domain;
-	franchisor_new.tlc					: req.body.tlc;
-	franchisor_new.email				: req.body.email;
-	franchisor_new.smtp					: req.body.smtp;
-	franchisor_new.default_timezone		: req.body.default_timezone;
-	franchisor_new.locale				: req.body.locale;
-	franchisor_new.language				: req.body.language;
-	franchisor_new.fanpage				: req.body.fanpage;
-	franchisor_new.franchise_count		: 0;
+	var franchisor = req.param('franchisor');
+
+	console.log(franchisor);
+
+	franchisor.forEach(function(field){
+
+		console.log(field);
+		console.log(franchisor.indexOf(field));
+
+	});
+
+	franchisor_new.franchise_count = 0;
 
 	//Validar los objetos embebidos
 
@@ -32,19 +33,18 @@ exports.add = function (req, res, next) {
 
 
 
-  franchisor_new.save(function (err) {
-    if (!err) {
-      console.log('franchisor - add - Save');
-    } else {
-      console.log('franchisor - add - '.red.bold + err);
-      res.redirect('/');
-    }
-    
-  });
+	franchisor_new.save(function (err) {
+	if (!err) {
+	    console.log('franchisor - add - Save');
+		console.log('franchisor - add - Redirecciono a franchisors/view');
+		res.render('franchisors/view', {title: 'Franchises View', franchisors : [franchisor]});
+	} else {
+	  console.log('franchisor - add - '.red.bold + err);
+	  res.redirect('/');
+	}
 
+	});
 
-  console.log('franchisor - add - Redirecciono a franchisor/create');
-  res.render('franchisor/create', {title: ''});
 }
 
 
@@ -84,17 +84,19 @@ exports.edit = function(req, res, next){
 				//Edicion del franchisor
 				//Revisar cuales quieren ser editados
 
-				franchisor.name					: req.body.name;
-				franchisor.domain				: req.body.domain;
-				franchisor.secure_domain		: req.body.secure_domain;
-				franchisor.tlc					: req.body.tlc;
-				franchisor.email				: req.body.email;
-				franchisor.smtp					: req.body.smtp;
-				franchisor.default_timezone		: req.body.default_timezone;
-				franchisor.locale				: req.body.locale;
-				franchisor.language				: req.body.language;
-				franchisor.fanpage				: req.body.fanpage;
-				franchisor.franchise_count		: 0;
+				edited_franchisor = req.param('franchisor');
+
+				franchisor.name					= edited_franchisor.name;
+				franchisor.default_domain		= edited_franchisor.default_domain;
+				franchisor.secure_domain		= edited_franchisor.secure_domain;
+				franchisor.tlc					= edited_franchisor.tlc;
+				franchisor.email				= edited_franchisor.email;
+				franchisor.smtp					= edited_franchisor.smtp;
+				franchisor.default_timezone		= edited_franchisor.default_timezone;
+				franchisor.locale				= edited_franchisor.locale;
+				franchisor.language				= edited_franchisor.language;
+				franchisor.fanpage				= edited_franchisor.fanpage;
+				franchisor.franchise_count		= 0;
 
 				//Validar los objetos embebidos
 
@@ -102,7 +104,17 @@ exports.edit = function(req, res, next){
 				//currency   			: req.body.currency;
 				//franchises			: req.body.franchises;
 
+				franchisor.save(function (err) {
+					if (!err) {
+					    console.log('franchisor - edit - Save');
+						console.log('franchisor - edit - Redirecciono a franchisors/view');
+						res.render('franchisors/view', {title: 'Franchises View', franchisors : [franchisor_new]});
+					} else {
+					  console.log('franchisor - edit - '.red.bold + err);
+					  res.redirect('/');
+					}
 
+				});
 
 			}else{
 				console.log('franchisor - edit - No se encontro el franchisor ( ' + req.body.franchisor_id +' )');
