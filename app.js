@@ -18,6 +18,8 @@ app.mongoose = require('mongoose');
 var config = require('./config.js')(app, express);
 
 //Controlllers
+var roles = require('./controllers/roles_controller');
+var sellers = require('./controllers/sellers_controller');
 var deals = require('./controllers/deals_controller');
 var users = require('./controllers/users_controller');
 var promoters = require('./controllers/promoters_controller');
@@ -38,8 +40,7 @@ app.configure('production', function(){
 
 //Autenticacion
 function checkAuth(req, res, next) {
-  console.log('checkAuth - User : '+ req.session.user_id);
-  if (!req.session.user_id) {
+  if (!req.session.user._id) {
     res.send('Error - Acceso no permitido');
   } else {
     next();
@@ -50,25 +51,33 @@ function checkAuth(req, res, next) {
 // ROUTES --------------------------------------------------------------------------
 
 //INDEX
-app.get('/', routes.index);
+app.get('/',  users.login);
 
 //Promotres
 
-app.get('/promoters/register' , promoters.register);
-app.post('/promoters/add' , promoters.add);
+app.get('/promoters/register' ,checkAuth , promoters.register);
+app.post('/promoters/add' ,checkAuth , promoters.add);
+
+//Roles
+app.get('/roles/register' ,checkAuth , roles.register);
+app.post('/roles/add' ,checkAuth , roles.add);
+
+//Sellers
+app.get('/sellers/register' ,checkAuth , sellers.register);
+app.post('/sellers/add' ,checkAuth , sellers.add);
 
 //DEALS
-app.get('/deals/create' , deals.create);
-app.post('/deals/add' , deals.add);
+app.get('/deals/create' ,checkAuth , deals.create);
+app.post('/deals/add' ,checkAuth , deals.add);
 
 //USERS
 app.get('/users/register', users.register );
 app.post('/users/save', users.add );
 app.get('/users/login', users.login );
-app.post('/users/login_user', users.login_user );
+app.post('/users/login_user' , users.login_user );
 
 //Bank accounts
-app.get('/bankAccount/add', bank_accounts.add );
+app.get('/bankAccount/add',checkAuth , bank_accounts.add );
 
 
 // ROUTES --------------------------------------------------------------------------
