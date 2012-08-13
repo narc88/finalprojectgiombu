@@ -1,0 +1,30 @@
+h1 #{title}
+-each franchise in franchises
+	table
+		tr
+			td	title
+			td	#{franchise.name}
+		tr
+			td	tagline
+			td	#{franchise.slug}
+		tr
+			td	slug
+			td	#{franchise.is_default}
+		tr
+			td	characteristics
+			td	#{franchise.timezone}
+		tr
+			td	conditions
+			td	#{franchise.user_count}
+		tr
+			td	price
+			td	#{franchise.subscriber_count}
+		tr
+			td	special_price
+			td	#{franchise.store_count}
+		tr
+			td	discount
+			td	#{franchise.created}
+		tr
+			td	start_date
+			td	#{franchise.modified}
