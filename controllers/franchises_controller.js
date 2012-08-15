@@ -91,17 +91,6 @@ exports.edit = function(req, res, next){
 
 				edited_franchise = req.param('franchise');
 
-				/*
-				
-				franchise.name				= req.body.name;
-				franchise.slug				= req.body.slug;
-				franchise.is_default		= req.body.is_default;
-				franchise.timezone			= req.body.timezone;
-				franchise.user_count		= req.body.user_count;
-				franchise.subscriber_count	= req.body.subscriber_count;
-				franchise.store_count		= req.body.store_count;
-
-				*/
 
 				for (field in edited_franchise){
 					if(edited_franchise[field] != ''){
