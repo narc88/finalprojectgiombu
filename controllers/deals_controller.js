@@ -16,17 +16,6 @@ exports.add = function (req, res, next) {
 	deal_new.sale_count = 0; 	//Yo no lo pondria
 	deal_new.coupon_count = 0;
 
-
-	//Validar los ids de los siguientes datos
-/*
-	deal_new.store = '';
-	deal_new.seller = '';
-	deal_new.franchisor = '';
-	deal_new.franchise = '';
-	deal_new.currency = '';
-	deal_new.images = '';
-*/
-
 	deal_new.save(function (err) {
 		if (!err) {
 			console.log('deals - add - Guardo una nueva deal');

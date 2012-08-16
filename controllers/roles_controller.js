@@ -5,9 +5,7 @@ exports.create = function (req, res, next) {
 }
 
 exports.add = function (req, res, next) {
- 
     var role_new = new RoleModel();
-   
     role_new.name = req.body.name
     role_new.description = req.body.description
     role_new.save(function(err){

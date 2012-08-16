@@ -19,7 +19,6 @@ var SubscriberSchema = exports.SubscriberSchema = new Schema({
 	verified			: { type: Boolean, required: true},
 	created				: { type: Date, required: true},
 	modified			: { type: Date, required: true}
-
 })
 
 exports.SubscriberModel = mongoose.model('Subscriber', exports.SubscriberSchema);

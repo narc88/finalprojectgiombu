@@ -73,7 +73,6 @@ exports.update = function (req, res, next) {
 }
 
 //Devuelve la lista de stores filtrando por el franquiciante
-
 exports.list = function (req, res, next) {
   StoreModel.find( req.params.franchisor_id , function(err, stores){
     if(!err){

@@ -95,3 +95,17 @@ exports.update = function(req, res, next){
   res.render('users/welcome', {title: 'Cargar Oferta'});
   
 }
+
+exports.dashboard = function(req, res, next){
+  UserModel.findById( req.session.user._id , function(err, user){
+    if(!err){
+      if(user){
+       res.render('users/dashboard', {title: 'Panel de Usuario', user : user});
+      }else{
+      console.log('Usuario no encontrado');
+      }
+    }else{
+      console.log('Error'+ err);
+    }
+  });
+}
