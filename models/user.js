@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var PromoterSchema = require('./promoter').PromoterSchema
 var RoleSchema = require('./promoter').RoleSchema
 var ImageSchema = require('./image').ImageSchema;
+var PartnerSchema = require('./partner').PartnerSchema;
 //var FranchisorSchema = require('./franchisor').FranchisorSchema
 var SellerSchema = require('./seller').SellerSchema
 
@@ -39,7 +40,7 @@ var UserSchema = exports.UserSchema = new Schema({
 	seller					: [SellerSchema],
 	promoter 				: [PromoterSchema],
 	role 					: [RoleSchema],
-	//partner 				: [partner],
+	partner 				: [PartnerSchema],
 	//franchisor			: [{ type: Schema.ObjectId, ref: 'Franchisor' }],
 	//Verificar estos campos
 	is_admin				: Boolean,
