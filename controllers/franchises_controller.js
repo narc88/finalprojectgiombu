@@ -57,9 +57,9 @@ exports.list = function(req, res, next){
 
 	console.log('franchise - list'.cyan.bold);
 
-	franchiseModel.find( {} , function(err, franchises){
+	FranchiseModel.find( {} , function(err, franchises){
 		if(!err){
-			if(franchises){
+			if(franchises.length){
 				console.log('franchise - list - Se envian los franchises encontrados');
 				res.render('franchises/view', {title: 'Lista de franchises', franchises : franchises});
 			}else{
@@ -76,13 +76,13 @@ exports.list = function(req, res, next){
 
 exports.update = function(req, res, next){
 
-	console.log('franchises - edit'.cyan.bold);
-	console.log('franchises - edit - Busco el franchise ( ' + req.body.franchise_id +' )');
+	console.log('franchises - update'.cyan.bold);
+	console.log('franchises - update - Busco el franchise ( ' + req.body.franchise_id +' )');
 
 	FranchiseModel.findById( req.body.franchise_id , function(err, franchise){
 		if(!err){
 			if(franchise){
-				console.log('franchises - edit - Se encontro el franchise ( ' + req.body.franchise_id +' )');
+				console.log('franchises - update - Se encontro el franchise ( ' + req.body.franchise_id +' )');
 				
 				//Edicion del franchise
 				//Hacer que solo se graben los campos editados
@@ -94,7 +94,7 @@ exports.update = function(req, res, next){
 				for (field in edited_franchise){
 					if(edited_franchise[field] != ''){
 						franchise[field] = edited_franchise[field];
-						console.log('franchisor - edit - Edito el campo '+ field);
+						console.log('franchise - update - Edito el campo '+ field);
 					}
 				}
 
@@ -102,13 +102,13 @@ exports.update = function(req, res, next){
 
 				franchise.save(function (err) {
 					if (!err) {
-						console.log('franchises - add - Guardo una nueva franchise');
-						console.log('franchises - add - Redirecciono a franchises/create');
+						console.log('franchises - update - Guardo una nueva franchise');
+						console.log('franchises - update - Redirecciono a franchises/create');
 						//res.render('franchises/create', {title: 'Cargar Franquicia'});
-						res.render('franchises/view', {title: 'Franchises View', franchises : [franchise_new]});
+						res.render('franchises/view', {title: 'Franchises View', franchises : [franchise]});
 					} else {
-						console.log('franchises - add - '.red.bold + err);
-						console.log('franchises - add - Redirecciono a /');
+						console.log('franchises - update - '.red.bold + err);
+						console.log('franchises - update - Redirecciono a /');
 						res.redirect('/');
 					}
 
@@ -128,11 +128,27 @@ exports.update = function(req, res, next){
 }
 
 
-
 exports.edit = function(req, res, next){
-	console.log(arguments.length);
-	console.log(arguments);
+
+	FranchiseModel.findById( req.params.franchise_id, function(err, franchise){
+		
+		if(!err){
+			if(franchise){
+				console.log('franchise - edit - franchise encontrado, redirecciono a franchises/edit');
+				res.render('franchises/edit', {title: 'franchise Edit', franchise : franchise});
+			}else{
+				console.log('franchise - edit - No se encontro el franchise ( ' + req.params.franchise_id +' )');
+			}
+		}else{
+			
+			console.log('franchise - edit - '.red.bold + err);
+			res.redirect('/');
+		}
+
+	});
+	
 }
+
 
 
 exports.delete = function(req, res, next){
