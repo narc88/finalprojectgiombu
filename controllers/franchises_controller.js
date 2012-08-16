@@ -25,7 +25,6 @@ exports.add = function (req, res, next) {
 			console.log('franchises - add - Redirecciono a /');
 			res.redirect('/');
 		}
-
 	});
 
 
@@ -75,7 +74,7 @@ exports.list = function(req, res, next){
 
 
 
-exports.edit = function(req, res, next){
+exports.update = function(req, res, next){
 
 	console.log('franchises - edit'.cyan.bold);
 	console.log('franchises - edit - Busco el franchise ( ' + req.body.franchise_id +' )');
@@ -91,17 +90,6 @@ exports.edit = function(req, res, next){
 
 				edited_franchise = req.param('franchise');
 
-				/*
-				
-				franchise.name				= req.body.name;
-				franchise.slug				= req.body.slug;
-				franchise.is_default		= req.body.is_default;
-				franchise.timezone			= req.body.timezone;
-				franchise.user_count		= req.body.user_count;
-				franchise.subscriber_count	= req.body.subscriber_count;
-				franchise.store_count		= req.body.store_count;
-
-				*/
 
 				for (field in edited_franchise){
 					if(edited_franchise[field] != ''){
@@ -137,6 +125,13 @@ exports.edit = function(req, res, next){
 
   });
 
+}
+
+
+
+exports.edit = function(req, res, next){
+	console.log(arguments.length);
+	console.log(arguments);
 }
 
 

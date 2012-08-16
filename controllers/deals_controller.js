@@ -4,7 +4,7 @@ var colors = require('colors');
 
 exports.create = function (req, res, next) {
 	console.log('deals - create'.cyan.bold);
-	res.render('deals/create', {title: 'Cargar Oferta'})
+	res.render('deals/create', {title: 'Cargar Oferta'});
 }
 
 exports.add = function (req, res, next) {
@@ -12,9 +12,19 @@ exports.add = function (req, res, next) {
 	console.log('deals - add'.cyan.bold);
 
 	var deal_new = new DealModel(req.param('deal'));
-		
-	deal_new.sale_count = 0; 	//Yo no lo pondria
+
+	deal_new.sale_count = 0; 		//Yo no lo pondria
 	deal_new.coupon_count = 0;
+
+	//Validar los ids de los siguientes datos
+/*
+	deal_new.store = '';
+	deal_new.seller = '';
+	deal_new.franchisor = '';
+	deal_new.franchise = '';
+	deal_new.currency = '';
+	deal_new.images = '';
+*/
 
 	deal_new.save(function (err) {
 		if (!err) {
@@ -30,8 +40,6 @@ exports.add = function (req, res, next) {
 	});
 
 }
-
-
 
 exports.view = function(req, res, next){
 

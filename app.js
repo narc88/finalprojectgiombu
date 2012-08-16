@@ -6,8 +6,8 @@ var express = require('express'),
     routes = require('./routes');
 
 //Colores de la consola
-var colors = require('colors')
-    
+var colors = require('colors');
+
 //Instancio el server
 var app = module.exports = express.createServer();
 
@@ -106,6 +106,7 @@ app.post('/images/save_image', images.save_image);
 //Franchisors
 app.get('/franchisors/create', franchisors.create);
 app.post('/franchisors/add', franchisors.add);
+app.post('/franchisors/update', franchisors.update);
 app.get('/franchisors/list', franchisors.list);
 app.get('/franchisors/edit/:franchisor_id', franchisors.edit);
 

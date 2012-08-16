@@ -74,27 +74,26 @@ exports.view = function(req, res, next){
 
 
 
-exports.edit = function(req, res, next){
+exports.update = function(req, res, next){
 
-	var franchisor_id = req.params.franchisor_id;
-	console.log('franchisor - edit'.cyan.bold);
-	console.log('franchisor - edit - Busco el franchisor ( ' + franchisor_id +' )');
+	console.log('franchisor - update'.cyan.bold);
+	console.log('franchisor - update - Busco el franchisor ( ' + franchisor_id +' )');
+
+	var franchisor_id = req.body.franchisor_id;
+	var edited_franchisor = req.param('franchisor');
 
 	FranchisorModel.findById( franchisor_id , function(err, franchisor){
 		if(!err){
 			if(franchisor){
-				console.log('franchisor - edit - Se encontro el franchisor ( ' + franchisor_id +' )');
+				console.log('franchisor - update - Se encontro el franchisor ( ' + franchisor_id +' )');
 				
 				//Edicion del franchisor
 				//Revisar cuales quieren ser editados
 
-				edited_franchisor = req.param('franchisor');
-
-
 				for (field in edited_franchisor){
 					if(edited_franchisor[field] != ''){
 						franchisor[field] = edited_franchisor[field];
-						console.log('franchisor - edit - Edito el campo '+ field);
+						console.log('franchisor - update - Edito el campo '+ field);
 					}
 				}
 				//Validar los objetos embebidos
@@ -105,25 +104,47 @@ exports.edit = function(req, res, next){
 
 				franchisor.save(function (err) {
 					if (!err) {
-					    console.log('franchisor - edit - Save');
-						console.log('franchisor - edit - Redirecciono a franchisors/view');
+					    console.log('franchisor - update - Save');
+						console.log('franchisor - update - Redirecciono a franchisors/view');
 						res.render('franchisors/view', {title: 'Franchises View', franchisors : [franchisor]});
 					} else {
-					  console.log('franchisor - edit - '.red.bold + err);
+					  console.log('franchisor - update - '.red.bold + err);
 					  res.redirect('/');
 					}
 
 				});
 
 			}else{
-				console.log('franchisor - edit - No se encontro el franchisor ( ' + req.body.franchisor_id +' )');
+				console.log('franchisor - update - No se encontro el franchisor ( ' + franchisor_id +' )');
 			}
 		}else{
-			console.log('franchisor - edit - '.red.bold + err);
+			console.log('franchisor - update - '.red.bold + err);
 		}
 
   });
 
+}
+
+
+exports.edit = function(req, res, next){
+
+	FranchisorModel.findById( req.params.franchisor_id, function(err, franchisor){
+		
+		if(!err){
+			if(franchisor){
+				console.log('franchisor - edit - Franchisor encontrado, redirecciono a franchisors/edit');
+				res.render('franchisors/edit', {title: 'Franchisor Edit', franchisor : franchisor});
+			}else{
+				console.log('franchisor - edit - No se encontro el franchisor ( ' + req.body.franchisor_id +' )');
+			}
+		}else{
+			
+			console.log('franchisor - edit - '.red.bold + err);
+			res.redirect('/');
+		}
+
+	});
+	
 }
 
 
