@@ -2,20 +2,22 @@
 /**
  * Module dependencies.
  */
-var express = require('express'),
-    routes = require('./routes');
 
+var express = require('express')
+  , routes = require('./routes');
+
+var app = module.exports = express();
 //Colores de la consola
-var colors = require('colors');
+var colors = require('colors')
 
-//Instancio el server
-var app = module.exports = express.createServer();
 
 //Mongoose
 app.mongoose = require('mongoose');
 
 //Config file
 var config = require('./config.js')(app, express);
+
+
 
 //Controlllers
 var images = require('./controllers/images_controller');
@@ -30,7 +32,7 @@ var bank_accounts = require('./controllers/bank_accounts_controller');
 var franchises = require('./controllers/franchises_controller');
 var franchisors = require('./controllers/franchisors_controller');
 
-// Configuration
+
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
@@ -38,7 +40,6 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.use(express.errorHandler());
 });
-
 
 
 //Functions
@@ -51,7 +52,6 @@ function checkAuth(req, res, next) {
     next();
   }
 }
-
 
 // ROUTES --------------------------------------------------------------------------
 
@@ -85,6 +85,7 @@ app.get('/users/login', users.login );
 app.post('/users/login_user' , users.login_user );
 app.get('/users/edit', users.edit );
 app.post('/users/update' , users.update );
+app.get('/users/dashboard', users.dashboard );
 
 //Stores
 app.get('/stores/create_store_branch', stores.create_store_branch );
@@ -106,13 +107,11 @@ app.post('/images/save_image', images.save_image);
 //Franchisors
 app.get('/franchisors/create', franchisors.create);
 app.post('/franchisors/add', franchisors.add);
-app.post('/franchisors/update', franchisors.update);
 app.get('/franchisors/list', franchisors.list);
 app.get('/franchisors/edit/:franchisor_id', franchisors.edit);
 
 
-// ROUTES --------------------------------------------------------------------------
 
 app.listen(3000, function(){
-  console.log("Express server listening on port %d in %s mode".cyan.bold, app.address().port, app.settings.env);
+  console.log("Express server listening on port 3000");
 });

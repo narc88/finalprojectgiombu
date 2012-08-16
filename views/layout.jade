@@ -1,11 +1,6 @@
 !!!
 html
-	head
-		title= title
-		link(rel='stylesheet', href='/stylesheets/style.css')
-	body
-		#header
-			h1 Mega Facts
-		#content!= body
-		#footer
-			block content
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body!= body
