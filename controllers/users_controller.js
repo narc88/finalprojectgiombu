@@ -46,7 +46,7 @@ exports.login_user = function(req, res, next){
         console.log( req.session);
         res.render('users/welcome', {title: 'Cargar Oferta'});
       }else{
-        res.render('users/login', {title: 'Error', error:'Combinacion usuario/contraseña incorrecta, por favor, intente nuevamente.'});
+        res.redirect('users/login');
         console.log('Failed'.red);
       }
     }
@@ -55,7 +55,6 @@ exports.login_user = function(req, res, next){
 }
 
 exports.edit = function(req, res, next){
-
   UserModel.findById( req.session.user._id , function(err, user){
     if(!err){
       if(user){
@@ -70,10 +69,8 @@ exports.edit = function(req, res, next){
 }
 
 exports.update = function(req, res, next){
-
   var user_new = new UserModel();
   UserModel.findById( req.session.user._id , function(err, user){
-    
     user_new = user;
     user_new.username = req.body.username
     user_new.name = req.body.name

@@ -14,13 +14,7 @@ exports.add = function (req, res, next) {
 
 	franchisor_new.franchise_count = 0;
 
-	//Validar los objetos embebidos
-
-	//country	   			: req.body.country;
-	//currency   			: req.body.currency;
-	//franchises			: req.body.franchises;
-
-
+	// Validar los objetos embebidos
 	franchisor_new.save(function (err) {
 	if (!err) {
 	    console.log('franchisor - add - Save');
@@ -102,7 +96,6 @@ exports.update = function(req, res, next){
 						console.log('franchisor - update - Edito el campo '+ field);
 					}
 				}
-
 				//Validar los objetos embebidos
 
 				//country	   			: req.body.country;

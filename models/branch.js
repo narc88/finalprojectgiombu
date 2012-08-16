@@ -4,10 +4,11 @@ var mongoose = require('mongoose');
 var Schema = require('mongoose').Schema;
 
 exports.BranchSchema = new Schema({
-	name				: { type: String },
+	default				: { type: Boolean },
+	name				: { type: String , required:true},
 	address				: { type: String },
-	lat					: { type: Number, required: true},
-	ltg					: { type: Number, required: true},
+	lat					: { type: Number},
+	ltg					: { type: Number},
 	zip					: { type: String },
 	phone				: { type: String },
 	email				: { type: String },
@@ -16,8 +17,8 @@ exports.BranchSchema = new Schema({
 	twitter				: { type: String },
 	contact				: { type: String },
 	partner	   			: [{ type: Schema.ObjectId, ref: 'User' }],
-	created      		:   Date,
-	modified			:   Date	
+	created    			: {type: Date, default: Date.now },
+	modified			: {type: Date, default: Date.now }	
 });
 
 exports.BranchModel = mongoose.model('Branch', exports.BranchSchema);
