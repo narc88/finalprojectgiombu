@@ -32,7 +32,7 @@ exports.add = function (req, res, next) {
 }
 
 exports.login = function (req, res, next){
-  res.render('users/login', {title: 'Autenticacion'});
+  res.render('users/login', {layout:true,title: 'Autenticacion'});
 }
 
 exports.login_user = function(req, res, next){

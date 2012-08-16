@@ -1,15 +1,16 @@
-div( class='contenedor')
-	p #{title}
-	- if(typeof(error) != 'undefined')
-		p #{error}
-	- else
-		p Ingrese usuario y contraseña
-	div( class='container_form')
-		form(method='post', action='/users/login_user/')
-			label Usuario
-				input(name='username', type='text') 
-				br
-			label Contraseña
-				input(name='password', type='password') 
-			input(name='submit', type='submit') 
-				br
+// my-template.jade
+extends ../layout
+block contenedour
+	div( class='contenedor')
+		p #{title}
+		- if(typeof(error) != 'undefined')
+			p #{error}
+		- else
+			p Ingrese usuario y contraseña
+		div( class='container_form')
+			form(method='post', action='/users/login_user/')
+				label Usuario
+					input(name='username', type='text') 
+				label Contraseña
+					input(name='password', type='password') 
+				input(name='submit', type='submit') 
