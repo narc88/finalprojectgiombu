@@ -25,7 +25,6 @@ exports.add = function (req, res, next) {
 			console.log('franchises - add - Redirecciono a /');
 			res.redirect('/');
 		}
-
 	});
 
 
@@ -75,7 +74,7 @@ exports.list = function(req, res, next){
 
 
 
-exports.edit = function(req, res, next){
+exports.update = function(req, res, next){
 
 	console.log('franchises - edit'.cyan.bold);
 	console.log('franchises - edit - Busco el franchise ( ' + req.body.franchise_id +' )');
@@ -126,6 +125,13 @@ exports.edit = function(req, res, next){
 
   });
 
+}
+
+
+
+exports.edit = function(req, res, next){
+	console.log(arguments.length);
+	console.log(arguments);
 }
 
 
