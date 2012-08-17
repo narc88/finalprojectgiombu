@@ -16,16 +16,94 @@ block profile
 			td	#{user.email}
 
 block menu
+	h2 Ofertas
 	ul
-		li	OPCION 1
-		li	OPCION 1.5
-		li	OPCION 2
-		li	OPCION 3
-		li	OPCION 4
-		li	OPCION 5
-		li	OPCION 6
+		li 
+			a(href='h1') Ver Activas
+		li	
+			a(href='h1') Ver Próximas
+
+	h2 Menu
+	ul
+		li 
+			a(href='h1') Noticias
+		li	
+			a(href='h1') Mensajes
+		li	
+			a OPCION 2
+	
+	h2 Promotores
+	ul
+		li 
+			a(href='h1') Listado
+		li	
+			a(href='h1') Invitaciones
+		li	
+			a(href='h1') Mis Bonos
+
+	h2 Socios
+	ul
+		li 
+			a(href='h1') Mi Tienda
+		li	
+			a(href='h1') Mis Comisiones
+
+	h2 Vendedores
+	ul
+		li 
+			a(href='h1') Ventas
+		li	
+			a(href='h1') Comisiones
+			
+	h2 Contactos
+	ul
+		li 
+			a(href='h1') Listado
+		li	
+			a(href='h1') Invitaciones
+
+
+	h2 Administración
+	ul
+		li 
+			a(href='h1') Estadísticas
+		li	
+			a(href='h1') Ventas
+		li 
+			a(href='h1') Pagos
+		li	
+			a(href='h1') Ofertas
+		li 
+			a(href='h1') Productos
+		li	
+			a(href='h1') Paises
+		li 
+			a(href='h1') Franquiciantes
+		li	
+			a(href='h1') Franquicias
+		li 
+			a(href='h1') Comercios
+		li	
+			a(href='h1') Vendedores
+		li	
+			a(href='h1') Monedas
+
+	h2 Email Marketing
+	ul
+		li 
+			a(href='h1') Suscriptores
+		li	
+			a(href='h1') Newsletters
+		li 
+			a(href='h1') Lista de Mails
+		
+	
+
+
+		
 
 block level
+	h2 Nivel
 	#level
 		.alert
 			.alert-heading
@@ -36,5 +114,39 @@ block level
 						p Tienes el nivel granito, Invita a  más para obtener le nivel.
 		
 block feed
+	h2 Novedades
 	.feed		
 		p El usuario carlitos ha aceptado tu invitacion a ser promotor.
+
+block navbar
+	.navbar		
+		block logo
+		block title
+		block my_profile
+
+block logo
+	p Html del logo y boton de novedades.
+
+block title
+	h4 #{title}
+
+block my_profile
+	a 
+		h4 foto y nombre
+		block profile_menu
+
+block profile_menu
+	ul
+		li 
+			a(href='h1') Mi perfil
+		li	
+			a(href='h1') Mi Cuenta
+		li 
+			a(href='h1') Mi Foto
+		li 
+			a(href='h1') Mi Perfil de Promotor
+		li 
+			a(href='h1') Mi Datos Bancarios
+		li 
+			a(href='h1') Salir
+	

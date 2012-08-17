@@ -11,13 +11,13 @@ a {
 }
 
 #body_container{
-	width:990px;
+	width:1000px;
 	margin:0 auto;
 }
 
 #left, #center, #right{
 	float:left;
-	width:150px;
+	width:200px;
 }
 
 #center {
