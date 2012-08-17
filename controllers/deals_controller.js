@@ -62,6 +62,26 @@ exports.view = function(req, res, next){
 }
 
 
+exports.list = function(req, res, next){
+
+	console.log('deal - list'.cyan.bold);
+
+	DealModel.find( {} , function(err, deals){
+		if(!err){
+			if(deals){
+				console.log('deal - list - Se envian los deals encontrados');
+				res.render('deals/view', {title: 'Lista de deals', deals : deals});
+			}else{
+				console.log('deal - list - No hay deals');
+			}
+		}else{
+			console.log('deal - list - '.red.bold + err);
+		}
+
+  });
+}
+
+
 
 exports.edit = function(req, res, next){
 
