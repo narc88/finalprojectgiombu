@@ -36,7 +36,7 @@ var UserSchema = exports.UserSchema = new Schema({
 	created    			    : {type: Date, default: Date.now },
 	modified				: {type: Date, default: Date.now },
 	//Relacionados
-	image 					: ImageSchema,
+	image 					: [ImageSchema],
 	seller					: [SellerSchema],
 	promoter 				: [PromoterSchema],
 	role 					: [RoleSchema],

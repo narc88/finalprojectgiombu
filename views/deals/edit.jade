@@ -1,0 +1,87 @@
+// my-template.jade
+extends ../layout
+
+//Bloque de contenido.
+block content
+	.contenedor
+		.container_form
+			form(method='post', action='/deals/add')
+				input(name='deal_id', type='hidden', value='#{deal._id}')
+				label Titulo
+				br
+				input(name='deal[title]', type='text', value='#{deal.title}') 
+				br
+				label Tagline
+				br
+				input(name='deal[tagline]', type='text', value='#{deal.tagline}') 
+				br
+				label Slug
+				br
+				input(name='deal[slug]', type='text', value='#{deal.slug}') 
+				br
+				label Características
+				br
+				input(name='deal[characteristics]', type='text', value='#{deal.characteristics}') 
+				br
+				label Condiciones
+				br
+				input(name='deal[conditions]', type='text', value='#{deal.conditions}') 
+				br
+				label Precio
+				br
+				input(name='deal[price]', type='text', value='#{deal.price}') 
+				br
+				label Descuento
+				br
+				input(name='deal[discount]', type='text', value='#{deal.discount}')
+				br 
+				label Precio especial
+				br
+				input(name='deal[special_price]', type='text', value='#{deal.special_price}') 
+				br
+				label Fecha de comienzo
+				br
+				input(name='deal[start_date]', type='date', value='#{deal.start_date}') 
+				br
+				label Fecha de fin
+				br
+				input(name='deal[end_date]', type='date', value='#{deal.end_date}')
+				br
+				label Inicio fecha de canje
+				br
+				input(name='deal[start_redeem]', type='date', value='#{deal.start_redeem}') 
+				br
+				label Fin fecha de canje
+				br
+				input(name='deal[end_redeem]', type='date', value='#{deal.end_redeem}') 
+				br
+				label Maximo de cupones
+				br
+				input(name='deal[max_coupons]', type='text', value='#{deal.max_coupons}') 
+				br
+				label Maximo de cupones por usuario
+				br
+				input(name='deal[max_coupons_by_user]', type='text', value='#{deal.max_coupons_by_user}') 
+				br
+				label Porcentaje para el vendedor
+				br
+				input(name='deal[seller_percentage]', type='text', value='#{deal.seller_percentage}')
+				br 
+				label Porcentaje giombu
+				br
+				input(name='deal[giombu_percentage]', type='text', value='#{deal.giombu_percentage}') 
+				br
+				label  Porcentaje para promotor
+				br
+				input(name='deal[promoter_percentage]', type='text', value='#{deal.promoter_percentage}') 
+				br
+				label Estado
+				br
+				input(name='deal[status]', type='text', value='#{deal.status}')
+				br 
+				label Costo de envío
+				br
+				input(name='deal[shipping_cost]', type='text', value='#{deal.shipping_cost}') 
+				br
+				input(name='submit', type='submit') Enviar
+				br
