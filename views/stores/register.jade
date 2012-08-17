@@ -1,17 +1,21 @@
-h2 #{title}
-.container
-	.form_container
-		form(method='post', action='/stores/add')
-			label name
-			br
-			input(name='store[name]', type='text') 
-			br
-			label email
-			br
-			input(name='store[email]', type='text') 
-			br
-			label about
-			br
-			input(name='store[about]', type='text') 
-			br
-			input(type='submit', value='Save')
+// my-template.jade
+extends ../layout
+
+//Bloque de contenido.
+block content
+	.container
+		.form_container
+			form(method='post', action='/stores/add')
+				label name
+				br
+				input(name='store[name]', type='text') 
+				br
+				label email
+				br
+				input(name='store[email]', type='text') 
+				br
+				label about
+				br
+				input(name='store[about]', type='text') 
+				br
+				input(type='submit', value='Save')

@@ -1,53 +1,58 @@
-div( class='contenedor')
-	div( class='container_form')
-		form(method='post', action='/users/save/')
-			label Nombre de Usuario
-				input(name='username', type='text') 
-				br
-			label Nombre completo
-				input(name='name', type='text') 
-				br
-			label Apellido(s)
-				input(name='lname', type='text') 
-				br
-			label Email
-				input(name='email', type='text') 
-				br
-			label Contraseña
-				input(name='password', type='password') 
-				br
-			label Confirmar contraseña
-				input(name='confirm_password', type='password') 
-				br
-			label Fecha de nacimiento
-				input(name='birthday', type='date') 
-				br
-			label Genero
-				input(name='gender', type='select') 
-					option(value='m') Masculino
-					option(value='f') Femenino
-				br
-			label Phone
-				input(name='phone', type='text')
-				br 
-			label Cell Phone
-				input(name='mobile', type='text') 
-				br
-			label Direccion 
-				input(name='address', type='text') 
-				br
-			label Pais
-				input(name='country', type='select')
-				br
-			label Provincia
-				input(name='state', type='select')
-				br
-			label Ciudad
-				input(name='city', type='text')
-				br
-			label Zip
-				input(name='zip', type='text') 
-				br
-			input(name='submit', type='submit') 
-				br
-				
+// my-template.jade
+extends ../layout
+
+//Bloque de contenido.
+block content
+	div( class='contenedor')
+		div( class='container_form')
+			form(method='post', action='/users/save/')
+				label Nombre de Usuario
+					input(name='username', type='text') 
+					br
+				label Nombre completo
+					input(name='name', type='text') 
+					br
+				label Apellido(s)
+					input(name='lname', type='text') 
+					br
+				label Email
+					input(name='email', type='text') 
+					br
+				label Contraseña
+					input(name='password', type='password') 
+					br
+				label Confirmar contraseña
+					input(name='confirm_password', type='password') 
+					br
+				label Fecha de nacimiento
+					input(name='birthday', type='date') 
+					br
+				label Genero
+					input(name='gender', type='select') 
+						option(value='m') Masculino
+						option(value='f') Femenino
+					br
+				label Phone
+					input(name='phone', type='text')
+					br 
+				label Cell Phone
+					input(name='mobile', type='text') 
+					br
+				label Direccion 
+					input(name='address', type='text') 
+					br
+				label Pais
+					input(name='country', type='select')
+					br
+				label Provincia
+					input(name='state', type='select')
+					br
+				label Ciudad
+					input(name='city', type='text')
+					br
+				label Zip
+					input(name='zip', type='text') 
+					br
+				input(name='submit', type='submit') 
+					br
+					

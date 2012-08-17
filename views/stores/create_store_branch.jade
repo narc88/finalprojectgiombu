@@ -1,44 +1,48 @@
-h2 #{title}
-.container
-	.form_container
-		form(method='post', action='/stores/add_store_branch')
-			label name
-			br
-			input(name='store_name', type='text') 
-			br
-			label email
-			br
-			input(name='store_email', type='text') 
-			br
-			label about
-			br
-			input(name='store_about', type='text')
-			fieldset Informacion de la Sucursal
-				br
+// my-template.jade
+extends ../layout
+
+//Bloque de contenido.
+block content
+	.container
+		.form_container
+			form(method='post', action='/stores/add_store_branch')
 				label name
-				input(name='name', type='text') 
+				br
+				input(name='store_name', type='text') 
 				br
 				label email
-				input(name='address', type='text') 
 				br
-				label zip
-				input(name='zip', type='text')
+				input(name='store_email', type='text') 
 				br
-				label phone
-				input(name='phone', type='text') 
+				label about
 				br
-				label email
-				input(name='email', type='text') 
-				br
-				label website
-				input(name='website', type='text') 
-				br
-				label fanpage
-				input(name='fanpage', type='text') 
-				br
-				label twitter
-				input(name='twitter', type='text')
-				br 
-				label contact
-				input(name='contact', type='text') 
-			input(type='submit', value='Save')
+				input(name='store_about', type='text')
+				fieldset Informacion de la Sucursal
+					br
+					label name
+					input(name='name', type='text') 
+					br
+					label email
+					input(name='address', type='text') 
+					br
+					label zip
+					input(name='zip', type='text')
+					br
+					label phone
+					input(name='phone', type='text') 
+					br
+					label email
+					input(name='email', type='text') 
+					br
+					label website
+					input(name='website', type='text') 
+					br
+					label fanpage
+					input(name='fanpage', type='text') 
+					br
+					label twitter
+					input(name='twitter', type='text')
+					br 
+					label contact
+					input(name='contact', type='text') 
+				input(type='submit', value='Save')

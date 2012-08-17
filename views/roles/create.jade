@@ -1,10 +1,15 @@
-div( class='contenedor')
-	div( class='container_form')
-		form(method='post', action='/roles/add/')
-			label Nombre
-				input(name='name', type='text') 
-				br
-			label Descripción
-				input(name='description', type='text') 
-			input(name='submit', type='submit') 
-				br
+// my-template.jade
+extends ../layout
+
+//Bloque de contenido.
+block content
+	div( class='contenedor')
+		div( class='container_form')
+			form(method='post', action='/roles/add/')
+				label Nombre
+					input(name='name', type='text') 
+					br
+				label Descripción
+					input(name='description', type='text') 
+				input(name='submit', type='submit') 
+					br

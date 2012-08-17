@@ -1,38 +1,42 @@
-h1 #{title}
--each franchisor in franchisors
-	table
-		tr
-			td	name
-			td	#{franchisor.name}
-		tr
-			td	default_domain
-			td	#{franchisor.default_domain}
-		tr
-			td	secure_domain
-			td	#{franchisor.secure_domain}
-		tr
-			td	tlc
-			td	#{franchisor.tlc}
-		tr
-			td	email
-			td	#{franchisor.email}
-		tr
-			td	smtp
-			td	#{franchisor.smtp}
-		tr
-			td	default_timezone
-			td	#{franchisor.default_timezone}
-		tr
-			td	locale
-			td	#{franchisor.locale}
-		tr
-			td	language
-			td	#{franchisor.language}
-		tr
-			td	fanpage
-			td	#{franchisor.fanpage}
-		tr
-			td
-				a(href='/franchisors/edit/' + franchisor._id.toString()) Editar 
-	br
-	br
+// my-template.jade
+extends ../layout
+
+//Bloque de contenido.
+block content
+	-each franchisor in franchisors
+		table
+			tr
+				td	name
+				td	#{franchisor.name}
+			tr
+				td	default_domain
+				td	#{franchisor.default_domain}
+			tr
+				td	secure_domain
+				td	#{franchisor.secure_domain}
+			tr
+				td	tlc
+				td	#{franchisor.tlc}
+			tr
+				td	email
+				td	#{franchisor.email}
+			tr
+				td	smtp
+				td	#{franchisor.smtp}
+			tr
+				td	default_timezone
+				td	#{franchisor.default_timezone}
+			tr
+				td	locale
+				td	#{franchisor.locale}
+			tr
+				td	language
+				td	#{franchisor.language}
+			tr
+				td	fanpage
+				td	#{franchisor.fanpage}
+			tr
+				td
+					a(href='/franchisors/edit/' + franchisor._id.toString()) Editar 
+		br
+		br
