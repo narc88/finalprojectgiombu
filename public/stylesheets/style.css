@@ -3,8 +3,28 @@ body {
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 	background-image: url("/img/bg_layout.jpg");
 	background-repeat: no-repeat;
+	text-align: center;
 }
 
 a {
   color: #00B7FF;
+}
+
+#body_container{
+	width:990px;
+	margin:0 auto;
+}
+
+#left, #center, #right{
+	float:left;
+	width:150px;
+}
+
+#center {
+	width:600px;
+}
+
+.feed {
+	border:1px solid black;
+	background-color: gray;
 }

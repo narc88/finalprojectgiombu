@@ -4,12 +4,20 @@ html
 		title Giombu
 		link(rel='stylesheet', href='/stylesheets/style.css')
 	body
-		#header
-			h1 Giombu
-		#container
-			block content
-		#footer
-			| Comercializadora Giombu, S.A. de C.V -
-			| San Juan de los Lagos No. 21 -
-			| Vallarta Poniente -
-			| Guadalajara, Jalisco, México (44110)
+		#body_container
+			#header
+				#profile
+					block profile
+			#container
+				#left
+					block menu
+				#center 
+					block feed
+					block content
+				#right
+					block level
+			#footer
+				| Comercializadora Giombu, S.A. de C.V -
+				| San Juan de los Lagos No. 21 -
+				| Vallarta Poniente -
+				| Guadalajara, Jalisco, México (44110)
