@@ -75,8 +75,12 @@ app.get('/branches/register' , branches.register);
 app.post('/branches/add_branch' , branches.add_branch);
 
 //Deals
-app.get('/deals/create' ,checkAuth , deals.create);
-app.post('/deals/add' ,checkAuth , deals.add);
+app.get('/deals/create', deals.create);
+app.post('/deals/add', deals.add);
+app.post('/deals/update', deals.update);
+app.get('/deals/list', deals.list);
+app.get('/deals/edit/:deal_id', deals.edit);
+app.get('/deals/remove/:deal_id', deals.remove);
 
 //Users
 app.get('/users/register', users.register );
@@ -113,5 +117,5 @@ app.get('/franchisors/edit/:franchisor_id', franchisors.edit);
 
 
 app.listen(3000, function(){
-  console.log("Express server listening on port 3000");
+  console.log("Express server listening on port 3000".rainbow.bold);
 });

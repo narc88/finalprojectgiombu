@@ -83,29 +83,41 @@ exports.list = function(req, res, next){
 
 
 
-exports.edit = function(req, res, next){
+exports.update = function(req, res, next){
 
-	console.log('deals - edit'.cyan.bold);
-	console.log('deals - edit - Busco el deal ( ' + req.body.deal_id +' )');
+	console.log('deal - update'.cyan.bold);
+	console.log('deal - update - Busco el deal ( ' + req.body.deal_id +' )');
 
 	DealModel.findById( req.body.deal_id , function(err, deal){
 		if(!err){
 			if(deal){
-				console.log('deals - edit - Se encontro el deal ( ' + req.body.deal_id +' )');
+				console.log('deal - update - Se encontro el deal ( ' + req.body.deal_id +' )');
 				
 				//Edicion del deal
+				//Hacer que solo se graben los campos editados
+
 
 				edited_deal = req.param('deal');
 
 
+				for (field in edited_deal){
+					if(edited_deal[field] != ''){
+						deal[field] = edited_deal[field];
+						console.log('deal - update - Edito el campo '+ field);
+					}
+				}
+
+
+
 				deal.save(function (err) {
 					if (!err) {
-						console.log('deals - edit - Guardo una nueva deal');
-						console.log('deals - edit - Redirecciono a deals/create');
-						res.render('deals/view', {title: 'Deals View', deals : [deal_new]});
+						console.log('deal - update - Guardo una nueva deal');
+						console.log('deal - update - Redirecciono a deal/create');
+						//res.render('deal/create', {title: 'Cargar Franquicia'});
+						res.render('deal/view', {title: 'deal View', deal : [deal]});
 					} else {
-						console.log('deals - edit - '.red.bold + err);
-						console.log('deals - edit - Redirecciono a /');
+						console.log('deal - update - '.red.bold + err);
+						console.log('deal - update - Redirecciono a /');
 						res.redirect('/');
 					}
 
@@ -114,10 +126,10 @@ exports.edit = function(req, res, next){
 
 
 			}else{
-				console.log('deals - edit - No se encontro el deal ( ' + req.body.deal_id +' )');
+				console.log('deal - edit - No se encontro el deal ( ' + req.body.deal_id +' )');
 			}
 		}else{
-			console.log('deals - edit - '.red.bold + err);
+			console.log('deal - edit - '.red.bold + err);
 		}
 
   });
@@ -125,30 +137,56 @@ exports.edit = function(req, res, next){
 }
 
 
-exports.delete = function(req, res, next){
+exports.edit = function(req, res, next){
 
-	console.log('deals - delete'.cyan.bold);
-	console.log('deals - delete - Busco el deal ( ' + req.body.deal_id +' )');
+	DealModel.findById( req.params.deal_id, function(err, deal){
+		
+		if(!err){
+			if(deal){
+				console.log('deal - edit - deal encontrado, redirecciono a deal/edit');
+				res.render('deals/edit', {title: 'deal Edit', deal : deal});
+			}else{
+				console.log('deal - edit - No se encontro el deal ( ' + req.params.deal_id +' )');
+			}
+		}else{
+			
+			console.log('deal - edit - '.red.bold + err);
+			res.redirect('/');
+		}
+
+	});
+	
+}
+
+
+exports.remove = function(req, res, next){
+
+	console.log('deals - remove'.cyan.bold);
+	console.log('deals - remove - Busco el deal ( ' + req.params.deal_id +' )');
 
 	DealModel.findById( req.body.deal_id , function(err, deal){
 		if(!err){
 			if(deal){
-				console.log('deals - delete - Se encontro el deal ( ' + req.body.deal_id +' )');
+				console.log('deals - remove - Se encontro el deal ( ' + req.params.deal_id +' )');
 				
 				//Elimino el deal
 				deal.remove(function(err){
 					if(!err){
-						console.log('deals - delete - Se elimina el deal ( ' + req.body.deal_id +' )');
+						console.log('deals - remove - Se elimina el deal ( ' + req.params.deal_id +' )');
+						res.redirect('/');
 					}else{
-						console.log('deals - delete - '.red.bold + err);
+						console.log('deals - remove - '.red.bold + err);
+						res.redirect('/deals/list');
 					}
 				})
 
 			}else{
-				console.log('deals - delete - No se encontro el deal ( ' + req.body.deal_id +' )');
+				console.log('deals - remove - No se encontro el deal ( ' + req.params.deal_id +' )');
+				res.redirect('/deals/list');
 			}
 		}else{
-			console.log('deals - delete - '.red.bold + err);
+			console.log('deals - remove - '.red.bold + err);
+			res.redirect('/');
 		}
 
   });

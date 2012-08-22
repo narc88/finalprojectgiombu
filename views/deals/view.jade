@@ -1,3 +1,6 @@
+// my-template.jade
+extends ../layout
+
 block content
 	-each deal in deals
 		table
@@ -88,5 +91,11 @@ block content
 			tr
 				td	modifiend
 				td	#{deal.modifiend}
+			tr
+				td
+					a(href='/deals/edit/' + deal._id.toString()) Editar 
+			tr
+				td
+					a(href='/deals/remove/' + deal._id.toString()) Eliminar 
 		br
 		br
