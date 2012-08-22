@@ -2,21 +2,25 @@
 html
 	head
 		title Giombu
+		script(rel='text/javascript', src='/javascripts/jquery.js')
 		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/javascripts/bootstrap/css/bootstrap.css')
+		script(rel='text/javascript', src='/javascripts/bootstrap/js/bootstrap.min.js')
 	body
 		#body_container
 			#header
 				#navbar
 					block navbar
-				#profile
-					block profile
+				
 			#container
 				#left
+					#profile
+						block profile
 					block menu
 				#center 
-					block feed
 					block content
 				#right
+					block feed
 					block level
 			#footer
 				| Comercializadora Giombu, S.A. de C.V -
