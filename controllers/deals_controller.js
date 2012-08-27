@@ -192,3 +192,31 @@ exports.remove = function(req, res, next){
   });
 
 }
+
+
+exports.show = function(req, res, next){
+
+	DealModel.find( {} , function(err, deals){
+
+		if(!err){
+
+			if(deals.length){
+
+				console.log('deals - show - Se encontraron deals, renderizo /deals/show');
+				res.render('deals/deals_show', { title : 'Deals show', deals : deals});
+
+			}else{
+				console.log('deals - show - No se encontraron deals');
+			}
+
+		}else{
+
+			console.log('deals - show - '.red.bold + err);
+		}
+
+
+
+	});
+
+
+}

@@ -87,7 +87,6 @@ exports.update = function(req, res, next){
 				//Edicion del franchise
 				//Hacer que solo se graben los campos editados
 
-
 				edited_franchise = req.param('franchise');
 
 
