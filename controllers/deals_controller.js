@@ -4,7 +4,7 @@ var colors = require('colors');
 
 exports.create = function (req, res, next) {
 	console.log('deals - create'.cyan.bold);
-	res.render('deals/create', {title: 'Cargar Oferta'});
+	res.render('deals/create', {title: 'Cargar Oferta', user: req.session.user});
 }
 
 exports.add = function (req, res, next) {
@@ -30,7 +30,7 @@ exports.add = function (req, res, next) {
 		if (!err) {
 			console.log('deals - add - Guardo una nueva deal');
 			console.log('deals - add - Redirecciono a deals/create');
-			res.render('deals/view', {title: 'Deals View', deals : [deal_new]});
+			res.render('deals/view', {title: 'Deals View', user: req.session.user, deals : [deal_new]});
 		} else {
 			console.log('deals - add - '.red.bold + err);
 			console.log('deals - add - Redirecciono a /');
@@ -42,14 +42,10 @@ exports.add = function (req, res, next) {
 }
 
 exports.view = function(req, res, next){
-
-	console.log('deals - view'.cyan.bold);
-	console.log('deals - view - Busco el deal ( ' + req.body.deal_id +' )');
-
-	DealModel.findById( req.body.deal_id , function(err, deal){
+	DealModel.findById( req.params.id , function(err, deal){
 		if(!err){
 			if(deal){
-				console.log('deals - view - Se encontro el deal ( ' + req.body.deal_id +' )');
+				console.log('deals - view - Se encontro el deal ( ' + req.params.id +' )');
 				res.render('deals/view', {title: 'Deal', deal : deal});
 			}else{
 				console.log('deals - view - No se encontro el deal ( ' + req.body.deal_id +' )');
@@ -57,15 +53,26 @@ exports.view = function(req, res, next){
 		}else{
 			console.log('deals - view - '.red.bold + err);
 		}
-
   });
 }
 
+exports.review = function(req, res, next){
+	DealModel.findById( req.params.id , function(err, deal){
+		if(!err){
+			if(deal){
+				console.log('deals - view - Se encontro el deal ( ' + req.params.id +' )');
+				res.render('deals/review', {title: 'Deal', user: req.session.user,deal : deal});
+			}else{
+				console.log('deals - view - No se encontro el deal ( ' + req.body.deal_id +' )');
+			}
+		}else{
+			console.log('deals - view - '.red.bold + err);
+		}
+  });
+}
 
 exports.list = function(req, res, next){
-
 	console.log('deal - list'.cyan.bold);
-
 	DealModel.find( {} , function(err, deals){
 		if(!err){
 			if(deals){
@@ -138,9 +145,7 @@ exports.update = function(req, res, next){
 
 
 exports.edit = function(req, res, next){
-
 	DealModel.findById( req.params.deal_id, function(err, deal){
-		
 		if(!err){
 			if(deal){
 				console.log('deal - edit - deal encontrado, redirecciono a deal/edit');
@@ -153,9 +158,7 @@ exports.edit = function(req, res, next){
 			console.log('deal - edit - '.red.bold + err);
 			res.redirect('/');
 		}
-
-	});
-	
+	});	
 }
 
 
@@ -195,28 +198,32 @@ exports.remove = function(req, res, next){
 
 
 exports.show = function(req, res, next){
-
 	DealModel.find( {} , function(err, deals){
-
 		if(!err){
-
 			if(deals.length){
-
 				console.log('deals - show - Se encontraron deals, renderizo /deals/show');
-				res.render('deals/deals_show', { title : 'Deals show', deals : deals});
-
+				res.render('deals/deals_show', { title : 'Deals show', user: req.session.user ,deals : deals});
 			}else{
 				console.log('deals - show - No se encontraron deals');
 			}
-
 		}else{
 
 			console.log('deals - show - '.red.bold + err);
 		}
-
-
-
 	});
+}
 
-
+exports.list = function(req, res, next){
+	DealModel.find( {} , function(err, deals){
+		if(!err){
+			if(deals.length){
+				console.log('deals - show - Se encontraron deals, renderizo /deals/list');
+				res.render('deals/list', { title : 'Lista de deals activos', user: req.session.user ,deals : deals});
+			}else{
+				console.log('deals - show - No se encontraron deals');
+			}
+		}else{
+			console.log('deals - show - '.red.bold + err);
+		}
+	});
 }

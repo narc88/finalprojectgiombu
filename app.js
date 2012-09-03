@@ -81,7 +81,9 @@ app.post('/deals/update', deals.update);
 app.get('/deals/list', deals.list);
 app.get('/deals/edit/:deal_id', deals.edit);
 app.get('/deals/remove/:deal_id', deals.remove);
+app.get('/intranet/deals/view/:id', deals.review);
 app.get('/deals/deals_show', deals.show);
+app.get('/intranet/deals/list', deals.list);
 
 //Users
 app.get('/users/register', users.register );

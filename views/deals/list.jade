@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+	ul.thumbnails
+		-each deal in deals
+			li.span10.deal_list
+				span.label.pull-right #{deal.status}
+				.thumbnail
+					img( src="/images/243_large_f4415b921f7e566042424fb70b1ba3a4.jpeg")
+				.caption
+					h3 #{deal.title}
+					p #{deal.tagline}
+					a.btn.pull-right(href="/intranet/deals/view/#{deal._id}") Ver
+					a.btn.btn-primary.pull-right Editar
