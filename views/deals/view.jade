@@ -2,8 +2,9 @@
 extends ../layout
 
 block content
+	.content
 	-each deal in deals
-		table
+		table.table_list
 			tr
 				td	title
 				td	#{deal.title}
