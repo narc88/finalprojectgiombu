@@ -2,10 +2,10 @@
 html
 	head
 		title Giombu
-		script(rel='text/javascript', src='/javascripts/jquery.js')
-		link(rel='stylesheet', href='/stylesheets/style.css')
-		link(rel='stylesheet', href='/javascripts/bootstrap/css/bootstrap.css')
-		script(rel='text/javascript', src='/javascripts/bootstrap/js/bootstrap.min.js')
+		script(rel='text/javascript', src='/js/jquery.js')
+		link(rel='stylesheet', href='/css/style.css')
+		link(rel='stylesheet', href='/css/bootstrap.css')
+		script(rel='text/javascript', src='/js/bootstrap.min.js')
 	body
 		#body_container
 			#header
@@ -37,7 +37,8 @@ html
 						.thumbnail
 							img(src="/images/mr_bean.jpg")
 						.data
-							p #{user.username}
+							-if (!(typeof user === "undefined"))
+								p #{user.username}
 					ul(class="nav nav-list")
 						li.nav-header Ofertas
 						li 
