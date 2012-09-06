@@ -31,6 +31,7 @@ var promoters = require('./controllers/promoters_controller');
 var bank_accounts = require('./controllers/bank_accounts_controller');
 var franchises = require('./controllers/franchises_controller');
 var franchisors = require('./controllers/franchisors_controller');
+var invitations = require('./controllers/invitations_controller');
 
 
 app.configure('development', function(){
@@ -93,6 +94,11 @@ app.post('/users/login_user' , users.login_user );
 app.get('/users/edit', users.edit );
 app.post('/users/update' , users.update );
 app.get('/users/dashboard', users.dashboard );
+//Users invitation
+app.get('/users/accept_invitation/:id', users.accept_invitation );
+app.post('/users/save_guest/:id', users.save_guest );
+//Users intranet
+app.get('/intranet/users/my_promoters', users.list_promoters );
 
 //Stores
 app.get('/stores/create_store_branch', stores.create_store_branch );
@@ -117,7 +123,9 @@ app.post('/franchisors/add', franchisors.add);
 app.get('/franchisors/list', franchisors.list);
 app.get('/franchisors/edit/:franchisor_id', franchisors.edit);
 
-
+//Invitations
+app.get('/invitations/create', invitations.create);
+app.post('/invitations/add', invitations.add);
 
 app.listen(3000, function(){
   console.log("Express server listening on port 3000".cyan.bold);

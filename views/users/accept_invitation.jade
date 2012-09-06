@@ -1,0 +1,41 @@
+// my-template.jade
+extends ../layout
+
+//Bloque de contenido.
+block content
+	div( class='contenedor')
+		div( class='container_form')
+			form(method='post', action='/users/save_guest/#{invitation.user}')
+				label Nombre de Usuario
+					input(name='username', type='text') 
+				label Nombre completo
+					input(name='name', type='text' value='#{invitation.name}') 
+				label Apellido(s)
+					input(name='lname', type='text') 
+				label Email
+					input(name='email', type='text', value='#{invitation.email}') 
+				label Contraseña
+					input(name='password', type='password') 
+				label Confirmar contraseña
+					input(name='confirm_password', type='password') 
+				label Fecha de nacimiento
+					input(name='birthday', type='date') 
+				label Genero
+					input(name='gender', type='select') 
+						option(value='m') Masculino
+						option(value='f') Femenino
+				label Phone
+					input(name='phone', type='text')
+				label Cell Phone
+					input(name='mobile', type='text') 
+				label Direccion 
+					input(name='address', type='text') 
+				label Pais
+					input(name='country', type='select')
+				label Provincia
+					input(name='state', type='select')
+				label Ciudad
+					input(name='city', type='text')
+				label Zip
+					input(name='zip', type='text') 
+				input(name='submit', type='submit') 

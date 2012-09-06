@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var PromoterSchema = require('./promoter').PromoterSchema
 var RoleSchema = require('./promoter').RoleSchema
 var ImageSchema = require('./image').ImageSchema;
+var InvitationSchema = require('./invitation').InvitationSchema;
 var PartnerSchema = require('./partner').PartnerSchema;
 //var FranchisorSchema = require('./franchisor').FranchisorSchema
 var SellerSchema = require('./seller').SellerSchema
@@ -35,7 +36,9 @@ var UserSchema = exports.UserSchema = new Schema({
 	zip						: { type: String},
 	created    			    : {type: Date, default: Date.now },
 	modified				: {type: Date, default: Date.now },
+	promoter_id 			: { type: mongoose.Schema.ObjectId, ref: 'User' },
 	//Relacionados
+	invitation				: [InvitationSchema],
 	image 					: [ImageSchema],
 	seller					: [SellerSchema],
 	promoter 				: [PromoterSchema],

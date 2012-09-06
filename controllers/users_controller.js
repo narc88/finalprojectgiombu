@@ -109,3 +109,61 @@ exports.dashboard = function(req, res, next){
     }
   });
 }
+
+exports.list_promoters = function(req, res, next){
+  UserModel.find( {promoter_id : req.session.user.promoter._id }, function(err, users){
+    if(!err){
+      if(users){
+       res.render('users/my_promoters', {title: 'Panel de Usuario', user : req.session.user,  users:users});
+      }else{
+      console.log('Usuario no encontrado');
+      }
+    }else{
+      console.log('Error'+ err);
+    }
+  });
+}
+
+exports.accept_invitation = function (req, res, next) {
+   var InvitationModel = require('../models/invitation').InvitationModel;
+  InvitationModel.find({ _id: req.params.id }).exec(function (err, invitation) {
+  if (invitation){
+      res.render('users/accept_invitation', {title: 'Ingresa tus Datos', invitation: invitation});
+    }else{
+      console.log("Error: - " + err);
+    }
+  });
+}
+
+exports.save_guest = function (req, res, next) {
+  var user_new = new UserModel();
+  var InvitationModel = require('../models/invitation').InvitationModel;
+  InvitationModel.find({ _id: req.params.id }).exec(function (err, invitation) {
+  if (invitation){
+      user_new.push(invitation);
+     }else{
+        } 
+    });
+  user_new.username = req.body.username
+  user_new.name = req.body.name
+  user_new.lname = req.body.lname
+  user_new.email = req.body.email
+  user_new.password = Encrypter.encrypt(req.body.password);
+  user_new.gender = req.body.gender
+  user_new.birthday = req.body.birthday
+  user_new.phone = req.body.phone
+  user_new.mobile = req.body.mobile
+  user_new.address = req.body.address
+  user_new.country = req.body.country
+  user_new.city = req.body.city
+  user_new.zip = req.body.zip
+  user_new.save(function(err){
+  if(!err){
+      console.log(user_new);
+    } else {
+      console.log("Error: - " + err);
+    }
+    res.redirect('deals/create');
+  });
+  res.render('deals/create', {title: 'Cargar Oferta'});
+}
