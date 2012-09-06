@@ -46,7 +46,7 @@ exports.view = function(req, res, next){
 		if(!err){
 			if(deal){
 				console.log('deals - view - Se encontro el deal ( ' + req.params.id +' )');
-				res.render('deals/view', {title: 'Deal', deal : deal});
+				res.render('deals/view', {title: 'Deal', user: req.session.user, deal : deal});
 			}else{
 				console.log('deals - view - No se encontro el deal ( ' + req.body.deal_id +' )');
 			}

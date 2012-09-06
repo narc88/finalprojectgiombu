@@ -20,6 +20,12 @@ a {
 	float:left;
 	width:200px;
 }
+#body_container{
+	background-color: white;
+	min-height: 1000px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
 
 #left .nav{
 	text-align:left;

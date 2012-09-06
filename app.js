@@ -80,7 +80,7 @@ app.post('/deals/add', deals.add);
 app.post('/deals/update', deals.update);
 app.get('/deals/list', deals.list);
 app.get('/deals/remove/:deal_id', deals.remove);
-app.get('/intranet/deals/view/:id', deals.review);
+app.get('/intranet/deals/view/:id', deals.view);
 app.get('/deals/deals_show', deals.show);
 app.get('/deals/view', deals.view);
 app.get('/intranet/deals/list', deals.list);

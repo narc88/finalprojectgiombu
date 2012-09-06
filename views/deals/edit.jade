@@ -61,7 +61,10 @@ block content
 					input(name='deal[promoter_percentage]', type='text', value='#{deal.promoter_percentage}').control 
 				.control-group
 					label.control-label Estado			
-					input(name='deal[status]', type='text', value='#{deal.status}').control
+					select(name='deal[status]').control
+						option(value="draft") draft
+						option(value="active") active
+						option(value="closed") closed
 				.control-group
 					label.control-label Costo de envío			
 					input(name='deal[shipping_cost]', type='text', value='#{deal.shipping_cost}').control 
