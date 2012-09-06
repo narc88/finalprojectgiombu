@@ -202,7 +202,7 @@ exports.show = function(req, res, next){
 		if(!err){
 			if(deals.length){
 				console.log('deals - show - Se encontraron deals, renderizo /deals/show');
-				res.render('deals/deals_show', { title : 'Deals show', user: req.session.user ,deals : deals});
+				res.render('deals/show', { title : 'Deals show', user: req.session.user ,deals : deals});
 			}else{
 				console.log('deals - show - No se encontraron deals');
 			}
@@ -213,17 +213,30 @@ exports.show = function(req, res, next){
 	});
 }
 
-exports.list = function(req, res, next){
+
+exports.view = function(req, res, next){
 	DealModel.find( {} , function(err, deals){
 		if(!err){
 			if(deals.length){
-				console.log('deals - show - Se encontraron deals, renderizo /deals/list');
-				res.render('deals/list', { title : 'Lista de deals activos', user: req.session.user ,deals : deals});
+				console.log('deals - view - Se encontraron deals, renderizo /deals/view');
+				res.render('deals/view', { title : 'Deals view', user: req.session.user ,deals : deals});
 			}else{
-				console.log('deals - show - No se encontraron deals');
+				console.log('deals - view - No se encontraron deals');
 			}
 		}else{
-			console.log('deals - show - '.red.bold + err);
+
+			console.log('deals - view - '.red.bold + err);
 		}
 	});
+}
+
+
+
+exports.intranet_admin = function(req, res, next){
+
+	res.render('deals/admin', {
+		title : 'Lista de deals activos',
+		user: req.session.user
+	});
+
 }
