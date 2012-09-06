@@ -75,7 +75,10 @@ block content
 				br
 				.control-group
 					label.control-label Estado
-					input(name='deal[status]', type='text').control
+					select(name='deal[status]')
+						option(value="draft") draft
+						option(value="active") active
+						option(value="closed") closed
 				br
 				.control-group 
 					label.control-label Costo de envío

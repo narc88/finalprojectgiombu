@@ -79,12 +79,12 @@ app.get('/deals/create', deals.create);
 app.post('/deals/add', deals.add);
 app.post('/deals/update', deals.update);
 app.get('/deals/list', deals.list);
-app.get('/deals/edit/:deal_id', deals.edit);
 app.get('/deals/remove/:deal_id', deals.remove);
 app.get('/intranet/deals/view/:id', deals.review);
 app.get('/deals/deals_show', deals.show);
 app.get('/deals/view', deals.view);
 app.get('/intranet/deals/list', deals.list);
+app.get('/intranet/deals/edit/:deal_id', deals.edit);
 app.get('/intranet/deals/admin', deals.intranet_admin)
 
 //Users

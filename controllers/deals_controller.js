@@ -77,7 +77,7 @@ exports.list = function(req, res, next){
 		if(!err){
 			if(deals){
 				console.log('deal - list - Se envian los deals encontrados');
-				res.render('deals/view', {title: 'Lista de deals', deals : deals});
+				res.render('deals/list2', {title: 'Lista de deals', deals : deals});
 			}else{
 				console.log('deal - list - No hay deals');
 			}
