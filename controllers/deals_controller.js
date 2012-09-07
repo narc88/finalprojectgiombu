@@ -17,6 +17,7 @@ exports.add = function (req, res, next) {
 	deal_new.coupon_count = 0;
 
 	//Validar los ids de los siguientes datos
+	//Crear correctamente los dates en base a los valores ingresados
 /*
 	deal_new.store = '';
 	deal_new.seller = '';
@@ -149,6 +150,15 @@ exports.edit = function(req, res, next){
 		if(!err){
 			if(deal){
 				console.log('deal - edit - deal encontrado, redirecciono a deal/edit');
+
+				//Acomodo las fechas y horas para que sean humanamente visibles
+				date = new Date(deal.start_date);
+				console.log(date.getDate() + );
+				//var month = date.getMonth();
+
+
+
+
 				res.render('deals/edit', {title: 'deal Edit', deal : deal});
 			}else{
 				console.log('deal - edit - No se encontro el deal ( ' + req.params.deal_id +' )');
@@ -233,7 +243,7 @@ exports.view = function(req, res, next){
 
 
 exports.intranet_admin = function(req, res, next){
-
+	console.log('intranet_admin'.cyan.bold);
 	res.render('deals/admin', {
 		title : 'Lista de deals activos',
 		user: req.session.user

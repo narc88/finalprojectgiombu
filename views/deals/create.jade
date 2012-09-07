@@ -1,8 +1,30 @@
 // my-template.jade
 extends ../layout
 
+
 //Bloque de contenido.
 block content
+	script
+		$(document).ready(function(){
+			$('#start_date').datepicker();
+			$('#end_date').datepicker();
+			$('#start_redeem').datepicker();
+			$('#end_redeem').datepicker();
+			$('#start_time').timepicker({
+				minuteStep: 15,
+				template: 'dropdown',
+				showSeconds: false,
+				showMeridian: false,
+				defaultTime: '00:00'
+			});
+			$('#end_time').timepicker({
+				minuteStep: 15,
+				template: 'dropdown',
+				showSeconds: false,
+				showMeridian: false,
+				defaultTime: '00:00'
+			});
+		});
 	.contenedor
 		h3 Cargar oferta
 		.span5
@@ -41,19 +63,27 @@ block content
 				br
 				.control-group
 					label.control-label Fecha de comienzo
-					input(name='deal[start_date]', type='date').control 
+					input(name='deal[start_date]', type='text').control#start_date
+				br
+				.control-group
+					label.control-label Hora de comienzo
+					input(name='start_time', type='text', value="00:00").control#start_time
+				br
+				.control-group
+					label.control-label Hora de comienzo
+					input(name='end_time', type='text', value="00:00").control#end_time
 				br
 				.control-group
 					label.control-label Fecha de fin
-					input(name='deal[end_date]', type='date').control
+					input(name='deal[end_date]', type='text').control#end_date
 				br
 				.control-group
 					label.control-label Inicio fecha de canje
-					input(name='deal[start_redeem]', type='date').control 
+					input(name='deal[start_redeem]', type='text').control#start_redeem
 				br
 				.control-group
 					label.control-label Fin fecha de canje
-					input(name='deal[end_redeem]', type='date').control 
+					input(name='deal[end_redeem]', type='text').control#end_redeem
 				br
 				.control-group
 					label.control-label Maximo de cupones
@@ -85,6 +115,6 @@ block content
 					input(name='deal[shipping_cost]', type='text').control 
 				br
 				.control-group
-					input(name='submit', type='submit', class="btn").control Enviar
+					input(name='submit', type='submit').btn.control Enviar
 					br
 				
