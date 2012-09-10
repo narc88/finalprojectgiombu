@@ -18,6 +18,11 @@ exports.add = function (req, res, next) {
 
 	//Validar los ids de los siguientes datos
 	//Crear correctamente los dates en base a los valores ingresados
+	var date_array = deal_new.start_date.split('/')
+	var date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " " + start_time;
+
+
+	var start_date = new Date(deal_new.start_date)
 /*
 	deal_new.store = '';
 	deal_new.seller = '';
@@ -153,7 +158,7 @@ exports.edit = function(req, res, next){
 
 				//Acomodo las fechas y horas para que sean humanamente visibles
 				date = new Date(deal.start_date);
-				console.log(date.getDate() + );
+				console.log(date.getDate() + "");
 				//var month = date.getMonth();
 
 
