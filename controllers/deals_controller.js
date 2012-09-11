@@ -17,6 +17,12 @@ exports.add = function (req, res, next) {
 	deal_new.coupon_count = 0;
 
 	//Validar los ids de los siguientes datos
+	//Crear correctamente los dates en base a los valores ingresados
+	var date_array = deal_new.start_date.split('/')
+	var date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " " + start_time;
+
+
+	var start_date = new Date(deal_new.start_date)
 /*
 	deal_new.store = '';
 	deal_new.seller = '';
@@ -46,7 +52,7 @@ exports.view = function(req, res, next){
 		if(!err){
 			if(deal){
 				console.log('deals - view - Se encontro el deal ( ' + req.params.id +' )');
-				res.render('deals/view', {title: 'Deal', deal : deal});
+				res.render('deals/view', {title: 'Deal', user: req.session.user, deal : deal});
 			}else{
 				console.log('deals - view - No se encontro el deal ( ' + req.body.deal_id +' )');
 			}
@@ -77,7 +83,7 @@ exports.list = function(req, res, next){
 		if(!err){
 			if(deals){
 				console.log('deal - list - Se envian los deals encontrados');
-				res.render('deals/view', {title: 'Lista de deals', deals : deals});
+				res.render('deals/list2', {title: 'Lista de deals', deals : deals});
 			}else{
 				console.log('deal - list - No hay deals');
 			}
@@ -149,6 +155,15 @@ exports.edit = function(req, res, next){
 		if(!err){
 			if(deal){
 				console.log('deal - edit - deal encontrado, redirecciono a deal/edit');
+
+				//Acomodo las fechas y horas para que sean humanamente visibles
+				date = new Date(deal.start_date);
+				console.log(date.getDate() + "");
+				//var month = date.getMonth();
+
+
+
+
 				res.render('deals/edit', {title: 'deal Edit', deal : deal});
 			}else{
 				console.log('deal - edit - No se encontro el deal ( ' + req.params.deal_id +' )');
@@ -202,7 +217,7 @@ exports.show = function(req, res, next){
 		if(!err){
 			if(deals.length){
 				console.log('deals - show - Se encontraron deals, renderizo /deals/show');
-				res.render('deals/deals_show', { title : 'Deals show', user: req.session.user ,deals : deals});
+				res.render('deals/show', { title : 'Deals show', user: req.session.user ,deals : deals});
 			}else{
 				console.log('deals - show - No se encontraron deals');
 			}
@@ -213,17 +228,30 @@ exports.show = function(req, res, next){
 	});
 }
 
-exports.list = function(req, res, next){
+
+exports.view = function(req, res, next){
 	DealModel.find( {} , function(err, deals){
 		if(!err){
 			if(deals.length){
-				console.log('deals - show - Se encontraron deals, renderizo /deals/list');
-				res.render('deals/list', { title : 'Lista de deals activos', user: req.session.user ,deals : deals});
+				console.log('deals - view - Se encontraron deals, renderizo /deals/view');
+				res.render('deals/view', { title : 'Deals view', user: req.session.user ,deals : deals});
 			}else{
-				console.log('deals - show - No se encontraron deals');
+				console.log('deals - view - No se encontraron deals');
 			}
 		}else{
-			console.log('deals - show - '.red.bold + err);
+
+			console.log('deals - view - '.red.bold + err);
 		}
 	});
+}
+
+
+
+exports.intranet_admin = function(req, res, next){
+	console.log('intranet_admin'.cyan.bold);
+	res.render('deals/admin', {
+		title : 'Lista de deals activos',
+		user: req.session.user
+	});
+
 }

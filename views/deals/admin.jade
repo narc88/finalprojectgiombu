@@ -1,0 +1,17 @@
+// my-template.jade
+extends ../layout
+
+//Bloque de contenido.
+block content
+	h3 Ofertas - Admin menu
+	.container
+		.span3.offset4
+			ul.nav.nav-list
+				li
+					a(href='/deals/create') Crear
+				li
+					a(href='/deals/list') Lista
+				li
+					a(href='/deals/edit') Modificar
+				li
+					a(href='/deals/create') Eliminar
