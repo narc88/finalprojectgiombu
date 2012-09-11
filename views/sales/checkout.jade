@@ -1,0 +1,21 @@
+// my-template.jade
+extends ../layout
+
+block content
+	.content
+		li.span10.deal_list
+				.thumbnail
+					img( src="/images/243_large_f4415b921f7e566042424fb70b1ba3a4.jpeg")
+				.caption
+					h3 #{deal.title}
+					p #{deal.tagline}
+					p Precio $#{deal.price} Descuento #{deal.discount} Final $ #{deal.special_price}
+					p Fecha de canje #{deal.start_redeem}
+					p Hasta #{deal.end_redeem}
+		
+		form(method='post', action='/sales/buy/#{deal._id}')
+			label Cantidad de cupones
+				select(name='quantity') 
+					each item in list
+						option(value='#{item}') #{item}
+			input(type='submit', value='Enviar')

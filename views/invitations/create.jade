@@ -16,5 +16,10 @@ block content
 				input(name='invitation[subject]', type='text') 
 				label Cuerpo
 				input(name='invitation[body]', type='text') 
+				label Tipo de Invitacion
+				select(name='invitation[invitation_type]', type='text') 
+					option(value='usuario') Usuario
+					option(value='promotor') Promotor
+					option(value='vendedor') Vendedor
 				br
 				input(type='submit', value='Enviar')

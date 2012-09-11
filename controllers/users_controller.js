@@ -126,9 +126,12 @@ exports.list_promoters = function(req, res, next){
 
 exports.accept_invitation = function (req, res, next) {
    var InvitationModel = require('../models/invitation').InvitationModel;
-  InvitationModel.find({ _id: req.params.id }).exec(function (err, invitation) {
+   console.log(req.params.id);
+  InvitationModel.findOne({ _id: req.params.id }).exec(function (err, invitation) {
   if (invitation){
+     console.log(invitation);
       res.render('users/accept_invitation', {title: 'Ingresa tus Datos', invitation: invitation});
+
     }else{
       console.log("Error: - " + err);
     }
@@ -163,7 +166,7 @@ exports.save_guest = function (req, res, next) {
     } else {
       console.log("Error: - " + err);
     }
-    res.redirect('deals/create');
+     res.render('users/login');
   });
-  res.render('deals/create', {title: 'Cargar Oferta'});
+   res.render('users/login');
 }
