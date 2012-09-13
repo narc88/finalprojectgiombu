@@ -4,7 +4,6 @@ var Schema = require('mongoose').Schema
 
 var CouponSchema = exports.CouponSchema = new Schema({
 	code				: { type: String },
-	email				: { type: Number, required: true, min:0},
 	status   			: { type: String },
 	created        		:   Date,
 	modified       		:   Date	

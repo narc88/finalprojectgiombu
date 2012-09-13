@@ -131,7 +131,7 @@ app.post('/invitations/add', invitations.add);
 
 //Sales
 app.get('/sales/checkout/:id', sales.checkout);
-app.post('/sales/buy', sales.buy);
+app.post('/sales/buy/:id', sales.buy);
 
 app.listen(3000, function(){
   console.log("Express server listening on port 3000".cyan.bold);

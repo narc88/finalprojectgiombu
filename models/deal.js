@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 
 var ImageSchema = require('./image').ImageSchema;
+var SaleSchema = require('./sale').SaleSchema;
 var Schema = require('mongoose').Schema
 
 var DealSchema = exports.DealSchema = new Schema({
@@ -31,6 +32,9 @@ var DealSchema = exports.DealSchema = new Schema({
 	franchisor   		: { type: Schema.ObjectId, ref: 'Franchisor' },
 	franchise  			: [{ type: Schema.ObjectId, ref: 'Franchise' }],
 	currency	   		: [{ type: Schema.ObjectId, ref: 'Currency' }],
+	//Compras realizadas
+	sales				: [SaleSchema],
+	//Imagenes
 	images 				: [ImageSchema],
 	created    		    : { type: Date, default: Date.now },
 	modifiend        	: { type: Date, default: Date.now }
