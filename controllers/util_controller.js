@@ -32,9 +32,10 @@ exports.time_string = function(mongo_date){
 //Recibe una fecha string con el formato dd/mm/yyyy y una hora string con el formato HH:MM y
 //Retorna un objeto date
 exports.date_mongo = function(date_string, time_string){
-
+	//console.log("DATE_MONGO -> date_string : " + date_string + " -  time_string : " + time_string);
 	date_array = date_string.split('/');
 	date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " " + time_string;
+
 	return new Date(date);
 
 }

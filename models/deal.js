@@ -27,11 +27,13 @@ var DealSchema = exports.DealSchema = new Schema({
 	sale_count			: { type: Number, required: true, min:0},
 	coupon_count		: { type: Number, required: true, min:0},
 	shipping_cost		: { type: Number, required: true, min:0},
+	/*
 	store   			: { type: Schema.ObjectId, ref: 'Store' },
 	seller   			: { type: Schema.ObjectId, ref: 'Seller' },
 	franchisor   		: { type: Schema.ObjectId, ref: 'Franchisor' },
 	franchise  			: [{ type: Schema.ObjectId, ref: 'Franchise' }],
 	currency	   		: [{ type: Schema.ObjectId, ref: 'Currency' }],
+	*/
 	//Compras realizadas
 	sales				: [SaleSchema],
 	//Imagenes

@@ -33,25 +33,13 @@ exports.add = function (req, res, next) {
 	//FECHAS
 
 	//Armo la fecha de inicio
-	var date_array = deal_new.start_date.split('/');
-	var date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " " + deal_new.start_time;
-	deal_new.start_date = new Date(date);
-
+	deal_new.start_date = util.date_mongo(deal_new.start_date, deal_new.start_time);
 	//Armo la fecha de fin
-	date_array = deal_new.end_date.split('/');
-	date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " " + deal_new.end_time;
-	deal_new.end_date = new Date(date);
-
-
+	deal_new.end_date = util.date_mongo(deal_new.end_date, deal_new.end_time);
 	//Armo la fecha de inicio de canje
-	date_array = deal_new.start_redeem.split('/');
-	date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " 00:00";
-	deal_new.start_redeem = new Date(date);
-
+	deal_new.start_redeem = util.date_mongo(deal_new.start_redeem, "00:00");
 	//Armo la fecha de fin de canje
-	date_array = deal_new.end_redeem.split('/');
-	date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " 00:00";
-	deal_new.end_redeem = new Date(date);
+	deal_new.end_redeem = util.date_mongo(deal_new.end_redeem, "00:00");
 
 	//Quito las horas ya que no pertenecen al modelo
 	delete deal_new.start_time;
@@ -68,9 +56,6 @@ exports.add = function (req, res, next) {
 
 	//Genero la nueva deal a partir de la coleccion que arme
 	var deal = new DealModel(deal_new);
-
-	console.log(deal);
-
 
 	deal.save(function (err) {
 		if (!err) {
