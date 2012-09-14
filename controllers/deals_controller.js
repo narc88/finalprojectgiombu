@@ -7,23 +7,45 @@ exports.create = function (req, res, next) {
 	res.render('deals/create', {title: 'Cargar Oferta', user: req.session.user});
 }
 
+
+
 exports.add = function (req, res, next) {
 
 	console.log('deals - add'.cyan.bold);
 
-	var deal_new = new DealModel(req.param('deal'));
-
-	/*
-	
+	var deal_new = req.param('deal');
+	deal_new.sale_count = 0; 		//Yo no lo pondria
+	deal_new.coupon_count = 0;
 
 	//Validar los ids de los siguientes datos
 	//Crear correctamente los dates en base a los valores ingresados
+
+	//FECHAS
+
+	//Armo la fecha de inicio
 	var date_array = deal_new.start_date.split('/')
-	var date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " " + start_time;
+	var date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " " + deal_new.start_time;
+	deal_new.start_date = new Date(date);
+
+	//Armo la fecha de fin
+	date_array = deal_new.end_date.split('/')
+	date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " " + deal_new.end_time;
+	deal_new.end_date = new Date(date);
 
 
-	var start_date = new Date(deal_new.start_date)
-	*/
+	//Armo la fecha de inicio de canje
+	date_array = deal_new.start_redeem.split('/')
+	date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " 00:00";
+	deal_new.start_redeem = new Date(date);
+
+	//Armo la fecha de fin de canje
+	date_array = deal_new.end_redeem.split('/')
+	date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " 00:00";
+	deal_new.end_redeem = new Date(date);
+
+	//Quito las horas ya que no pertenecen al modelo
+	delete deal_new.start_time;
+	delete deal_new.end_time;
 
 /*
 	deal_new.store = '';
@@ -34,11 +56,15 @@ exports.add = function (req, res, next) {
 	deal_new.images = '';
 */
 
-	deal_new.save(function (err) {
+	
+	var deal = new DealModel(deal_new);
+
+
+	deal.save(function (err) {
 		if (!err) {
 			console.log('deals - add - Guardo una nueva deal');
 			console.log('deals - add - Redirecciono a deals/create');
-			res.render('deals/view', {title: 'Deals View', user: req.session.user, deals : [deal_new]});
+			res.render('deals/view', {title: 'Deals View', user: req.session.user, deals : [deal]});
 		} else {
 			console.log('deals - add - '.red.bold + err);
 			console.log('deals - add - Redirecciono a /');
@@ -48,6 +74,8 @@ exports.add = function (req, res, next) {
 	});
 
 }
+
+
 
 exports.view = function(req, res, next){
 	DealModel.findById( req.params.id , function(err, deal){
