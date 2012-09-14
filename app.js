@@ -33,6 +33,8 @@ var franchises = require('./controllers/franchises_controller');
 var franchisors = require('./controllers/franchisors_controller');
 var invitations = require('./controllers/invitations_controller');
 var sales = require('./controllers/sales_controller');
+var events = require('./controllers/events_controller');
+var news = require('./controllers/news_controller');
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -136,3 +138,6 @@ app.post('/sales/buy/:id', sales.buy);
 app.listen(3000, function(){
   console.log("Express server listening on port 3000".cyan.bold);
 });
+
+//Events
+app.get('/events/initialize', events.initialize);

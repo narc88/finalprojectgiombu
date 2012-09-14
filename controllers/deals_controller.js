@@ -13,8 +13,8 @@ exports.add = function (req, res, next) {
 
 	var deal_new = new DealModel(req.param('deal'));
 
-	deal_new.sale_count = 0; 		//Yo no lo pondria
-	deal_new.coupon_count = 0;
+	/*
+	
 
 	//Validar los ids de los siguientes datos
 	//Crear correctamente los dates en base a los valores ingresados
@@ -23,6 +23,8 @@ exports.add = function (req, res, next) {
 
 
 	var start_date = new Date(deal_new.start_date)
+	*/
+
 /*
 	deal_new.store = '';
 	deal_new.seller = '';

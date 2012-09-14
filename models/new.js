@@ -2,12 +2,13 @@
 var mongoose = require('mongoose');
 var Schema = require('mongoose').Schema
 
-var FeedSchema = exports.FeedSchema = new Schema({
+var NewSchema = exports.FeedSchema = new Schema({
 	from_user  	: [{ type: Schema.ObjectId, ref: 'User' }],
 	to_user  	: [{ type: Schema.ObjectId, ref: 'User' }],
+	deal  		: [{ type: Schema.ObjectId, ref: 'Deal' }],
 	event  		: [{ type: Schema.ObjectId, ref: 'Event' }],
 	created    	:  {type: Date, default: Date.now },
 	modified    :   Date	
 })
 
-exports.FeedModel = mongoose.model('Feed', exports.FeedSchema);
+exports.NewModel = mongoose.model('New', exports.NewSchema);

@@ -17,3 +17,14 @@ exports.decrypt = function (data_to_uncrypt) {
   var decrypted = decipher.update(data_to_uncrypt, 'hex', 'utf8') + decipher.final('utf8');
   return decrypted;
 }
+
+exports.random_text_code = function (){
+	var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+	var string_length = 10;
+	var randomstring = '';
+	for (var i=0; i<string_length; i++) {
+		var rnum = Math.floor(Math.random() * chars.length);
+		randomstring += chars.substring(rnum,rnum+1);
+	}
+	return randomstring;
+}
