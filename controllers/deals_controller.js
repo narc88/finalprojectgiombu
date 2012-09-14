@@ -1,9 +1,19 @@
 var DealModel = require('../models/deal').DealModel;
+var StoreModel = require('../models/store').StoreModel;
 var colors = require('colors');
+var util = require('./util_controller');
 
 
 exports.create = function (req, res, next) {
 	console.log('deals - create'.cyan.bold);
+
+	/*
+	var stores;
+	StoreModel.find({},function(docs){
+		stores = docs;
+	});
+	*/
+
 	res.render('deals/create', {title: 'Cargar Oferta', user: req.session.user});
 }
 
@@ -23,23 +33,23 @@ exports.add = function (req, res, next) {
 	//FECHAS
 
 	//Armo la fecha de inicio
-	var date_array = deal_new.start_date.split('/')
+	var date_array = deal_new.start_date.split('/');
 	var date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " " + deal_new.start_time;
 	deal_new.start_date = new Date(date);
 
 	//Armo la fecha de fin
-	date_array = deal_new.end_date.split('/')
+	date_array = deal_new.end_date.split('/');
 	date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " " + deal_new.end_time;
 	deal_new.end_date = new Date(date);
 
 
 	//Armo la fecha de inicio de canje
-	date_array = deal_new.start_redeem.split('/')
+	date_array = deal_new.start_redeem.split('/');
 	date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " 00:00";
 	deal_new.start_redeem = new Date(date);
 
 	//Armo la fecha de fin de canje
-	date_array = deal_new.end_redeem.split('/')
+	date_array = deal_new.end_redeem.split('/');
 	date = date_array[2] + " " + date_array[1] + " " + date_array[0] + " 00:00";
 	deal_new.end_redeem = new Date(date);
 
@@ -56,8 +66,10 @@ exports.add = function (req, res, next) {
 	deal_new.images = '';
 */
 
-	
+	//Genero la nueva deal a partir de la coleccion que arme
 	var deal = new DealModel(deal_new);
+
+	console.log(deal);
 
 
 	deal.save(function (err) {
@@ -188,8 +200,17 @@ exports.edit = function(req, res, next){
 
 				//Acomodo las fechas y horas para que sean humanamente visibles
 				date = new Date(deal.start_date);
-				console.log(date.getDate() + "");
+				//var year = date.getYear() + 1900;
+				//date_string = date.getDate() + "/" + date.getMonth() + "/" + year;
+				console.log(util.date_string(deal.start_date));
+				//console.log(date.getDate());
 				//var month = date.getMonth();
+				//console.log(deal.start_date);
+				//Acomodar la fecha y tiempo para mostrarla correctamente
+
+
+
+
 
 
 
