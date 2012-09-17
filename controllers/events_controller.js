@@ -8,7 +8,7 @@ exports.initialize = function (req, res, next) {
   event_new.body = 'Ha comprado la oferta %d'
   event_new.type = 'Deal'
 
-  user_new.save(function(err){
+  event_new.save(function(err){
   if(!err){
     } else {
       console.log("Error: - " + err);
@@ -21,7 +21,7 @@ exports.initialize = function (req, res, next) {
   event_new.body = 'El usuario %s Ha comprado la oferta %d, has recibido %a en concepto de comisión'
   event_new.type = 'Commission'
 
-  user_new.save(function(err){
+  event_new.save(function(err){
   if(!err){
     } else {
       console.log("Error: - " + err);

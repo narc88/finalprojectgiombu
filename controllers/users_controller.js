@@ -1,5 +1,7 @@
 var UserModel = require('../models/user').UserModel;
+var NewModel = require('../models/new').NewModel;
 var Encrypter = require('./encryption_controller');
+var News = require('./news_controller');
 
 exports.register = function (req, res, next) {
   res.render('users/register', {title: 'Registro'});
@@ -100,7 +102,11 @@ exports.dashboard = function(req, res, next){
   UserModel.findById( req.session.user._id , function(err, user){
     if(!err){
       if(user){
-       res.render('users/dashboard', {title: 'Panel de Usuario', user : user});
+        var news = new NewModel();
+        
+        news = News.list(user._id);
+        console.log(news);
+        res.render('users/dashboard', {title: 'Panel de Usuario', user : user, news:news});
       }else{
       console.log('Usuario no encontrado');
       }
