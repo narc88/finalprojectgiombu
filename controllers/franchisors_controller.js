@@ -39,7 +39,7 @@ exports.list = function(req, res, next){
 		if(!err){
 			if(franchisors){
 				console.log('franchisor - list - Se envian los franchisors encontrados');
-				res.render('franchisors/view', {title: 'Lista de Franchisors', franchisors : franchisors});
+				res.render('franchisors/list', {title: 'Lista de Franchisors', franchisors : franchisors});
 			}else{
 				console.log('franchisor - list - No hay franchisors');
 			}
@@ -55,15 +55,15 @@ exports.list = function(req, res, next){
 exports.view = function(req, res, next){
 
 	console.log('franchisor - view'.cyan.bold);
-	console.log('franchisor - view - Busco el franchisor ( ' + req.body.franchisor_id +' )');
+	console.log('franchisor - view - Busco el franchisor ( ' + req.params.franchisor_id +' )');
 
-	FranchisorModel.findById( req.body.franchisor_id , function(err, franchisor){
+	FranchisorModel.findById( req.params.franchisor_id , function(err, franchisor){
 		if(!err){
 			if(franchisor){
-				console.log('franchisor - view - Se encontro el franchisor ( ' + req.body.franchisor_id +' )');
-				res.render('franchisor/view', {title: 'franchisor', franchisor : franchisor});
+				console.log('franchisor - view - Se encontro el franchisor ( ' + req.params.franchisor_id +' )');
+				res.render('franchisors/view', {title: 'franchisor', franchisors : [franchisor]});
 			}else{
-				console.log('franchisor - view - No se encontro el franchisor ( ' + req.body.franchisor_id +' )');
+				console.log('franchisor - view - No se encontro el franchisor ( ' + req.params.franchisor_id +' )');
 			}
 		}else{
 			console.log('franchisor - view - '.red.bold + err);

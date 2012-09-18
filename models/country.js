@@ -8,6 +8,6 @@ var CountrySchema = exports.CountrySchema = new Schema({
 	states      		: [StateSchema],
 	created        		:   Date,
 	modified       		:   Date	
-})
+});
 
 exports.CountryModel = mongoose.model('Country', exports.CountrySchema);
