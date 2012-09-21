@@ -1,5 +1,7 @@
 var UserModel = require('../models/user').UserModel;
+var NewModel = require('../models/new').NewModel;
 var Encrypter = require('./encryption_controller');
+var News = require('./news_controller');
 
 exports.register = function (req, res, next) {
   res.render('users/register', {title: 'Registro'});
@@ -44,7 +46,7 @@ exports.login_user = function(req, res, next){
         req.session.user = doc;
         console.log('Logged in'.yellow);
         console.log( req.session);
-        res.render('users/welcome', {title: 'Cargar Oferta'});
+        res.redirect('/users/dashboard');
       }else{
         res.redirect('users/login');
         console.log('Failed'.red);
@@ -100,7 +102,19 @@ exports.dashboard = function(req, res, next){
   UserModel.findById( req.session.user._id , function(err, user){
     if(!err){
       if(user){
-       res.render('users/dashboard', {title: 'Panel de Usuario', user : user});
+        var news = new Array();
+      //  var news = new NewModel();
+        news = News.list(user._id);
+        
+        /*
+        var query = NewModel.find().where('to_user').equals(user._id).populate('to_user').populate('deal');
+        query.exec(function (err, news) {
+
+          if (err) return handleError(err);
+          console.log(news);
+          res.render('users/dashboard', {title: 'Panel de Usuario', user : user, news:news});
+         });       */
+        res.render('users/dashboard', {title: 'Panel de Usuario', user : user, news:news});
       }else{
       console.log('Usuario no encontrado');
       }
