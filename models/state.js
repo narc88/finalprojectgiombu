@@ -6,7 +6,7 @@ var Schema = require('mongoose').Schema
 
 var state_schema = new Schema({
 	name				: { type: String, required: true},
-	cities      		: [City],
+	cities      		: [CitySchema],
 	created        		:   Date,
 	modified       		:   Date	
 })

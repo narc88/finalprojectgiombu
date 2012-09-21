@@ -1,4 +1,4 @@
-Car CountryModel = require('../models/country').countryModel;
+var CountryModel = require('../models/country').countryModel;
 var colors = require('colors');
 
 
@@ -10,7 +10,7 @@ exports.add = function (req, res, next) {
 
   console.log('country - add'.cyan.bold);
 
-	Car country_new = new CountryModel(req.param('country'));
+	var country_new = new CountryModel(req.param('country'));
 
 	country_new.franchise_count = 0;
 
