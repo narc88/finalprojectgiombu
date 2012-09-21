@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+	table.table
+		-each franchisor in franchisors
+			tr
+				td
+					h4 #{franchisor.name}
+				td
+					p #{franchisor.default_domain}
+				td.span1
+					a(href="/franchisors/view/#{franchisor._id}").btn.pull-right Ver
+				td.span1
+					a(href="/franchisors/edit/#{franchisor._id}", rel="tooltip", title="Editar").btn.btn-primary.pull-right 
+						i.icon-pencil

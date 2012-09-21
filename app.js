@@ -124,7 +124,9 @@ app.post('/images/save_image', images.save_image);
 //Franchisors
 app.get('/franchisors/create', franchisors.create);
 app.post('/franchisors/add', franchisors.add);
+app.post('/franchisors/update', franchisors.update);
 app.get('/franchisors/list', franchisors.list);
+app.get('/franchisors/view/:franchisor_id', franchisors.view);
 app.get('/franchisors/edit/:franchisor_id', franchisors.edit);
 
 //Invitations
@@ -134,6 +136,15 @@ app.post('/invitations/add', invitations.add);
 //Sales
 app.get('/sales/checkout/:id', sales.checkout);
 app.post('/sales/buy/:id', sales.buy);
+
+
+//countries
+app.get('/countries/create', countries.create);
+app.post('/countries/add', countries.create);
+app.get('/countries/list', countries.create);
+app.get('/countries/view/:id', countries.create);
+app.get('/countries/edit/:id', countries.create);
+app.get('/countries/update', countries.create);
 
 app.listen(3000, function(){
   console.log("Express server listening on port 3000".cyan.bold);

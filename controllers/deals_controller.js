@@ -110,7 +110,7 @@ exports.list = function(req, res, next){
 		if(!err){
 			if(deals){
 				console.log('deal - list - Se envian los deals encontrados');
-				res.render('deals/list2', {title: 'Lista de deals', deals : deals});
+				res.render('deals/list', {title: 'Lista de deals', deals : deals});
 			}else{
 				console.log('deal - list - No hay deals');
 			}
@@ -135,9 +135,23 @@ exports.update = function(req, res, next){
 				
 				//Edicion del deal
 				//Hacer que solo se graben los campos editados
-
-
 				edited_deal = req.param('deal');
+
+				//Tomo los datos del front-end y los formateo en los campos de formato date correspondiente
+				//luego elemino los campos que no son necesario y actualizo la deal
+				edited_deal.start_date = util.date_mongo(edited_deal.start_date_string, edited_deal.start_time);
+				delete edited_deal.start_date_string;
+				delete edited_deal.start_time;
+
+				edited_deal.end_date = util.date_mongo(edited_deal.end_date_string, edited_deal.end_time);
+				delete edited_deal.end_date_string;
+				delete edited_deal.end_time;
+
+				edited_deal.start_redeem = util.date_mongo(edited_deal.start_redeem_string, '00:00');
+				delete edited_deal.start_redeem_string;
+
+				edited_deal.end_redeem = util.date_mongo(edited_deal.end_redeem_string, '00:00');
+				delete edited_deal.end_redeem_string;
 
 
 				for (field in edited_deal){
@@ -147,13 +161,10 @@ exports.update = function(req, res, next){
 					}
 				}
 
-
-
 				deal.save(function (err) {
 					if (!err) {
 						console.log('deal - update - Guardo una nueva deal');
 						console.log('deal - update - Redirecciono a deal/create');
-						//res.render('deal/create', {title: 'Cargar Franquicia'});
 						res.render('deal/view', {title: 'deal View', deal : [deal]});
 					} else {
 						console.log('deal - update - '.red.bold + err);
@@ -182,22 +193,16 @@ exports.edit = function(req, res, next){
 		if(!err){
 			if(deal){
 				console.log('deal - edit - deal encontrado, redirecciono a deal/edit');
-
+				var vuelta = util.funcion_prueba(deal);
+				console.log(vuelta);
 				//Acomodo las fechas y horas para que sean humanamente visibles
-				date = new Date(deal.start_date);
-				//var year = date.getYear() + 1900;
-				//date_string = date.getDate() + "/" + date.getMonth() + "/" + year;
-				console.log(util.date_string(deal.start_date));
-				//console.log(date.getDate());
-				//var month = date.getMonth();
-				//console.log(deal.start_date);
-				//Acomodar la fecha y tiempo para mostrarla correctamente
-
-
-
-
-
-
+				//estos campos deben ser eliminados antes de realizar el update
+				deal.start_time = util.time_string(deal.start_date);
+				deal.end_time = util.time_string(deal.end_date);
+				deal.start_date_string = util.date_string(deal.start_date);
+				deal.end_date_string = util.date_string(deal.end_date);
+				deal.start_redeem_string = util.date_string(deal.start_redeem);
+				deal.end_redeem_string = util.date_string(deal.end_redeem);
 
 
 				res.render('deals/edit', {title: 'deal Edit', deal : deal});
@@ -205,7 +210,6 @@ exports.edit = function(req, res, next){
 				console.log('deal - edit - No se encontro el deal ( ' + req.params.deal_id +' )');
 			}
 		}else{
-			
 			console.log('deal - edit - '.red.bold + err);
 			res.redirect('/');
 		}
@@ -291,3 +295,5 @@ exports.intranet_admin = function(req, res, next){
 	});
 
 }
+
+

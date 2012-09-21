@@ -39,3 +39,10 @@ exports.date_mongo = function(date_string, time_string){
 	return new Date(date);
 
 }
+
+
+exports.funcion_prueba = function(objeto){
+
+	objeto.title = 'hola mundo';
+	return objeto;
+}

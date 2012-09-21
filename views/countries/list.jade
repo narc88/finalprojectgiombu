@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+	table.table
+		-each country in countries
+			tr
+				td
+					h4 #{country.name}
+				td
+					p #{country.default_domain}
+				td.span1
+					a(href="/countrys/view/#{country._id}").btn.pull-right Ver
+				td.span1
+					a(href="/countrys/edit/#{country._id}", rel="tooltip", title="Editar").btn.btn-primary.pull-right 
+						i.icon-pencil
