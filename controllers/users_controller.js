@@ -102,19 +102,7 @@ exports.dashboard = function(req, res, next){
   UserModel.findById( req.session.user._id , function(err, user){
     if(!err){
       if(user){
-        var news = new Array();
-      //  var news = new NewModel();
-        news = News.list(user._id);
-        
-        /*
-        var query = NewModel.find().where('to_user').equals(user._id).populate('to_user').populate('deal');
-        query.exec(function (err, news) {
-
-          if (err) return handleError(err);
-          console.log(news);
-          res.render('users/dashboard', {title: 'Panel de Usuario', user : user, news:news});
-         });       */
-        res.render('users/dashboard', {title: 'Panel de Usuario', user : user, news:news});
+        res.render('users/dashboard', {title: 'Panel de Usuario', user : user});
       }else{
       console.log('Usuario no encontrado');
       }

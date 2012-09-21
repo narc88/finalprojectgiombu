@@ -1,7 +1,7 @@
 // Creación de la Conexión
 var mongoose = require('mongoose');
 
-
+var CommissionSchema = require('./commission').CommissionSchema;
 var Schema = require('mongoose').Schema
 //var Seller_store = require('sellers_stores')
 var SellerStoreSchema = require('./seller_store').SellerStoreSchema;
@@ -10,8 +10,9 @@ var SellerStoreSchema = require('./seller_store').SellerStoreSchema;
 var SellerSchema = exports.SellerSchema = new Schema({
 	//IS DIRECTOR NACIONAL Y DIRECTOR REGIONAL
 	//Campos donde calculaba cant prospectos, deals, y stores srerán ahora calculados en tiempo real
-	sellers_stores	: [SellerStoreSchema], //Embeber relaciones temporales a las diferentes stores 
+	sellers_stores		: [SellerStoreSchema], //Embeber relaciones temporales a las diferentes stores 
 	created    		    : { type: Date, default: Date.now },
+	commissions			: [CommissionSchema],
 	modified        	: { type: Date, default: Date.now }
 })
 
