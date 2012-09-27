@@ -2,6 +2,7 @@ var UserModel = require('../models/user').UserModel;
 var NewModel = require('../models/new').NewModel;
 var Encrypter = require('./encryption_controller');
 var News = require('./news_controller');
+var EventModel = require('../models/event').EventModel;
 
 exports.register = function (req, res, next) {
   res.render('users/register', {title: 'Registro'});
@@ -34,7 +35,7 @@ exports.add = function (req, res, next) {
 }
 
 exports.login = function (req, res, next){
-  res.render('users/login', {layout:true,title: 'Autenticacion'});
+  res.render('users/login', { layout:true, title:'Autenticacion' });
 }
 
 exports.login_user = function(req, res, next){
@@ -159,12 +160,28 @@ exports.save_guest = function (req, res, next) {
   user_new.phone = req.body.phone
   user_new.mobile = req.body.mobile
   user_new.address = req.body.address
+  user_new.promoter_id =  user_new.invitation.user;
   user_new.country = req.body.country
   user_new.city = req.body.city
   user_new.zip = req.body.zip
   user_new.save(function(err){
   if(!err){
       console.log(user_new);
+      var new_new = new NewModel();          
+      var query = EventModel.findOne({ 'name': 'Invitation_accepted' });
+      query.exec(function (err, event) {
+        if (err) return handleError(err);
+        new_new.event = event._id;
+        new_new.to_user = user_new.invitation.user;
+        new_new.from_user = user_new._id;    
+        new_new.save(function(err){
+          if(!err){
+            console.log(new_new);
+          } else {
+            console.log("Error: - " + err);
+          }
+        });
+      });
     } else {
       console.log("Error: - " + err);
     }

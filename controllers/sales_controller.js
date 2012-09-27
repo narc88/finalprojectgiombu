@@ -54,18 +54,16 @@ exports.buy = function (req, res, next) {
 					sale_new.coupons.push(coupon_new);
 				}
 				deal.sales.push(sale_new);
-				console.log(deal);
-				deal.save(function (err) {
-						if (!err) {
+				//deal.save(function (err) {
+				//		if (!err) {
 							//Realizo la creacion de las novedades.
 							var new_new = new NewModel();          
 							var query = EventModel.findOne({ 'name': 'Bought' });
 							query.exec(function (err, event) {
-							if (err) return handleError(err);
-							new_new.event = event._id;
-							new_new.to_user = req.session.user._id;
-							new_new.deal = deal._id;
-						
+								if (err) return handleError(err);
+								new_new.event = event._id;
+								new_new.to_user = req.session.user._id;
+								new_new.deal = deal._id;				
 								new_new.save(function(err){
 									if(!err){
 										console.log(new_new);
@@ -74,21 +72,39 @@ exports.buy = function (req, res, next) {
 									}
 								});
 							});
-							//Creo la comision por promotor
+							//Creo la comision por promotor , sacar este if mas adelante.
 							if(! req.session.user.promoter_id){
+								var seller_id = req.session.user._id ;
+								var partner_id = req.session.user._id ;
 								var promoter_id = req.session.user._id ;
 							}else{
+							
 								var promoter_id = req.session.user.promoter_id ;
 							}
 							UserModel.findById( promoter_id , function(err, promoter){
 								var commission_new = new CommissionModel();          
-								commission_new.recipient_id = req.session.user._id;
+								commission_new.user_id = req.session.user._id;
 								commission_new.sale = sale_new._id;
-								commission_new.amount = (deal.promoter_percentage)/100*(deal.special_price);
-								console.log(commission_new);
+								commission_new.amount = (deal.promoter_percentage)/100*(deal.special_price)*(req.body.quantity);
 								promoter.promoter[0].commissions.push(commission_new);
 								promoter.save(function(err){
 									if(!err){
+										//Comision por promoter
+										var new_new = new NewModel();          
+										var query = EventModel.findOne({ 'name': 'Commission' });
+										query.exec(function (err, event) {
+											if (err) return handleError(err);
+											new_new.event = event._id;
+											new_new.to_user = req.session.promoter_id;
+											new_new.deal = deal._id;				
+											new_new.save(function(err){
+												if(!err){
+													console.log(new_new);
+												} else {
+													console.log("Error: - " + err);
+												}
+											});
+										});
 										console.log(commission_new);
 									} else {
 										console.log("Error: - " + err);
@@ -96,33 +112,77 @@ exports.buy = function (req, res, next) {
 								});
 							});
 							//Creo la comision por seller
-							
-								var seller_id = req.session.user._id ;
-							console.log(seller_id);
 							UserModel.findById( seller_id , function(err, seller){
-								console.log(seller);
 								var commission_new = new CommissionModel();          
-								commission_new.recipient_id = req.session.user._id;
+								commission_new.user_id = req.session.user._id;
 								commission_new.sale = sale_new._id;
 								commission_new.amount = (deal.seller_percentage)/100*(deal.special_price)*(req.body.quantity);
-								console.log(commission_new);
 								seller.seller[0].commissions.push(commission_new);
 								seller.save(function(err){
 									if(!err){
+										//Comision por seller
+										var new_new = new NewModel();          
+										var query = EventModel.findOne({ 'name': 'Commission_Seller' });
+										query.exec(function (err, event) {
+											if (err) return handleError(err);
+											new_new.event = event._id;
+											new_new.to_user = deal.seller;
+											new_new.deal = deal._id;				
+											new_new.save(function(err){
+												if(!err){
+													console.log(new_new);
+												} else {
+													console.log("Error: - " + err);
+												}
+											});
+										});
+										console.log(commission_new);
+									} else {
+										console.log("Error: - " + err);
+									}
+								});
+							});	
+							//Comisión a partner
+							UserModel.findById( partner_id , function(err, partner){
+								var commission_new = new CommissionModel();          
+								commission_new.user_id = req.session.user._id;
+								commission_new.sale = sale_new._id;
+								commission_new.amount = (deal.seller_percentage)/100*(deal.special_price)*(req.body.quantity);
+								partner.partner[0].commissions.push(commission_new);
+								partner.save(function(err){
+									if(!err){
+										//Comision por paprtner
+										var new_new = new NewModel();          
+										var query = EventModel.findOne({ 'name': 'Commission_Partner' });
+										query.exec(function (err, event) {
+											if (err) return handleError(err);
+											new_new.event = event._id;
+											new_new.to_user = req.session.user._id;
+											new_new.deal = deal._id;				
+											new_new.save(function(err){
+												if(!err){
+													console.log(new_new);
+												} else {
+													console.log("Error: - " + err);
+												}
+											});
+										});
 										console.log(commission_new);
 									} else {
 										console.log("Error: - " + err);
 									}
 								});
 							});		
-							res.redirect('/users/dashboard');
-						} else {
-							console.log("Error: - " + err);
-							res.redirect('/');
-						}
 
-					});
-		 }else{
+							res.redirect('/users/dashboard');
+				/*		} else {
+							console.log(err);
+							console.log("Error: Guardando deal - " + err);
+							res.redirect('/');
+						}*/
+
+					//});
+			 }else{
 				console.log('No encontro el deal en buy.')
 			}
 		}else{

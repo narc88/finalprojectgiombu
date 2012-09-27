@@ -61,7 +61,7 @@ html
 							a OPCION 2
 						li.nav-header Promotores
 						li 
-							a(href='h1') Listado
+							a(href='/intranet/promoters/list_sons') Listado
 						li	
 							a(href='h1') Invitaciones
 						li	
@@ -115,7 +115,14 @@ html
 					block content
 				#right
 					block feed
-					block level
+					#level
+						.alert
+							.alert-heading
+								h4 Tu nivel
+								p Te faltan 99 contactos para logar el bono del 20%</p>
+								.progress.progress-success.progress-striped.active
+									.bar(style="width:60%")
+								p Tienes el nivel granito, Invita a  más para obtener le nivel.
 			#footer
 				p
 				| Comercializadora Giombu, S.A. de C.V -
