@@ -14,49 +14,82 @@ var auth_data = {
 var cloudfiles_client = cloudfiles.createClient(auth_data);
 
 exports.upload = function (req, res, next) {
-  res.render('images/upload', {title: 'Crear Store'});
+  res.render('images/upload', {title: 'Crear Store', user: req.session.user});
+  
 }
-
+/*
 exports.save_image = function (req, res, next) {
-/* var newPath = "D:\\www\\Giombu_node\\giombu\\public\\images\\Filename.jpg";
-        console.log(req.files.image.path);
-        console.log(newPath);
-        im.crop({
-            srcPath: req.files.image.path,
-            dstPath: newPath,
-            width:   100,
-            height:  450
-          }, function(err, stdout, stderr){
-            if (err){
-              console.log(err);
-            }else{
-              console.log('resized kittens.jpg to fit within 256x256px');
-            }
-          });
-        */
-  fs.readFile(req.files.image.path, function (err, data) {
+
+  cloudfiles_client.setAuth(function () {
+      cloudfiles_client.addFile('img', { remote: 'img.jpg', local: newPath }, function (err, uploaded) {
+        if(err) console.log(err);
+        var image_new = new ImageModel();
+        image_new.filename = 'img.jpg';
+        image_new.save(function(err){
+          if(!err){
+            res.redirect('images/upload');
+          } else {
+            console.log("Error: - " + err);
+          }
+        });
+      });
+  });
+}*/
+
+exports.save_temp = function (req, res, next) {
+   fs.readFile(req.files.image.path, function (err, data) {
     var newPath = "D:/www/Giombu_node/giombu/public/images/Filename.jpg";
     fs.writeFile(newPath, data, function (err) {
       if(err){
         console.log('No GUARDADA'+err);
       }else{
-        cloudfiles_client.setAuth(function () {
-            cloudfiles_client.addFile('img', { remote: 'img.jpg', local: newPath }, function (err, uploaded) {
-              if(err) console.log(err);
-              var image_new = new ImageModel();
-              image_new.filename = 'img.jpg';
-              image_new.save(function(err){
-                if(!err){
-                  res.redirect('images/upload');
-                } else {
-                  console.log("Error: - " + err);
-                }
-              });
-            });
-        });
+        res.redirect('images/upload');
       }
     });
   });
+}
+
+exports.save_image = function (req, res, next) {
+  //console.log(JSON.stringify(req.files));
+  //userPhoto is the value of the name attribute in the form
+  var serverPath = '/images/' + req.files.userPhoto.name;
+  var pathToServer = "D:/www/Giombu_node/giombu/public/images/";
+  fs.rename(
+    //userPhoto is the input name
+    req.files.userPhoto.path,
+    pathToServer + serverPath,
+    function(error){
+      if(error){
+        console.log(error)
+        res.send({
+          error: 'File uploaded cancelled, error.'
+        });
+        return;
+      }
+
+      res.send({
+        path: serverPath
+      });
+    }
+  )
+}
+
+exports.crop = function (res, req, next){
+  var src = req.body.src;
+  var name = req.body.name;
+  var coords = req.body.data;
+ var pathToServer = "D:/www/Giombu_node/giombu/public/images/";
+
+  gm(pathToServer + src).crop(coords.w, coords.h, coords.x, coords.y).resize(resizeX,resizeY).write(pathToServer + 'images/cropped_' + name, function(err){
+    if (!err){
+      console.log("Image: " + name + " Cropped");
+      res.send("success");
+    } 
+    else
+    {
+      res.send(err);
+    }
+  })
 }
 
 exports.erase_image = function (req, res, next) {

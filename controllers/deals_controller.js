@@ -26,12 +26,9 @@ exports.add = function (req, res, next) {
 	var deal_new = req.param('deal');
 	deal_new.sale_count = 0; 		//Yo no lo pondria
 	deal_new.coupon_count = 0;
-
 	//Validar los ids de los siguientes datos
 	//Crear correctamente los dates en base a los valores ingresados
-
 	//FECHAS
-
 	//Armo la fecha de inicio
 	deal_new.start_date = util.date_mongo(deal_new.start_date, deal_new.start_time);
 	//Armo la fecha de fin
@@ -44,7 +41,6 @@ exports.add = function (req, res, next) {
 	//Quito las horas ya que no pertenecen al modelo
 	delete deal_new.start_time;
 	delete deal_new.end_time;
-
 /*
 	deal_new.store = '';
 	deal_new.seller = '';
@@ -53,7 +49,6 @@ exports.add = function (req, res, next) {
 	deal_new.currency = '';
 	deal_new.images = '';
 */
-
 	//Genero la nueva deal a partir de la coleccion que arme
 	var deal = new DealModel(deal_new);
 
@@ -71,7 +66,6 @@ exports.add = function (req, res, next) {
 	});
 
 }
-
 
 
 exports.view = function(req, res, next){
@@ -120,7 +114,6 @@ exports.list = function(req, res, next){
 
   });
 }
-
 
 
 exports.update = function(req, res, next){
@@ -203,8 +196,6 @@ exports.edit = function(req, res, next){
 				deal.end_date_string = util.date_string(deal.end_date);
 				deal.start_redeem_string = util.date_string(deal.start_redeem);
 				deal.end_redeem_string = util.date_string(deal.end_redeem);
-
-
 				res.render('deals/edit', {title: 'deal Edit', deal : deal});
 			}else{
 				console.log('deal - edit - No se encontro el deal ( ' + req.params.deal_id +' )');
@@ -226,7 +217,6 @@ exports.remove = function(req, res, next){
 		if(!err){
 			if(deal){
 				console.log('deals - remove - Se encontro el deal ( ' + req.params.deal_id +' )');
-				
 				//Elimino el deal
 				deal.remove(function(err){
 					if(!err){
@@ -237,7 +227,6 @@ exports.remove = function(req, res, next){
 						res.redirect('/deals/list');
 					}
 				})
-
 			}else{
 				console.log('deals - remove - No se encontro el deal ( ' + req.params.deal_id +' )');
 				res.redirect('/deals/list');
@@ -246,7 +235,6 @@ exports.remove = function(req, res, next){
 			console.log('deals - remove - '.red.bold + err);
 			res.redirect('/');
 		}
-
   });
 
 }

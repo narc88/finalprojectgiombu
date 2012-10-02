@@ -43,8 +43,38 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.use(express.errorHandler());
 });
+/*
+ app.helpers({
+      renderScriptsTags: function (all) {
+        if (all != undefined) {
+          return all.map(function(script) {
+            return '';
+          }).join('\n ');
+        }else {
+          return '';
+        }
+      },
+      renderCssTags: function (all) {
+        if (all != undefined) {
+          return all.map(function(cssFile) {
+            return '';
+          }).join('\n ');
+        }else {
+          return '';
+        }
+      }
+    });
 
+ app.dynamicHelpers({
+      scripts: function(req, res) {
+        return [];
+      },
+      cssFiles: function(req, res){
+        return [];
+      }
+    });
 
+   */
 //Functions
 
 //Autenticacion
@@ -123,6 +153,7 @@ app.post('/franchises/add', franchises.add);
 //Images
 app.get('/images/upload', images.upload);
 app.post('/images/save_image', images.save_image);
+app.post('/images/crop', images.crop);
 
 //Franchisors
 app.get('/franchisors/create', franchisors.create);
