@@ -295,5 +295,3 @@ exports.intranet_admin = function(req, res, next){
 	});
 
 }
-
-
