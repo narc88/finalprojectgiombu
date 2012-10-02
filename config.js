@@ -35,6 +35,8 @@ app.configure(function(){
   app.use(express.static(__dirname + '/public'));
 });
 
+
+ 
   //env specific config
   app.configure('development', function(){
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));

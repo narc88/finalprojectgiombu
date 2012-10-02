@@ -43,8 +43,38 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.use(express.errorHandler());
 });
+/*
+ app.helpers({
+      renderScriptsTags: function (all) {
+        if (all != undefined) {
+          return all.map(function(script) {
+            return '';
+          }).join('\n ');
+        }else {
+          return '';
+        }
+      },
+      renderCssTags: function (all) {
+        if (all != undefined) {
+          return all.map(function(cssFile) {
+            return '';
+          }).join('\n ');
+        }else {
+          return '';
+        }
+      }
+    });
 
+ app.dynamicHelpers({
+      scripts: function(req, res) {
+        return [];
+      },
+      cssFiles: function(req, res){
+        return [];
+      }
+    });
 
+   */
 //Functions
 
 //Autenticacion
@@ -64,6 +94,7 @@ app.get('/',  users.login);
 //Promotres
 app.get('/promoters/register' ,checkAuth , promoters.register);
 app.post('/promoters/add' ,checkAuth , promoters.add);
+app.get('/intranet/promoters/list_sons' , promoters.list_sons);
 
 //Roles
 app.get('/roles/create' , roles.create);
@@ -111,7 +142,9 @@ app.get('/stores/edit/:id', stores.edit );
 app.post('/stores/update/:id' , stores.update );
 
 //Bank accounts
-app.get('/bankAccount/add',checkAuth , bank_accounts.add );
+app.get('/bankAccount/create', bank_accounts.create );
+app.post('/bankAccount/add', bank_accounts.add);
+app.get('/bankAccount/view', bank_accounts.view);
 
 //Franchises
 app.get('/franchises/create', franchises.create);
@@ -120,6 +153,7 @@ app.post('/franchises/add', franchises.add);
 //Images
 app.get('/images/upload', images.upload);
 app.post('/images/save_image', images.save_image);
+app.post('/images/crop', images.crop);
 
 //Franchisors
 app.get('/franchisors/create', franchisors.create);
@@ -137,7 +171,7 @@ app.post('/invitations/add', invitations.add);
 app.get('/sales/checkout/:id', sales.checkout);
 app.post('/sales/buy/:id', sales.buy);
 
-
+/*
 //countries
 app.get('/countries/create', countries.create);
 app.post('/countries/add', countries.create);
@@ -145,7 +179,7 @@ app.get('/countries/list', countries.create);
 app.get('/countries/view/:id', countries.create);
 app.get('/countries/edit/:id', countries.create);
 app.get('/countries/update', countries.create);
-
+*/
 app.listen(3000, function(){
   console.log("Express server listening on port 3000".cyan.bold);
 });

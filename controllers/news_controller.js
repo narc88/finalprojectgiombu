@@ -25,18 +25,19 @@ function make_news_string(item){
 exports.list = function (user_id) {
 	var list = new Array();
 	 var query = NewModel.find().where('to_user').equals(user_id).populate('to_user').populate('deal').populate('event').populate('from_user');
-        query.exec(function (err, news) {
-        if (err){
-        	return handleError(err);
-        } else{
-            for (new_item in news){
-              list[new_item] = make_news_string(news[new_item]);
-            }
-            console.log(list);
-            return list;
+   query.exec(
+    function (err, news) {
+    if (err){
+    	return handleError(err);
+    } else{
+        for (new_item in news){
+          list[new_item] = make_news_string(news[new_item]);
         }
+        console.log(list);
+    }
 	});
-   
+   console.log(list);
+  return list;
 
 }
 

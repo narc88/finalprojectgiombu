@@ -7,11 +7,19 @@ html
 		script(rel='text/javascript', src='/js/bootstrap.min.js')
 		script(rel='text/javascript', src='/js/bootstrap-datepicker.js')
 		script(rel='text/javascript', src='/js/bootstrap-timepicker.js')
+		script(rel='text/javascript', src='/js/jquery.pack.js')
+		script(rel='text/javascript', src='/js/jquery.color.js')
+		script(rel='text/javascript', src='/js/jquery.Jcrop.min.js')
+		script(rel='text/javascript', src='/js/crop.js')
+
+
 
 		link(rel='stylesheet', href='/css/style.css')
 		link(rel='stylesheet', href='/css/bootstrap.css')
 		link(rel='stylesheet', href='/css/datepicker.css')
 		link(rel='stylesheet', href='/css/timepicker.css')
+		link(rel='stylesheet', href='/css/jquery.Jcrop.css')
+		link(rel='stylesheet', href='/css/jquery.Jcrop.css')
 		
 	body
 		#body_container
@@ -19,7 +27,8 @@ html
 				#navbar
 					.navbar		
 						.navbar-inner
-							a(class="brand", href="#") Title
+							a(class="brand", href="#") 
+								img(src="http://83b0c28c61b2c8602f7c-5408f05fecb415ed1f9fde302a13d016.r42.cf1.rackcdn.com/logo_giombu_intranet.png", alt="Giombu")
 							.nav
 								.dropdown
 									a(id="dropProfile pull-right" , href="#", class="btn dropdown-toggle" , data-toggle="dropdown") Perfil
@@ -45,13 +54,14 @@ html
 							img(src="/images/mr_bean.jpg")
 						.data
 							-if (!(typeof user === "undefined"))
-								p #{user.username}
+								p #{user.username} #{user.partner}
 					ul(class="nav nav-list")
 						li.nav-header Ofertas
 						li 
 							a Ver Activas
 						li	
 							a Ver Próximas
+
 						li.nav-header Menu
 						li 
 							a(href='h1') Noticias
@@ -59,28 +69,33 @@ html
 							a(href='h1') Mensajes
 						li	
 							a OPCION 2
-						li.nav-header Promotores
-						li 
-							a(href='h1') Listado
-						li	
-							a(href='h1') Invitaciones
-						li	
-							a(href='h1') Mis Bonos
-						li.nav-header Socios
-						li 
-							a(href='h1') Mi Tienda
-						li	
-							a(href='h1') Mis Comisiones
-						li.nav-header Vendedores
-						li 
-							a(href='h1') Ventas
-						li	
-							a(href='h1') Comisiones
+						-if (!(typeof user.promoter[0] === "undefined"))
+							li.nav-header Promotores
+							li 
+								a(href='/intranet/promoters/list_sons') Listado
+							li	
+								a(href='h1') Invitaciones
+							li	
+								a(href='h1') Mis Bonos
+						-if (!(typeof user.partner[0] === "undefined"))
+							li.nav-header Socios
+							li 
+								a(href='h1') Mi Tienda
+							li	
+								a(href='h1') Mis Comisiones
+						-if (!(typeof user.seller[0] === "undefined"))
+							li.nav-header Vendedores
+							li 
+								a(href='h1') Ventas
+							li	
+								a(href='h1') Comisiones
+						
 						li.nav-header Contactos
 						li 
 							a(href='h1') Listado
 						li	
 							a(href='h1') Invitaciones
+
 						li.nav-header Administración
 						li 
 							a(href='h1') Estadísticas
@@ -104,6 +119,7 @@ html
 							a(href='h1') Vendedores
 						li	
 							a(href='h1') Monedas
+							
 						li.nav-header Email Marketing
 						li 
 							a(href='h1') Suscriptores
@@ -115,7 +131,14 @@ html
 					block content
 				#right
 					block feed
-					block level
+					#level
+						.alert
+							.alert-heading
+								h4 Tu nivel
+								p Te faltan 99 contactos para logar el bono del 20%</p>
+								.progress.progress-success.progress-striped.active
+									.bar(style="width:60%")
+								p Tienes el nivel granito, Invita a  más para obtener le nivel.
 			#footer
 				p
 				| Comercializadora Giombu, S.A. de C.V -
