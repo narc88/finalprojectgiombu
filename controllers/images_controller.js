@@ -15,7 +15,7 @@ var cloudfiles_client = cloudfiles.createClient(auth_data);
 
 exports.upload = function (req, res, next) {
   res.render('images/upload', {title: 'Crear Store', user: req.session.user});
-  
+
 }
 /*
 exports.save_image = function (req, res, next) {
@@ -52,11 +52,11 @@ exports.save_temp = function (req, res, next) {
 exports.save_image = function (req, res, next) {
   //console.log(JSON.stringify(req.files));
   //userPhoto is the value of the name attribute in the form
-  var serverPath = '/images/' + req.files.userPhoto.name;
-  var pathToServer = "D:/www/Giombu_node/giombu/public/images/";
+  var serverPath =  req.files.image.name;
+  var pathToServer = "C:/Users/Nicolas/Pictures/";
   fs.rename(
     //userPhoto is the input name
-    req.files.userPhoto.path,
+    req.files.image.path,
     pathToServer + serverPath,
     function(error){
       if(error){
@@ -75,6 +75,7 @@ exports.save_image = function (req, res, next) {
 }
 
 exports.crop = function (res, req, next){
+  console.log(req.body);
   var src = req.body.src;
   var name = req.body.name;
   var coords = req.body.data;
