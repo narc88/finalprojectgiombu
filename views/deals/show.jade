@@ -1,9 +1,0 @@
-extends ../layout
-
-block deals_container
-	-each deal in deals
-		.deal_container
-			img( src="/img/logo_giombu.png")
-			p title : #{deal.tile}
-			p tagline : #{deal.tagline}
-			p slug : #{deal.slug}

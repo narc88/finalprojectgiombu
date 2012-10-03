@@ -1,19 +1,21 @@
 extends ../layout
 
 block content
-	table.table
-		-each deal in deals
-			tr
-				td
-					span.label.pull-right #{deal.status}
-				td
-					img( src="/images/243_large_f4415b921f7e566042424fb70b1ba3a4.jpeg").span2
-				td
-					h4 #{deal.title}
-				td
-					p #{deal.tagline}
-				td.span1
-					a(href="/intranet/deals/view/#{deal._id}").btn.pull-right Ver
-				td.span1
-					a(href="/intranet/deals/edit/#{deal._id}", rel="tooltip", title="Editar").btn.btn-primary.pull-right 
-						i.icon-pencil
+	.span8
+		h2 Deals List
+		table.table
+			-each deal in deals
+				tr
+					td
+						span.label.pull-right #{deal.status}
+					td
+						img( src="/images/243_large_f4415b921f7e566042424fb70b1ba3a4.jpeg").span2
+					td
+						h5 #{deal.title}
+					td
+						p #{deal.tagline}
+					td.span1
+						a(href="/intranet/deals/view/#{deal._id}").btn.pull-right Ver
+					td.span1
+						a(href="/intranet/deals/edit/#{deal._id}", rel="tooltip", title="Editar").btn.btn-primary.pull-right 
+							i.icon-pencil

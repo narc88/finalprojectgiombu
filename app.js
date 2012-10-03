@@ -7,6 +7,9 @@ var express = require('express')
   , routes = require('./routes');
 
 var app = module.exports = express();
+var http = require('http')
+  , server = http.createServer(app);
+
 //Colores de la consola
 var colors = require('colors')
 
@@ -16,6 +19,8 @@ app.mongoose = require('mongoose');
 
 //Config file
 var config = require('./config.js')(app, express);
+
+var socket = require('./socket.js')(server);
 
 
 
@@ -180,9 +185,12 @@ app.get('/countries/view/:id', countries.create);
 app.get('/countries/edit/:id', countries.create);
 app.get('/countries/update', countries.create);
 */
-app.listen(3000, function(){
+server.listen(3000, function(){
   console.log("Express server listening on port 3000".cyan.bold);
 });
 
+
+
 //Events
 app.get('/events/initialize', events.initialize);
+

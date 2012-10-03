@@ -3,7 +3,7 @@ var StoreModel = require('../models/store').StoreModel;
 var colors = require('colors');
 var util = require('./util_controller');
 
-
+//Llama a la vista de creacion de una nueva deal
 exports.create = function (req, res, next) {
 	console.log('deals - create'.cyan.bold);
 
@@ -18,7 +18,7 @@ exports.create = function (req, res, next) {
 }
 
 
-
+//Agrega una nueva deal
 exports.add = function (req, res, next) {
 
 	console.log('deals - add'.cyan.bold);
@@ -68,6 +68,7 @@ exports.add = function (req, res, next) {
 }
 
 
+//Muestra la vista detallada de una deal en particular
 exports.view = function(req, res, next){
 	DealModel.findById( req.params.id , function(err, deal){
 		if(!err){
@@ -83,6 +84,8 @@ exports.view = function(req, res, next){
   });
 }
 
+
+//No se que hace esto?
 exports.review = function(req, res, next){
 	DealModel.findById( req.params.id , function(err, deal){
 		if(!err){
@@ -98,13 +101,15 @@ exports.review = function(req, res, next){
   });
 }
 
+
+//Lista las deals
 exports.list = function(req, res, next){
 	console.log('deal - list'.cyan.bold);
 	DealModel.find( {} , function(err, deals){
 		if(!err){
 			if(deals){
 				console.log('deal - list - Se envian los deals encontrados');
-				res.render('deals/list', {title: 'Lista de deals', deals : deals});
+				res.render('deals/list', {title: 'Lista de deals', user: req.session.user,  deals : deals});
 			}else{
 				console.log('deal - list - No hay deals');
 			}
@@ -115,7 +120,34 @@ exports.list = function(req, res, next){
   });
 }
 
+//Llama a la vista de edicion de una deal
+exports.edit = function(req, res, next){
+	DealModel.findById( req.params.deal_id, function(err, deal){
+		if(!err){
+			if(deal){
+				console.log('deal - edit - deal encontrado, redirecciono a deal/edit');
+				//Acomodo las fechas y horas para que sean humanamente visibles
+				//estos campos deben ser eliminados antes de realizar el update
+				deal.start_time = util.time_string(deal.start_date);
+				deal.end_time = util.time_string(deal.end_date);
+				deal.start_date_string = util.date_string(deal.start_date);
+				deal.end_date_string = util.date_string(deal.end_date);
+				deal.start_redeem_string = util.date_string(deal.start_redeem);
+				deal.end_redeem_string = util.date_string(deal.end_redeem);
+				res.render('deals/edit', {title: 'deal Edit', user: req.session.user, deal : deal});
+			}else{
+				console.log('deal - edit - No se encontro el deal ( ' + req.params.deal_id +' )');
+			}
+		}else{
+			console.log('deal - edit - '.red.bold + err);
+			res.redirect('/');
+		}
+	});	
+}
 
+
+
+//Actualiza los campos de la deal
 exports.update = function(req, res, next){
 
 	console.log('deal - update'.cyan.bold);
@@ -181,33 +213,8 @@ exports.update = function(req, res, next){
 }
 
 
-exports.edit = function(req, res, next){
-	DealModel.findById( req.params.deal_id, function(err, deal){
-		if(!err){
-			if(deal){
-				console.log('deal - edit - deal encontrado, redirecciono a deal/edit');
-				var vuelta = util.funcion_prueba(deal);
-				console.log(vuelta);
-				//Acomodo las fechas y horas para que sean humanamente visibles
-				//estos campos deben ser eliminados antes de realizar el update
-				deal.start_time = util.time_string(deal.start_date);
-				deal.end_time = util.time_string(deal.end_date);
-				deal.start_date_string = util.date_string(deal.start_date);
-				deal.end_date_string = util.date_string(deal.end_date);
-				deal.start_redeem_string = util.date_string(deal.start_redeem);
-				deal.end_redeem_string = util.date_string(deal.end_redeem);
-				res.render('deals/edit', {title: 'deal Edit', deal : deal});
-			}else{
-				console.log('deal - edit - No se encontro el deal ( ' + req.params.deal_id +' )');
-			}
-		}else{
-			console.log('deal - edit - '.red.bold + err);
-			res.redirect('/');
-		}
-	});	
-}
 
-
+//Elimina una deal
 exports.remove = function(req, res, next){
 
 	console.log('deals - remove'.cyan.bold);
@@ -239,42 +246,7 @@ exports.remove = function(req, res, next){
 
 }
 
-
-exports.show = function(req, res, next){
-	DealModel.find( {} , function(err, deals){
-		if(!err){
-			if(deals.length){
-				console.log('deals - show - Se encontraron deals, renderizo /deals/show');
-				res.render('deals/show', { title : 'Deals show', user: req.session.user ,deals : deals});
-			}else{
-				console.log('deals - show - No se encontraron deals');
-			}
-		}else{
-
-			console.log('deals - show - '.red.bold + err);
-		}
-	});
-}
-
-
-exports.view = function(req, res, next){
-	DealModel.find( {} , function(err, deals){
-		if(!err){
-			if(deals.length){
-				console.log('deals - view - Se encontraron deals, renderizo /deals/view');
-				res.render('deals/view', { title : 'Deals view', user: req.session.user ,deals : deals});
-			}else{
-				console.log('deals - view - No se encontraron deals');
-			}
-		}else{
-
-			console.log('deals - view - '.red.bold + err);
-		}
-	});
-}
-
-
-
+//No se que hace esto?
 exports.intranet_admin = function(req, res, next){
 	console.log('intranet_admin'.cyan.bold);
 	res.render('deals/admin', {
