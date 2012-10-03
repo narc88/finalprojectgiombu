@@ -28,13 +28,13 @@ $(function() {
 			this.current_conversation = 0;
 			this.participants;
 			this.conversation_list;
-			this.auto_login();
+			//this.auto_login();
 			this.last_sender= '';
 
 		},
 
 		auto_login: function(){
-			//alert('auto_login');
+			alert('auto_login');
 			var user_id = $('.contenedor').attr('id');
 			socket.emit('auto_login', {
 				user_id: user_id

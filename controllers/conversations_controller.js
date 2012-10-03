@@ -3,6 +3,16 @@ var MessageModel = require('../models/message').MessageModel;
 var UserModel = require('../models/user').UserModel;
 
 
+exports.conversation = function(req, res, next){
+	console.log('conversations - conversation');
+	res.render('conversations/conversation', { 	title: ' - Chat de Giombu',
+							user_id : req.session.user._id,
+							user: req.session.user});
+
+}
+
+
+
 exports.new_conversation = function(io, socket, data) {
 
 	var participants = [data.user_id, data.target_user_id];

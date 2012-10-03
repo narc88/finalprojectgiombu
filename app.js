@@ -40,6 +40,7 @@ var invitations = require('./controllers/invitations_controller');
 var sales = require('./controllers/sales_controller');
 var events = require('./controllers/events_controller');
 var news = require('./controllers/news_controller');
+var conversations = require('./controllers/conversations_controller');
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -186,6 +187,12 @@ app.get('/countries/view/:id', countries.create);
 app.get('/countries/edit/:id', countries.create);
 app.get('/countries/update', countries.create);
 */
+
+
+//Conversations
+app.get('/conversations', conversations.conversation);
+
+
 server.listen(3000, function(){
   console.log("Express server listening on port 3000".cyan.bold);
 });
