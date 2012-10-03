@@ -28,7 +28,7 @@ $(function() {
 			this.current_conversation = 0;
 			this.participants;
 			this.conversation_list;
-			//this.auto_login();
+			this.auto_login();
 			this.last_sender= '';
 
 		},

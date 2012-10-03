@@ -282,10 +282,6 @@ exports.add_contact_to_conversation = function(io, socket, data){
 
 /*
 
-
-
-
-
 */
 }
 
@@ -341,6 +337,105 @@ exports.quit_from_conversation = function(io, socket, data){
 
 
 }
+
+exports.logIn = function(io, socket, data) {
+	var user;
+	console.log('logIn - username : '+data.username);
+	UserModel.findOne({username: data.username}, function(err, doc){
+		if(!doc){
+			//ESTO ES PROVISORIO, DEBE MODIFICARSE
+			console.log('logIn - No encontro el usuario');
+			user = new UserModel({
+				user_id		: socket.id,
+				username	: data.username,
+				fullname	: data.username
+				//promoters	: [],
+				//socket_id 	: socket.id
+
+			});
+			//Guardo el nuevo usuario
+			user.save(function (err) {
+				if(!err){
+					console.log('logIn - Creo el usuario');
+					//muestro el usuario que devuelvo
+					console.log('logIn - Datos nuevo usuario : '+ user);
+				}else{
+					console.log('logIn - Error al crear el usuario: '+err);
+				}
+			});
+			
+		}else{
+			//Encontro el usuario
+			user = doc;
+			//user.socket_id = socket.id;
+			user.save();
+			console.log('logIn - Encontro el usuario');
+		}
+
+		//Los contactos que le paso al user que se loguea deben ser sus propios promotores
+		UserModel.find({},function(err, docs){
+			var datos = {};
+			datos.contacts = docs;
+			datos.user = user;
+			socket.emit('logInOk', datos);
+			socket.emit('req_logued_users', {});
+			console.log('logIn - logInOk : envia datos');
+		});
+
+
+	});
+
+}
+
+
+exports.auto_login = function(io, socket, data) {
+
+	console.log('auto_login - user_id : ' + data.user_id);
+
+	UserModel.findOne( { _id: data.user_id } , function(err, user){
+		if(!user){
+
+			console.log('auto_login - No encontro el usuario');
+			
+		}else{
+			//Encontro el usuario
+			console.log('auto_login - Encontro el usuario');
+			//console.log(user);
+
+			//Los contactos que le paso al user que se loguea deben ser sus propios promotores
+			var datos = {};
+			UserModel.findOne({ user_id : user.parent}, function(err, parent){
+				if(parent)
+				{
+					datos.parent = parent;
+				}
+			});
+			datos.contacts = user.promoters;
+			datos.user = user;
+			socket.emit('logInOk', datos);
+			console.log('logIn - logInOk : envia datos');
+		}
+	});
+}
+
+
+
+
+
+exports.req_logued_users = function(io, socket, data){
+
+	UserModel.find({},function(err, docs){
+		var datos = {};
+		datos.contacts = docs;
+		//io.sockets.emit('logInOk', datos);
+		io.sockets.emit('list_logued_users', datos);
+		console.log('req_logued_users - Envia usuarios');
+	});
+}
+
+
+
+
 /*
 exports.read = function(io, socket, data) {
 		models.conversation.findById(data.idConversation, gotConversation);
