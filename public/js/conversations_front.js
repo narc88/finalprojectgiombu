@@ -339,7 +339,7 @@ $(function() {
 
 			//Seteo el username y el id de usuario a UserView
 			this.username = data.user.username;
-			this.id = data.user.user_id;
+			this.id = data.user._id;
 
 			$('.logued_user').text('Usuario Logueado: ' + data.user.username);
 			$('.userLogIn').val('');
@@ -352,20 +352,20 @@ $(function() {
 			//CARGO LA LISTA DE CONTACTOS
 
 			data.contacts.forEach(function(contact){
-				var contact_button = $('<div class="contact_element" id='+contact.id+'></div>');
+				var contact_button = $('<div class="contact_element" id='+contact._id+'></div>');
 				
 				
 				if(contact.facebook_id != 0){
-						var contact_image_html = '<img id='+contact.id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
+						var contact_image_html = '<img id='+contact._id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
 						//var contact_image_html =  '<img src="https://graph.facebook.com/'+contact.facebook_id+'/picture?type=normal" width="30" height="30" />'
 				}else{
-						var contact_image_html = '<img id='+contact.id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
+						var contact_image_html = '<img id='+contact._id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
 				}
-				var contact_button_html = $("<div class='contact_button_html contact' id="+contact.id+" ></div>");	
-				contact_button_html.append($("<div class='contact_image' id="+contact.id+">"+contact_image_html+"</div>"));
-				contact_button_html.append($("<div class='contact_username' id="+contact.id+">"+contact.username+"</div>"));					
+				var contact_button_html = $("<div class='contact_button_html contact' id="+contact._id+" ></div>");	
+				contact_button_html.append($("<div class='contact_image' id="+contact._id+">"+contact_image_html+"</div>"));
+				contact_button_html.append($("<div class='contact_username' id="+contact._id+">"+contact.username+"</div>"));					
 				contact_button.append(contact_button_html);
-				contact_button.append($("<div id="+contact.id+" class='add_contact_to_conversation'><img id="+contact.id+" src='images/add.png' alt='add contact to conversation' width='15' height='15'></div>"));
+				contact_button.append($("<div id="+contact._id+" class='add_contact_to_conversation'><img id="+contact._id+" src='images/add.png' alt='add contact to conversation' width='15' height='15'></div>"));
 				contacts_div.append(contact_button);
 			});
 

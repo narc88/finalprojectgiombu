@@ -410,10 +410,15 @@ exports.auto_login = function(io, socket, data) {
 					datos.parent = parent;
 				}
 			});
-			datos.contacts = user.promoters;
-			datos.user = user;
-			socket.emit('logInOk', datos);
-			console.log('logIn - logInOk : envia datos');
+			
+			UserModel.find({}, function(err, users){
+				datos.contacts = users;
+				console.log(datos.contacts);
+				datos.user = user;
+				socket.emit('logInOk', datos);
+				console.log('logIn - logInOk : envia datos');
+			});
+
 		}
 	});
 }
@@ -432,6 +437,9 @@ exports.req_logued_users = function(io, socket, data){
 		console.log('req_logued_users - Envia usuarios');
 	});
 }
+
+
+
 
 
 
