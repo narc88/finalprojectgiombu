@@ -191,3 +191,22 @@ exports.buy = function (req, res, next) {
 	});
 	
 }
+
+/**
+	 * Lista de ventas realizadas.
+	 *
+	 * @return void
+	 * @author Nicolas Ronchi
+**/
+exports.list = function (req, res, next) {
+	DealModel.findById( req.params.id , function(err, deal){
+		if(!err){
+			if(deal){
+				res.render('sales/list', {title: 'Detalle de ventas de la oferta', deal : deal, user:req.session.user});
+			}else{
+			 // res.render('sales/checkout', {title: 'Error'});
+			}
+		}else{
+		}
+	});
+}

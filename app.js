@@ -175,6 +175,7 @@ app.post('/invitations/add', invitations.add);
 //Sales
 app.get('/sales/checkout/:id', sales.checkout);
 app.post('/sales/buy/:id', sales.buy);
+app.get('/sales/list/:id', sales.list);
 
 /*
 //countries

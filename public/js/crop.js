@@ -18,6 +18,7 @@ $(document).ready(function() {
                     success: function(response) {
                     //TODO: We will fill this in later
                         if(response.error){
+                            alert(response.error);
                             status('Something went wrong.');
                             return;
                         }
@@ -33,8 +34,7 @@ $(document).ready(function() {
                         $('#uploadedImage').Jcrop({
                             onChange: showPreview,
                             onSelect: showPreview,
-                            onRelease: disablePreview,
-                            aspectRatio: 1
+                            onRelease: disablePreview
                         }, function(){
                             jcrop_api = this;
                         });
@@ -51,6 +51,7 @@ $(document).ready(function() {
                             info = coords;
                             $('#sendCrop').removeAttr('disabled');
                         };
+                        alert(imgUrl);
                         $('#sendCrop').click(function(){
                             $.ajax({
                                 type: "POST",
@@ -68,7 +69,6 @@ $(document).ready(function() {
                                          timerId = setInterval(function() {
                                             if($('#userImageInput').val() !== '') {
                                                 clearInterval(timerId);
-
                                                 $('#uploadForm').submit();
                                             }
                                         }, 500);
