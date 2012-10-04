@@ -7,6 +7,9 @@ var express = require('express')
   , routes = require('./routes');
 
 var app = module.exports = express();
+var http = require('http')
+  , server = http.createServer(app);
+
 //Colores de la consola
 var colors = require('colors')
 
@@ -16,6 +19,8 @@ app.mongoose = require('mongoose');
 
 //Config file
 var config = require('./config.js')(app, express);
+
+var socket = require('./socket.js')(server);
 
 
 
@@ -35,7 +40,7 @@ var invitations = require('./controllers/invitations_controller');
 var sales = require('./controllers/sales_controller');
 var events = require('./controllers/events_controller');
 var news = require('./controllers/news_controller');
-var questions = require('./controllers/questions_controller');
+var conversations = require('./controllers/conversations_controller');
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -173,9 +178,6 @@ app.get('/sales/checkout/:id', sales.checkout);
 app.post('/sales/buy/:id', sales.buy);
 app.get('/sales/list/:id', sales.list);
 
-//Questions
-app.get('/questions/list/:id', questions.list);
-app.post('/questions/add/:id', questions.add);
 /*
 //countries
 app.get('/countries/create', countries.create);
@@ -185,9 +187,17 @@ app.get('/countries/view/:id', countries.create);
 app.get('/countries/edit/:id', countries.create);
 app.get('/countries/update', countries.create);
 */
-app.listen(3000, function(){
+
+
+//Conversations
+app.get('/conversations', conversations.conversation);
+
+
+server.listen(3000, function(){
   console.log("Express server listening on port 3000".cyan.bold);
 });
+
+
 
 //Events
 app.get('/events/initialize', events.initialize);

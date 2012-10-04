@@ -189,3 +189,5 @@ exports.save_guest = function (req, res, next) {
   });
   res.render('users/login');
 }
+
+
