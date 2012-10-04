@@ -54,27 +54,19 @@ exports.add = function (req, res, next) {
   });
 }
 exports.add_answer = function (req, res, next) {
-	QuestionModel.findById( req.params.id , function(err, question){
+	QuestionModel.findById(req.params.id_question , function(err, question){
 		if(!err){
 			if(question){
-				question.partner = req.session.user._id
-			    question.answer = req.body.answer
-			    question.save(function(err){
-			    if(!err){
-			        QuestionModel.find({  deal: req.params.id })
-					.populate('user')
-					.populate('partner')
-					.populate('deal')
-					.exec(function (err, questions) {
-					  if (err) return handleError(err);
-					  res.render('questions/list', {title: 'Preguntas', user:req.session.user, deal:questions[0].deal, questions:questions});
-					})
-				} else {
-			        res.render('questions/list', {title: 'Preguntas', user:req.session.user,error:'No se ha podido realizar la pregunta', deal:deal, questions:questions});
-			    }
-			    });
+				question.partner = req.user.id;
+				question.partner = req.body.answer;
+				question.save(function(err) {
+				      if (err)
+				       	  res.redirect('questions/list'+ question.deal);
+				      else
+				        console.log('success')
+				    });
 			}else{
-				console.log('deals - view - No se encontro el deal ( ' + req.body.deal_id +' )');
+				console.log('deals - view - No se encontro encontro la pregunta  ( ' + req.params.question_id +' )');
 			}
 		}else{
 			console.log('deals - view - '.red.bold + err);
@@ -83,29 +75,18 @@ exports.add_answer = function (req, res, next) {
 }
 
 exports.add_admin_answer = function (req, res, next) {
-	DealModel.findById( req.params.id , function(err, deal){
+	QuestionModel.findById(req.params.id_question , function(err, question){
 		if(!err){
-			if(deal){
-				var question_new = new QuestionModel();
-				question_new.deal = req.params.id 
-				question_new.user = req.session.user._id
-			    question_new.question = req.body.question
-			    question_new.save(function(err){
-			    if(!err){
-			        console.log(question_new);
-			        QuestionModel.find({  deal: req.params.id })
-					.populate('user')
-					.populate('partner')
-					.exec(function (err, questions) {
-					  if (err) return handleError(err);
-					  res.render('questions/list', {title: 'Preguntas', user:req.session.user, deal:deal, questions:questions});
-					})
-				} else {
-			        res.render('questions/list', {title: 'Preguntas', user:req.session.user,error:'No se ha podido realizar la pregunta', deal:deal, questions:questions});
-			    }
-			    });
+			if(question){
+				question.partner = req.body.answer_admin;
+				question.save(function(err) {
+				      if (err)
+				       	  res.redirect('questions/list'+ question.deal);
+				      else
+				        console.log('success')
+				    });
 			}else{
-				console.log('deals - view - No se encontro el deal ( ' + req.body.deal_id +' )');
+				console.log('deals - view - No se encontro la pregunta ( ' + req.params.question_id +' )');
 			}
 		}else{
 			console.log('deals - view - '.red.bold + err);

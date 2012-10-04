@@ -180,8 +180,8 @@ app.post('/sales/buy/:id', sales.buy);
 app.get('/sales/list/:id', sales.list);
 
 //Questions
-app.post('/questions/admin_answer/:id', questions.add_admin_answer);
-app.post('/questions/answer/:id', questions.add_answer);
+app.post('/questions/admin_answer/:id_question', questions.add_admin_answer);
+app.post('/questions/answer/:id_question', questions.add_answer);
 app.post('/questions/add/:id', questions.add);
 app.get('/questions/list/:id', questions.list);
 
