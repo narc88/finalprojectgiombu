@@ -35,6 +35,7 @@ var invitations = require('./controllers/invitations_controller');
 var sales = require('./controllers/sales_controller');
 var events = require('./controllers/events_controller');
 var news = require('./controllers/news_controller');
+var questions = require('./controllers/questions_controller');
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -172,6 +173,9 @@ app.get('/sales/checkout/:id', sales.checkout);
 app.post('/sales/buy/:id', sales.buy);
 app.get('/sales/list/:id', sales.list);
 
+//Questions
+app.get('/questions/list/:id', questions.list);
+app.post('/questions/add/:id', questions.add);
 /*
 //countries
 app.get('/countries/create', countries.create);
