@@ -123,4 +123,15 @@ a {
 
 }
 
+//------QUESTIONS-------
+
+
+
+.questions{
+ text-align: left;
+}
+
+.responses{
+	text-align: right;
+}
 
