@@ -6,29 +6,35 @@ block content
 	.span6
 		table.table
 			tr
-				td	title
+				td	name
 				td	#{franchise.name}
 			tr
-				td	tagline
+				td	slug
 				td	#{franchise.slug}
 			tr
-				td	slug
-				td	#{franchise.is_default}
+				td	is_default
+				-if (franchise.is_default)
+					td SI
+				-else
+					td NO
 			tr
-				td	characteristics
+				td	timezone
 				td	#{franchise.timezone}
 			tr
-				td	conditions
+				td	user_count
 				td	#{franchise.user_count}
 			tr
-				td	price
+				td	subscriber_count
 				td	#{franchise.subscriber_count}
 			tr
-				td	special_price
+				td	store_count
 				td	#{franchise.store_count}
 			tr
-				td	discount
+				td	created
 				td	#{franchise.created}
 			tr
-				td	start_date
+				td	modified
 				td	#{franchise.modified}
+		br
+		br
+		a(href="/intranet/franchises/edit/" + '#{franchise._id}' ).btn Editar
