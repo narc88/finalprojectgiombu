@@ -153,8 +153,9 @@ app.post('/bankAccount/add', bank_accounts.add);
 app.get('/bankAccount/view', bank_accounts.view);
 
 //Franchises
-app.get('/franchises/create', franchises.create);
-app.post('/franchises/add', franchises.add);
+app.get('/intranet/franchises/admin', franchises.admin);
+app.get('/intranet/franchises/create', franchises.create);
+app.post('/intranet/franchises/add', franchises.add);
 
 //Images
 app.get('/images/upload', images.upload);

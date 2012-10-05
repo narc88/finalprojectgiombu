@@ -1,0 +1,15 @@
+// my-template.jade
+extends ../layout
+
+//Bloque de contenido.
+block content
+	h3 Franquicias - Admin menu
+	.container
+		.span3.offset4
+			ul.nav.nav-list
+				li
+					a(href='/intranet/franchises/create') Crear
+				li
+					a(href='/intranet/franchises/list') Lista
+				li
+					a(href='/intranet/franchises/delete') Eliminar

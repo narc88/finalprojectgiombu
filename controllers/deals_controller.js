@@ -246,7 +246,7 @@ exports.remove = function(req, res, next){
 
 }
 
-//No se que hace esto?
+//Arma el menu de admin y redirecciona
 exports.intranet_admin = function(req, res, next){
 	console.log('intranet_admin'.cyan.bold);
 	res.render('deals/admin', {

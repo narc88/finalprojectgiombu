@@ -4,7 +4,8 @@ var colors = require('colors');
 
 exports.create = function (req, res, next) {
 	console.log('franchises - create'.cyan.bold);
-	res.render('franchises/create', {title: 'Cargar Franquicia'})
+	res.render('franchises/create', {title: 'Cargar Franquicia',
+										user : req.session.user});
 }
 
 exports.add = function (req, res, next) {
@@ -177,5 +178,20 @@ exports.delete = function(req, res, next){
 		}
 
   });
+
+}
+
+
+
+
+
+
+//Arma el menu de admin y redirecciona
+exports.admin = function(req, res, next){
+	console.log('intranet_admin'.cyan.bold);
+	res.render('franchises/admin', {
+		title : 'Menu de Franquicias',
+		user: req.session.user
+	});
 
 }
