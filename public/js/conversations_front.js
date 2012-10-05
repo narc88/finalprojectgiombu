@@ -237,7 +237,7 @@ $(function() {
 				con.participants.forEach(function(participant_id){
 					//busco los nombres de los participantes
 					user.contacts.forEach(function(contact){
-						if(contact.id == participant_id){
+						if(contact._id == participant_id){
 							name_conversation = name_conversation + contact.username + "  ";
 						}
 					});
@@ -245,7 +245,8 @@ $(function() {
 
 				var conversation_element = $("<div class='conv_element' id="+con._id+"></div>");
 				// conversation_element.append($("<img src='images/erase.gif' width='10' height='10'>"));
-				conversation_element.append($("<img src='images/erase.gif' id="+con._id+" class='remove' alt='remove conversation' width='10' height='10'>"));
+				//conversation_element.append($("<img src='images/erase.gif' id="+con._id+" class='remove' alt='remove conversation' width='10' height='10'>"));
+				conversation_element.append($("<img src='http://www.juegoszz.com/images/close.png' id="+con._id+" class='remove' alt='remove conversation' width='10' height='10'>"));
 				conversation_element.append($("<div class='conversation' id="+con._id+" >"+name_conversation+" </div>"));
 				
 				//Si el user no leyo los ultimos mensajes de la conversacion
@@ -356,15 +357,17 @@ $(function() {
 				
 				
 				if(contact.facebook_id != 0){
-						var contact_image_html = '<img id='+contact._id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
+						//var contact_image_html = '<img id='+contact._id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
+						var contact_image_html = '<img id='+contact._id+'  src="http://a0.twimg.com/profile_images/1849565288/ahhh_reasonably_small.JPG" width="30" height="30" />';
 				}else{
-						var contact_image_html = '<img id='+contact._id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
+						//var contact_image_html = '<img id='+contact._id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
+						var contact_image_html = '<img id='+contact._id+'  src="http://a0.twimg.com/profile_images/1849565288/ahhh_reasonably_small.JPG" width="30" height="30" />';
 				}
 				var contact_button_html = $("<div class='contact_button_html contact' id="+contact._id+" ></div>");	
 				contact_button_html.append($("<div class='contact_image' id="+contact._id+">"+contact_image_html+"</div>"));
 				contact_button_html.append($("<div class='contact_username' id="+contact._id+">"+contact.username+"</div>"));					
 				contact_button.append(contact_button_html);
-				contact_button.append($("<div id="+contact._id+" class='add_contact_to_conversation'><img id="+contact._id+" src='images/add.png' alt='add contact to conversation' width='15' height='15'></div>"));
+				contact_button.append($("<div id="+contact._id+" class='add_contact_to_conversation'><img id="+contact._id+" src='http://cdn1.iconfinder.com/data/icons/hamburg/16/plus.png' alt='add contact to conversation' width='15' height='15'></div>"));
 				contacts_div.append(contact_button);
 			});
 
