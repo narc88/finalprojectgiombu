@@ -357,7 +357,6 @@ $(function() {
 				
 				if(contact.facebook_id != 0){
 						var contact_image_html = '<img id='+contact._id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
-						//var contact_image_html =  '<img src="https://graph.facebook.com/'+contact.facebook_id+'/picture?type=normal" width="30" height="30" />'
 				}else{
 						var contact_image_html = '<img id='+contact._id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
 				}
@@ -368,26 +367,6 @@ $(function() {
 				contact_button.append($("<div id="+contact._id+" class='add_contact_to_conversation'><img id="+contact._id+" src='images/add.png' alt='add contact to conversation' width='15' height='15'></div>"));
 				contacts_div.append(contact_button);
 			});
-
-			//Verifico si trae el parent y si lo trae lo sumo a la lista de contactos
-			if(data.parent){
-				var contact_button = $('<div class="contact_element" id='+data.parent.user_id+'></div>');
-				var contact_image_html = '';
-				
-				if(data.parent.facebook_id != 0){
-					contact_image_html = '<img id='+data.parent.user_id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+data.parent.image+'" width="30" height="30"/>';		
-				}else{
-					contact_image_html = '<img id='+data.parent.user_id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+data.parent.image+'" width="30" height="30"/>';
-				}
-				
-				var contact_button_html = $("<div class='contact_button_html contact' id="+data.parent.user_id+" ></div>");
-				contact_button_html.append($("<div class='contact_image' id="+data.parent.user_id+">"+contact_image_html+"</div>"));
-				contact_button_html.append($("<div class='contact_username' id="+data.parent.user_id+">"+data.parent.username+"</div>"));					
-				contact_button.append(contact_button_html);
-				contact_button.append($("<div id="+data.parent.user_id+" class='add_contact_to_conversation'><img id="+data.parent.user_id+" src='images/add.png' width='15' height='15'></div>"));
-				contacts_div.append(contact_button);
-						
-			}
 
 			//solicita las conversaciones del usuario
 			chat.req_conversations();

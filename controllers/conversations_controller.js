@@ -402,14 +402,7 @@ exports.auto_login = function(io, socket, data) {
 			console.log('auto_login - Encontro el usuario');
 			//console.log(user);
 
-			//Los contactos que le paso al user que se loguea deben ser sus propios promotores
 			var datos = {};
-			UserModel.findOne({ user_id : user.parent}, function(err, parent){
-				if(parent)
-				{
-					datos.parent = parent;
-				}
-			});
 			
 			UserModel.find({}, function(err, users){
 				datos.contacts = users;
