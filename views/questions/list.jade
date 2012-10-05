@@ -15,13 +15,25 @@ block content
 			p No se han encontrado preguntas
 		-else
 			-each question in questions
+				hr
+				.thumbnail.span1
+					img(src="/images/mr_bean.jpg")
+					p #{question.user.username}
 				p  #{question.question}
-				form(method='post', action='/questions/answer/#{question._id}')
-					input(name='answer') 
-					input(type='submit', class="pull-right", value='Responder')
-				form(method='post', action='/questions/answer/#{question._id}')
-					input(name='answer_admin') 
-					input(type='submit', class="pull-right", value='Responder')
+				-if ((typeof question.answer === "undefined"))
+					form(method='post', action='/questions/answer/#{question._id}')
+						input(name='answer') 
+						input(type='submit', class="pull-right", value='Responder')
+				-else
+					p  #{question.answer}
+
+				-if ((typeof question.answer_admin === "undefined"))
+					form(method='post', action='/questions/answer_admin/#{question._id}')
+						input(name='answer_admin') 
+						input(type='submit', class="pull-right", value='Responder')
+				-else
+					p  #{question.answer_admin}
+
 
 		form(method='post', action='/questions/add/#{deal._id}')
 			.well

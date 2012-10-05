@@ -11,6 +11,8 @@ exports.list = function (req, res, next) {
 				.populate('partner')
 				.exec(function (err, questions) {
 				  if (err) return handleError(err);
+				   console.log(questions);
+				    console.log(err);
 				  res.render('questions/list', {title: 'Preguntas', user:req.session.user, deal:deal, questions:questions});
 				})
 				
@@ -38,10 +40,13 @@ exports.add = function (req, res, next) {
 					.populate('user')
 					.populate('partner')
 					.exec(function (err, questions) {
-					  if (err) return handleError(err);
-					  res.render('questions/list', {title: 'Preguntas', user:req.session.user, deal:deal, questions:questions});
+						  if (err) return handleError(err);
+						  console.log(err);
+						  console.log(questions);
+						  res.render('questions/list', {title: 'Preguntas', user:req.session.user, deal:deal, questions:questions});
 					})
 				} else {
+					console.log(err);
 			        res.render('questions/list', {title: 'Preguntas', user:req.session.user,error:'No se ha podido realizar la pregunta', deal:deal, questions:questions});
 			    }
 			    });
@@ -57,13 +62,13 @@ exports.add_answer = function (req, res, next) {
 	QuestionModel.findById(req.params.id_question , function(err, question){
 		if(!err){
 			if(question){
-				question.partner = req.user.id;
-				question.partner = req.body.answer;
+				question.partner = req.session.user._id;
+				question.answer = req.body.answer;
 				question.save(function(err) {
-				      if (err)
-				       	  res.redirect('questions/list'+ question.deal);
+				      if (!err)
+				       	  res.redirect('questions/list/'+ question.deal);
 				      else
-				        console.log('success')
+				        console.log('error' + err)
 				    });
 			}else{
 				console.log('deals - view - No se encontro encontro la pregunta  ( ' + req.params.question_id +' )');
@@ -78,12 +83,12 @@ exports.add_admin_answer = function (req, res, next) {
 	QuestionModel.findById(req.params.id_question , function(err, question){
 		if(!err){
 			if(question){
-				question.partner = req.body.answer_admin;
+				question.answer_admin = req.body.answer_admin;
 				question.save(function(err) {
-				      if (err)
-				       	  res.redirect('questions/list'+ question.deal);
+				      if (!err)
+				       	  res.redirect('questions/list/'+ question.deal);
 				      else
-				        console.log('success')
+				        console.log('error' + err)
 				    });
 			}else{
 				console.log('deals - view - No se encontro la pregunta ( ' + req.params.question_id +' )');
