@@ -1,0 +1,48 @@
+// my-template.jade
+extends ../layout
+
+block content
+	.content
+		.well
+			.thumbnail
+				img( src="/images/243_large_f4415b921f7e566042424fb70b1ba3a4.jpeg")
+			.caption
+				h3 #{deal.title}
+				p #{deal.tagline}
+				p Fecha de canje #{deal.start_redeem} Hasta #{deal.end_redeem}
+
+		-if ((typeof questions === "undefined"))
+			p No se han encontrado preguntas
+		-else
+			-each question in questions
+				hr
+				.thumbnail.span1
+					img(src="/images/mr_bean.jpg")
+					p #{question.user.username}
+				p  #{question.question}
+				-if ((typeof question.answer === "undefined"))
+					form(method='post', action='/questions/answer/#{question._id}')
+						input(name='answer') 
+						input(type='submit', class="pull-right", value='Responder')
+				-else
+					p  #{question.answer}
+
+				-if ((typeof question.answer_admin === "undefined"))
+					form(method='post', action='/questions/answer_admin/#{question._id}')
+						input(name='answer_admin') 
+						input(type='submit', class="pull-right", value='Responder')
+				-else
+					p  #{question.answer_admin}
+
+
+		form(method='post', action='/questions/add/#{deal._id}')
+			.well
+				table
+					tr
+						td Pregunta:
+						td 
+							input(name='question') 
+					tr
+						td
+							input(type='submit', class="pull-right", value='Enviar')
+				

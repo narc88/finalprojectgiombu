@@ -8,7 +8,7 @@ var express = require('express')
 
 var app = module.exports = express();
 var http = require('http')
-  , server = http.createServer(app);
+ , server = http.createServer(app);
 
 //Colores de la consola
 var colors = require('colors')
@@ -41,6 +41,7 @@ var sales = require('./controllers/sales_controller');
 var events = require('./controllers/events_controller');
 var news = require('./controllers/news_controller');
 var conversations = require('./controllers/conversations_controller');
+var questions = require('./controllers/questions_controller');
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -179,6 +180,12 @@ app.get('/sales/checkout/:id', sales.checkout);
 app.post('/sales/buy/:id', sales.buy);
 app.get('/sales/list/:id', sales.list);
 
+//Questions
+app.post('/questions/admin_answer/:id_question', questions.add_admin_answer);
+app.post('/questions/answer/:id_question', questions.add_answer);
+app.post('/questions/add/:id', questions.add);
+app.get('/questions/list/:id', questions.list);
+
 /*
 //countries
 app.get('/countries/create', countries.create);
@@ -202,4 +209,3 @@ server.listen(3000, function(){
 
 //Events
 app.get('/events/initialize', events.initialize);
-
