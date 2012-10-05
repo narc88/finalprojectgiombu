@@ -15,7 +15,6 @@ exports.list = function (req, res, next) {
 				    console.log(err);
 				  res.render('questions/list', {title: 'Preguntas', user:req.session.user, deal:deal, questions:questions});
 				})
-				
 			}else{
 				console.log('deals - view - No se encontro el deal ( ' + req.body.deal_id +' )');
 			}

@@ -3,7 +3,7 @@ extends ../layout
 
 block content
 	.content
-		.well
+		.well.question
 			.thumbnail
 				img( src="/images/243_large_f4415b921f7e566042424fb70b1ba3a4.jpeg")
 			.caption
@@ -15,28 +15,28 @@ block content
 			p No se han encontrado preguntas
 		-else
 			-each question in questions
+				br
+				.question
+					.thumbnail.span1
+						img(src="/images/mr_bean.jpg")
+					.questions
+						p  #{question.user.username}: #{question.question}
+					.responses
+						-if ((typeof question.answer === "undefined"))
+							form(method='post', action='/questions/answer/#{question._id}')
+								input(name='answer') 
+								input(type='submit', class="pull-right", value='Responder')
+						-else
+							p #{question.partner.username}: #{question.answer}
+						-if ((typeof question.answer_admin === "undefined"))
+							form(method='post', action='/questions/admin_answer/#{question._id}')
+								input(name='answer_admin') 
+								input(type='submit', class="pull-right", value='Responder')
+						-else
+							p Giombu: #{question.answer_admin}
 				hr
-				.thumbnail.span1
-					img(src="/images/mr_bean.jpg")
-					p #{question.user.username}
-				p  #{question.question}
-				-if ((typeof question.answer === "undefined"))
-					form(method='post', action='/questions/answer/#{question._id}')
-						input(name='answer') 
-						input(type='submit', class="pull-right", value='Responder')
-				-else
-					p  #{question.answer}
-
-				-if ((typeof question.answer_admin === "undefined"))
-					form(method='post', action='/questions/answer_admin/#{question._id}')
-						input(name='answer_admin') 
-						input(type='submit', class="pull-right", value='Responder')
-				-else
-					p  #{question.answer_admin}
-
-
-		form(method='post', action='/questions/add/#{deal._id}')
-			.well
+		.well
+			form(method='post', action='/questions/add/#{deal._id}')
 				table
 					tr
 						td Pregunta:
