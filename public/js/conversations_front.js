@@ -34,7 +34,7 @@ $(function() {
 		},
 
 		auto_login: function(){
-			alert('auto_login');
+			//alert('auto_login');
 			var user_id = $('.contenedor').attr('id');
 			socket.emit('auto_login', {
 				user_id: user_id
@@ -68,7 +68,7 @@ $(function() {
 				var message = $('<div class="message_line"></div>'),
 				message_nickname = $('<div class="message_nickname"></div>'),
 				nickname = '',
-				row = $('<div class="row"></div>');
+				row = $('<div class="message_row"></div>');
 				
 				//Busco el nombre del contacto
 				if(user.id == data.sender){
@@ -150,7 +150,7 @@ $(function() {
 			conversation.messages.forEach(function(msg){
 				var message = $('<div class="message_line"></div>'),
 				message_nickname = $('<div class="message_nickname"></div>'),
-				row = $('<div class="row"></div>'),
+				row = $('<div class="message_row"></div>'),
 				nickname = '';
 				//Busco el nombre del contacto
 				if(user.id == msg.sender){
@@ -185,7 +185,9 @@ $(function() {
 			log.scrollTop(log.prop("scrollHeight"));
 			//log.scrollTop = log.scrollHeight;
 
-
+			$('#conversations_container').hide();
+			$('#contacts_container').hide();
+			$('#chat_container').show();
 
 		},
 
@@ -305,7 +307,7 @@ $(function() {
 
 	//USER VIEW --------------------------------
 	var UserView = Backbone.View.extend({
-		el: '#user',
+		el: '#contacts',
 
 		scroll: 0,
 

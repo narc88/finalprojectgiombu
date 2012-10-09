@@ -1,0 +1,188 @@
+body{
+	background-image: url("http://www.giombu.com.mx/theme/FrontEndV3/img/bg_layout.jpg");
+	background-repeat: no-repeat;
+}
+.contenedor{
+	width: 100%;
+	height: 100%;
+	color: #333333;  
+	font-family: Century Gothic, sans-serif;  
+	margin-top: -10px;
+	padding-right: 10px;
+	background-image: url("http://www.giombu.com.mx/theme/FrontEndV3/img/bg_layout.jpg");
+	background-repeat: no-repeat;
+	background-color: white;
+	border-right:3px solid gray;
+	border-bottom:3px solid gray;
+}
+.add_contact_to_conversation img{
+	float:right;
+}
+.columna {
+	min-width: 160px;
+	float: left;
+	width: 100%;
+	height: 400px;
+	background-color: transparent;
+	color: black;
+	margin:5px;
+	border:1px solid gray;
+	overflow-y:scroll;
+	overflow-x:none;
+
+}
+.current_conversation{
+	height: 36px;
+	float: left;
+	width: 50%;
+	background-color: transparent;
+	margin: 5px;
+	text-align:center;
+	padding-top: 14px;
+	color: #505050;
+	font-weight:bold;
+}
+.input_message{
+	float: left;
+	width: 100%;
+	margin-top: 7px;
+	height: 90px;
+	background-color: white;
+	color: black;
+
+}
+#chat_window{
+	float: left;
+	width: 100%;
+	margin:5px;
+	height: 500px;
+}
+message_row{
+	width: 100%;
+	margin: 0px;
+}
+.message{
+	height: 100px;
+	width: 288px;
+	resize:none;
+	border:1px solid gray;
+	margin:5px;
+}
+.log{
+	width: 100%;
+	overflow-y: scroll;
+	padding-top: 5px;
+}
+.contact_element{
+	width: 100%;
+	margin:5px;
+	height: 40px;
+	float:left;
+}
+.conversation{
+	width: 80%;
+	min-height: 1em;
+	float: left;
+	min-height: 40px;
+}
+.conversation img{
+	float:right;
+	margin: 0px;
+}
+.conversation:hover{
+	cursor: pointer; cursor: hand
+}
+.remove{
+	float: right;
+	margin-right: 4px;
+}
+.remove:hover{
+	cursor: pointer; cursor: hand
+}
+#user{
+	float: left;
+	width: 20%;
+	margin: 10px;
+	background-color: green;
+	color: white;
+}
+#add_contacts{
+	float: left;
+	width: 20%;
+	margin: 10px;
+	background-color: green;
+	color: white;
+}
+#top{
+	width: 100%;
+	height: 150px;
+}
+.header{
+	text-align:center;
+}
+.conv_element,.contact_element {
+	width: 90%;
+	background-color: transparent ;
+	margin:5px;
+	display:inline-block;
+	color: #505050;
+	font-family:arial;
+	font-size:15px;
+	padding:5px;
+	text-decoration:none;
+}
+
+.message_line, .message_nickname {
+	font-size:13px;
+	color: #707070;
+	min-height: 13px;
+	background-color: transparent;
+	padding:5px;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+
+.message_nickname {
+	border-top: 1px solid gray;
+	font-weight:bold;
+	margin-top:5px;
+}
+
+.conv_element:hover,.contact_element:hover {
+	background-color: #B0FEB4;
+	cursor: pointer; cursor: hand;
+}
+.contact_add_conversation{
+	width:20%;
+	float:right;
+}
+.contact_image{
+	width:25%;
+	float:left;
+	height: 40px;
+}
+.contact_username{
+	width:60%;
+	height: 40px;
+	float:left;
+}
+#giombu_logo{
+	float:left;
+}
+.contenedor_chat{
+	width:100%;
+	float:left;
+}
+.user_profile{
+	float: left;
+	margin: 5px;
+}
+#menu{
+	float: left;
+	width: 100%;
+	height: 50px;
+}
+.close_conversations{
+	float: right;
+}

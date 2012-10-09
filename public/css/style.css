@@ -135,3 +135,34 @@ a {
 	text-align: right;
 }
 
+
+/*------CONVERSATIONS----------*/
+
+
+#open_conversations{
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	margin-top: 100px;
+	margin-left: -50px;
+	z-index: 9998;
+	background-color: white;
+	padding: 5px;
+	border: 2px solid gray;
+}
+
+#conversations_div{
+	position: absolute;
+	width: 300px;
+	height: 100%;
+	margin-top: -50px;
+	margin-left: -50px;
+	z-index: 9997;
+}
+
+#close_conversations{
+	position: absolute;
+	margin-left: 200px;
+	margin-top: -45px;
+	z-index: 9999;
+}
