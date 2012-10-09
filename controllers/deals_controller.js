@@ -66,7 +66,16 @@ exports.add = function (req, res, next) {
 	});
 
 }
-
+//Muestra deals activos.
+exports.home = function(req, res, next){
+	DealModel.find({  deal: req.params.id })
+		.exec(function (err, deals) {
+			  if (err) return handleError(err);
+			  console.log(err);
+			  console.log(deals);
+			  res.render('deals/home', {title: 'Ofertas', user:req.session.user, deals:deals});
+		})
+}
 
 //Muestra la vista detallada de una deal en particular
 exports.view = function(req, res, next){

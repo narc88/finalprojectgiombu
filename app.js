@@ -126,7 +126,8 @@ app.get('/deals/deals_show', deals.show);
 app.get('/deals/view', deals.view);
 app.get('/intranet/deals/list', deals.list);
 app.get('/intranet/deals/edit/:deal_id', deals.edit);
-app.get('/intranet/deals/admin', deals.intranet_admin)
+app.get('/intranet/deals/admin', deals.intranet_admin);
+app.get('/deals/home', deals.home);
 
 //Users
 app.get('/users/register', users.register );

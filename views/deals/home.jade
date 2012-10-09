@@ -1,0 +1,86 @@
+// my-template.jade
+extends ../home
+
+block content
+	.body_container.carousel-container.master_article 
+		div(id="myCarousel").carousel.slide
+			.carousel-inner
+				.item.active
+					a(href="www.ole.com.ar")
+						img( src="/images/243_large_f4415b921f7e566042424fb70b1ba3a4.jpeg", class="image")
+				.item
+					a(href="www.ole.com.ar")
+						img( src="/images/243_large_f4415b921f7e566042424fb70b1ba3a4.jpeg", class="image")
+			.caption-top.transparent
+				.row
+					.span8
+						h1
+							a(href="#", style="font-size:0.9em;") TITULO de la oferta que estamos por vender
+						p
+							a(href="#", style="font-size:0.8em;") Slug!!!!!!!
+					.span2.pull-right
+						.buy.boxshadow.special_price.no_transparent
+							a(href="alalalallong/checkout")
+								.buy_box 
+									img( src="/img/checkout.png")
+									p 
+									p COMPRAR				
+					.span2.pull-right
+						.special_price.boxshadow.no_transparent
+							a(href="lalalalalong")
+								.detalles(style="font-size:0.8em;")
+										$64
+										br
+										span(style="font-size:0.5em;") VER DETALLES
+			.caption-left.boxshadow.borderradius.transparent 
+				.row
+					.span.discount 
+						label Descuento 
+						span 50%
+					.span.price 
+						label Precio 
+						span $50
+				.row.time
+					div.clock.span
+						img(src="http://83b0c28c61b2c8602f7c-5408f05fecb415ed1f9fde302a13d016.r42.cf1.rackcdn.com/countdown.png")
+					div(class="span countdown hasCountdown",id="countdown", data-end="10/16/2012 23:59:00", data-gmt="-5")
+			a(class="carousel-control left" , href="#myCarousel",  data-slide="prev")‹
+			a(class="carousel-control right" , href="#myCarousel",  data-slide="next")›
+	.row.items
+		.span4.item
+			.image
+				a(href="alalalallong/checkout") 
+					img( src="/images/243_large_f4415b921f7e566042424fb70b1ba3a4.jpeg", class="image")
+			.caption
+				h2
+					a(href="alalalallong/checkout") FLAI NAIN FAIV SIX
+				p
+					a(href="alalalallong/checkout") YO SE QUE VOS VAS A REGRESAR
+			.row.buttons
+				.span1
+					.price 
+						label Normal
+						$60
+					.discount
+						label Descuento
+						%50
+				.span2
+					.special_price
+						label Oferta
+						$29
+			.rew.buttons
+				.span1
+					.clock
+						img(src="http://83b0c28c61b2c8602f7c-5408f05fecb415ed1f9fde302a13d016.r42.cf1.rackcdn.com/countdown.png")
+				.span3
+					.countdown(id="countdown" ,id="279" ,
+								data-end="10/11/2012 23:59:00" ,
+								data-gmt="-4")
+	-each deal in deals
+		h5 #{deal.title}
+		p $ #{deal.special_price}
+		p $ #{deal.price}
+		p #{deal.discount} % 
+		p #{deal.end_date}
+		td.span1
+			a(href="/intranet/deals/view/#{deal._id}").btn.pull-right Comprar

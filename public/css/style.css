@@ -135,3 +135,10 @@ a {
 	text-align: right;
 }
 
+
+//Carousel
+
+.carousel-container{
+	height:600px;
+	width:900px;
+}
