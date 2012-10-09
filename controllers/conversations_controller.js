@@ -8,7 +8,13 @@ exports.conversation = function(req, res, next){
 	res.render('conversations/conversation', { 	title: ' - Chat de Giombu',
 							user_id : req.session.user._id,
 							user: req.session.user});
+}
 
+exports.conversation_thin = function(req, res, next){
+	console.log('conversations - conversation_thin');
+	res.render('conversations/conversation_thin', { 	title: ' - Chat de Giombu',
+							user_id : req.session.user._id,
+							user: req.session.user});
 }
 
 

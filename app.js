@@ -203,7 +203,7 @@ app.get('/countries/update', countries.create);
 
 //Conversations
 app.get('/conversations', conversations.conversation);
-
+app.get('/conversations_thin', conversations.conversation_thin);
 
 server.listen(3000, function(){
   console.log("Express server listening on port 3000".cyan.bold);
