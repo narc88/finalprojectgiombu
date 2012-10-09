@@ -20,8 +20,32 @@ html
 		link(rel='stylesheet', href='/css/timepicker.css')
 		link(rel='stylesheet', href='/css/jquery.Jcrop.css')
 		link(rel='stylesheet', href='/css/jquery.Jcrop.css')
+
+		script
+			$(document).ready(function(){
+				$('#conversations_div').hide();
+				$('#close_conversations').hide();
+				$('#close_conversations').click(function(){
+						$('#conversations_div').hide();
+						$('#open_conversations').show();
+						$('#close_conversations').hide();
+					});
+				$('#open_conversations').click(function(){
+						$('#conversations_div').show();
+						$('#conversations_div').load('/conversations_thin');
+						$('#open_conversations').hide();
+						$('#close_conversations').show();
+					});
+
+
+				});
 		
 	body
+		#conversations_div
+		#open_conversations
+			i.icon-envelope
+		
+		h3#close_conversations.btn X
 		#body_container
 			#header
 				#navbar

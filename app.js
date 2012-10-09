@@ -86,8 +86,8 @@ app.configure('production', function(){
 
 //Autenticacion
 function checkAuth(req, res, next) {
-  if (!req.session.user._id) {
-    res.send('Error - Acceso no permitido');
+  if (!req.session.user) {
+    res.render('error');
   } else {
     next();
   }
@@ -155,9 +155,13 @@ app.post('/bankAccount/add', bank_accounts.add);
 app.get('/bankAccount/view', bank_accounts.view);
 
 //Franchises
-app.get('/intranet/franchises/admin', franchises.admin);
-app.get('/intranet/franchises/create', franchises.create);
-app.post('/intranet/franchises/add', franchises.add);
+app.get('/intranet/franchises/admin', checkAuth, franchises.admin);
+app.get('/intranet/franchises/create', checkAuth, franchises.create);
+app.post('/intranet/franchises/add', checkAuth, franchises.add);
+app.get('/intranet/franchises/list', checkAuth, franchises.list);
+app.get('/intranet/franchises/view/:id', checkAuth, franchises.view);
+app.get('/intranet/franchises/edit/:id', checkAuth, franchises.edit);
+app.post('/intranet/franchises/update', checkAuth, franchises.update);
 
 //Images
 app.get('/images/upload', images.upload);
@@ -200,7 +204,7 @@ app.get('/countries/update', countries.create);
 
 //Conversations
 app.get('/conversations', conversations.conversation);
-
+app.get('/conversations_thin', conversations.conversation_thin);
 
 server.listen(3000, function(){
   console.log("Express server listening on port 3000".cyan.bold);

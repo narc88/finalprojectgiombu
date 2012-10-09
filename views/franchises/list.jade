@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+	.span8
+		h2 Franchises List
+		table.table
+			-each franchise in franchises
+				tr
+					td
+						h5 #{franchise.name}
+					td
+						h5 #{franchise.slug}
+					td
+						p #{franchise.user_count}
+					td
+						p #{franchise.subscriber_count}
+					td.span1
+						a(href="/intranet/franchises/view/#{franchise._id}").btn.pull-right Ver
+					td.span1
+						a(href="/intranet/franchises/edit/#{franchise._id}", rel="tooltip", title="Editar").btn.btn-primary.pull-right 
+							i.icon-pencil

@@ -36,15 +36,18 @@ exports.add = function (req, res, next) {
 exports.view = function(req, res, next){
 
 	console.log('franchises - view'.cyan.bold);
-	console.log('franchises - view - Busco el franchise ( ' + req.body.franchise_id +' )');
+	console.log('franchises - view - Busco el franchise ( ' + req.params.id +' )');
 
-	FranchiseModel.findById( req.body.franchise_id , function(err, franchise){
+	FranchiseModel.findById( req.params.id , function(err, franchise){
 		if(!err){
 			if(franchise){
-				console.log('franchises - view - Se encontro el franchise ( ' + req.body.franchise_id +' )');
-				res.render('franchises/view', {title: 'franchise', franchise : franchise});
+				console.log('franchises - view - Se encontro el franchise ( ' + req.params.id +' )');
+				res.render('franchises/view', {	title: 'franchise',
+												franchise : franchise,
+												user : req.session.user
+											});
 			}else{
-				console.log('franchises - view - No se encontro el franchise ( ' + req.body.franchise_id +' )');
+				console.log('franchises - view - No se encontro el franchise ( ' + req.params.id +' )');
 			}
 		}else{
 			console.log('franchises - view - '.red.bold + err);
@@ -62,7 +65,10 @@ exports.list = function(req, res, next){
 		if(!err){
 			if(franchises.length){
 				console.log('franchise - list - Se envian los franchises encontrados');
-				res.render('franchises/view', {title: 'Lista de franchises', franchises : franchises});
+				res.render('franchises/list', {	title: 'Lista de franchises',
+												franchises : franchises,
+												user: req.session.user
+											});
 			}else{
 				console.log('franchise - list - No hay franchises');
 			}
@@ -90,6 +96,7 @@ exports.update = function(req, res, next){
 
 				edited_franchise = req.param('franchise');
 
+				console.log(edited_franchise);
 
 				for (field in edited_franchise){
 					if(edited_franchise[field] != ''){
@@ -104,8 +111,12 @@ exports.update = function(req, res, next){
 					if (!err) {
 						console.log('franchises - update - Guardo una nueva franchise');
 						console.log('franchises - update - Redirecciono a franchises/create');
+						console.log(franchise);
 						//res.render('franchises/create', {title: 'Cargar Franquicia'});
-						res.render('franchises/view', {title: 'Franchises View', franchises : [franchise]});
+						res.render('franchises/view', {	title: 'Franchises View',
+														franchise : franchise,
+														user : req.session.user
+													});
 					} else {
 						console.log('franchises - update - '.red.bold + err);
 						console.log('franchises - update - Redirecciono a /');
@@ -130,14 +141,17 @@ exports.update = function(req, res, next){
 
 exports.edit = function(req, res, next){
 
-	FranchiseModel.findById( req.params.franchise_id, function(err, franchise){
+	FranchiseModel.findById( req.params.id, function(err, franchise){
 		
 		if(!err){
 			if(franchise){
 				console.log('franchise - edit - franchise encontrado, redirecciono a franchises/edit');
-				res.render('franchises/edit', {title: 'franchise Edit', franchise : franchise});
+				res.render('franchises/edit', {	title: 'franchise Edit',
+												franchise : franchise,
+												user : req.session.user
+											});
 			}else{
-				console.log('franchise - edit - No se encontro el franchise ( ' + req.params.franchise_id +' )');
+				console.log('franchise - edit - No se encontro el franchise ( ' + req.params.id +' )');
 			}
 		}else{
 			

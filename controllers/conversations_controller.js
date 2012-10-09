@@ -8,7 +8,13 @@ exports.conversation = function(req, res, next){
 	res.render('conversations/conversation', { 	title: ' - Chat de Giombu',
 							user_id : req.session.user._id,
 							user: req.session.user});
+}
 
+exports.conversation_thin = function(req, res, next){
+	console.log('conversations - conversation_thin');
+	res.render('conversations/conversation_thin', { 	title: ' - Chat de Giombu',
+							user_id : req.session.user._id,
+							user: req.session.user});
 }
 
 
@@ -402,14 +408,7 @@ exports.auto_login = function(io, socket, data) {
 			console.log('auto_login - Encontro el usuario');
 			//console.log(user);
 
-			//Los contactos que le paso al user que se loguea deben ser sus propios promotores
 			var datos = {};
-			UserModel.findOne({ user_id : user.parent}, function(err, parent){
-				if(parent)
-				{
-					datos.parent = parent;
-				}
-			});
 			
 			UserModel.find({}, function(err, users){
 				datos.contacts = users;

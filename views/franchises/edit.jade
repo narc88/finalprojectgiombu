@@ -7,23 +7,24 @@ block content
 		.span6
 			h3 Editar Franquicia
 			br
-			form(method='post', action='/franchises/add').form-horizontal
+			form(method='post', action='/intranet/franchises/update').form-horizontal
+				input(name='franchise_id', type='hidden', value='#{franchise._id}')
 				.control-group
 					label.control-label Name
-					input(name='franchise[name]', type='text', val="#{franchise.name}").control
+					input(name='franchise[name]', type='text', value="#{franchise.name}").control
 					br
 				.control-group
 					label.control-label slug
-					input(name='franchise[slug]', type='text', val="#{franchise.slug}").control
+					input(name='franchise[slug]', type='text', value="#{franchise.slug}").control
 					br
 				.control-group
 					label.control-label is_default
 					select(name='franchise[is_default]', type='text').control
-						option(val=0) no  
-						option(val=1) si
+						option(	value='0', selected=franchise.is_default) no  
+						option(	value='1', selected=franchise.is_default) si  
 					br
 				.control-group
 					label.control-label timezone
-					input(name='franchise[timezone]', type='text', val="#{franchise.timezone}").control
+					input(name='franchise[timezone]', type='text', value="#{franchise.timezone}").control
 				.control-group
 					input(type='submit', value='Save').control.btn
