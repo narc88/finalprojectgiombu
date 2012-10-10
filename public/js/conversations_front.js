@@ -71,7 +71,7 @@ $(function() {
 				row = $('<div class="message_row"></div>');
 				
 				//Busco el nombre del contacto
-				if(user.id == data.sender){
+				if(user._id == data.sender){
 					nickname = user.username;
 				}else{
 					user.contacts.forEach(function(contact){
