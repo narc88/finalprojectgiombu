@@ -25,19 +25,19 @@ var DealSchema = exports.DealSchema = new Schema({
 	promoter_percentage	: { type: Number, required: true, min:0, max:99 },
 	status				: { type: String },
 	shipping_cost		: { type: Number, required: true, min:0},
-	
 	store   			: { type: Schema.ObjectId, ref: 'Store' },
 	seller   			: { type: Schema.ObjectId, ref: 'Seller' },
 	franchisor   		: { type: Schema.ObjectId, ref: 'Franchisor' },
 	franchise  			: [{ type: Schema.ObjectId, ref: 'Franchise' }],
 	currency	   		: { type: Schema.ObjectId, ref: 'Currency' },
-	
+	//Peso para ordenarlas
+	weight				: { type: Number, default: 10 },
 	//Compras realizadas
 	sales				: [SaleSchema],
 	//Imagenes
 	images 				: [ImageSchema],
 	created    		    : { type: Date, default: Date.now },
-	modifiend        	: { type: Date, default: Date.now }
+	modified        	: { type: Date, default: Date.now }
 })
 
 exports.DealModel = mongoose.model('Deal', exports.DealSchema);

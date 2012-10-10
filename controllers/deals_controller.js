@@ -68,7 +68,7 @@ exports.add = function (req, res, next) {
 }
 //Muestra deals activos.
 exports.home = function(req, res, next){
-	DealModel.find({  deal: req.params.id })
+	DealModel.find({  deal: req.params.id }).sort('weight',-1).sort('created',-1)
 		.exec(function (err, deals) {
 			  if (err) return handleError(err);
 			  console.log(err);
