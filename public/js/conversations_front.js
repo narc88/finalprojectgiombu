@@ -153,11 +153,11 @@ $(function() {
 				row = $('<div class="message_row"></div>'),
 				nickname = '';
 				//Busco el nombre del contacto
-				if(user.id == msg.sender){
+				if(user._id == msg.sender){
 					nickname = user.username;
 				}else{
 					user.contacts.forEach(function(contact){
-						if(contact.id == msg.sender){
+						if(contact._id == msg.sender){
 							nickname = contact.username;
 						}
 					});
