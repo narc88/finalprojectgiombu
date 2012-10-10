@@ -10,7 +10,7 @@ script(rel='text/javascript', src='/js/bootstrap.min.js')
 script
 	$(document).ready(function(){
 		$('#conversations_container').hide();
-		$('#contacts_container').hide();
+		$('#chat_container').hide();
 		$('.chats_btn').click(function(){
 			$('#conversations_container').hide();
 			$('#contacts_container').hide();
@@ -37,7 +37,7 @@ div( class='contenedor' , id='#{user_id}' )
 	h3#close_conversations.btn.btn-inverse X
 	#menu
 		.btn-group
-			a(href='#').btn.chats_btn.btn-inverse Chats
+			//a(href='#').btn.chats_btn.btn-inverse Chats
 			a(href='#').btn.conversations_btn.btn-inverse Conversaciones 
 			a(href='#').btn.contacts_btn.btn-inverse Contactos
 	.contenedor_chat
