@@ -175,6 +175,6 @@ message_row{
 	width: 100%;
 	height: 50px;
 }
-.close_conversations{
+#close_conversations{
 	float: right;
 }
