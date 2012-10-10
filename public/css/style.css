@@ -154,9 +154,9 @@ a {
 	height: 470px;
 	width: 300px;
 	z-index: 9000;
-	margin-top: -50px;
+	margin-top: 0px;
 	margin-left: -50px;
-
+	left: -300px;
 
 }
 
@@ -171,7 +171,7 @@ a {
 #close_conversations{
 	position: absolute;
 	z-index: 9001;
-	margin-top: -45px;
+	margin-top: -5px;
 	margin-left: -405px;
 
 }

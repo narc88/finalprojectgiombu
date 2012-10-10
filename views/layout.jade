@@ -23,20 +23,24 @@ html
 
 		script
 			$(document).ready(function(){
-				$('#conversations_div').hide();
+				//$('#conversations_div').hide();
 				$('#close_conversations').hide();
 				$('#open_conversations').hide();
 				$('#open_conversations').show();
 				$('#close_conversations').click(function(){
-						$('#conversations_div').hide();
-						$('#open_conversations').show();
+						//$('#conversations_div').hide();
 						$('#close_conversations').hide();
+						$('#conversations_div').animate({left: -300}, function(){
+							$('#open_conversations').show();							
+							});
 					});
 				$('#open_conversations').click(function(){
 						$('#conversations_div').load('/conversations_thin', function(){
 								$('#open_conversations').hide();
-								$('#conversations_div').show();
-								$('#close_conversations').show();
+								$('#conversations_div').animate({left: 50}, function(){
+										$('#close_conversations').show();
+									});
+								
 							});
 					});
 
