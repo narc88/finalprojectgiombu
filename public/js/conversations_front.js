@@ -291,12 +291,14 @@ $(function() {
 		remove_conversation: function(event){
 			
 			var id = event.target.id;
+			/*
 			if( chat.current_conversation == id){
 				socket.emit('change_conversation', {
 					conversation_id	: 0,
 					user_id			: user._id
 				});
 			}
+			*/
 			socket.emit('quit_from_conversation', {
 				user_id 			: user._id,
 				conversation_id		: id

@@ -33,7 +33,7 @@ html
 					$('#close_conversations').click(function(){
 					//$('#conversations_div').hide();
 					$('#close_conversations').hide();
-					$('#conversations_div').animate({left: -300}, function(){
+					$('#conversations_div').animate({right: -300}, function(){
 							$('#open_conversations').show();							
 						});
 					});
@@ -41,7 +41,7 @@ html
 				$('#open_conversations').click(function(){
 					$('#open_conversations').hide();
 					$('#close_conversations').show();
-					$('#conversations_div').animate({left: 50}, function(){
+					$('#conversations_div').animate({right: 15}, function(){
 							
 					});
 				});
