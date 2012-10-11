@@ -6,14 +6,15 @@ body{
 	width: 100%;
 	height: 100%;
 	color: #333333;  
-	font-family: Century Gothic, sans-serif;  
 	margin-top: -10px;
 	padding-right: 10px;
-	background-image: url("http://www.giombu.com.mx/theme/FrontEndV3/img/bg_layout.jpg");
+	//background-image: url("http://www.giombu.com.mx/theme/FrontEndV3/img/bg_layout.jpg");
 	background-repeat: no-repeat;
-	background-color: white;
+	background-color: #484848 ;
 	border-right:3px solid gray;
 	border-bottom:3px solid gray;
+	border-top:3px solid gray;
+	color: white;
 }
 .add_contact_to_conversation img{
 	float:right;
@@ -22,14 +23,15 @@ body{
 	min-width: 160px;
 	float: left;
 	width: 100%;
-	height: 400px;
-	background-color: transparent;
+	/*width: 290px;*/
+	height: 320px;
+	background-color: white;
 	color: black;
 	margin:5px;
 	border:1px solid gray;
 	overflow-y:scroll;
-	overflow-x:none;
-
+	overflow-x:hidden;
+	text-align: left;
 }
 .current_conversation{
 	height: 36px;
@@ -42,15 +44,6 @@ body{
 	color: #505050;
 	font-weight:bold;
 }
-.input_message{
-	float: left;
-	width: 100%;
-	margin-top: 7px;
-	height: 90px;
-	background-color: white;
-	color: black;
-
-}
 #chat_window{
 	float: left;
 	width: 100%;
@@ -62,16 +55,18 @@ message_row{
 	margin: 0px;
 }
 .message{
-	height: 100px;
+	font-size: 13px;
+	color: black;
+	height: 40px;
 	width: 288px;
 	resize:none;
 	border:1px solid gray;
 	margin:5px;
 }
 .log{
-	width: 100%;
 	overflow-y: scroll;
 	padding-top: 5px;
+	height: 255px;
 }
 .contact_element{
 	width: 100%;
@@ -94,7 +89,7 @@ message_row{
 }
 .remove{
 	float: right;
-	margin-right: 4px;
+	margin-right: 10px;
 }
 .remove:hover{
 	cursor: pointer; cursor: hand
@@ -121,9 +116,10 @@ message_row{
 	text-align:center;
 }
 .conv_element,.contact_element {
-	width: 90%;
+	width: 100%;
 	background-color: transparent ;
 	margin:5px;
+	margin-right: 20px;
 	display:inline-block;
 	color: #505050;
 	font-family:arial;
@@ -133,24 +129,27 @@ message_row{
 }
 
 .message_line, .message_nickname {
-	font-size:13px;
-	color: #707070;
+	font-size: 13px;
+	/*color: #707070;*/
+	color: black;
 	min-height: 13px;
 	background-color: transparent;
-	padding:5px;
+	/*padding:2px;*/
 	margin-right: 5px;
 	margin-left: 5px;
 }
-
+.message_line{
+	margin-left: 15px;
+}
 
 .message_nickname {
-	border-top: 1px solid gray;
+	border-top: 1px solid #E8E8E8;
 	font-weight:bold;
 	margin-top:5px;
 }
 
 .conv_element:hover,.contact_element:hover {
-	background-color: #B0FEB4;
+	background-color: #E8E8E8;
 	cursor: pointer; cursor: hand;
 }
 .contact_add_conversation{
@@ -182,7 +181,10 @@ message_row{
 	float: left;
 	width: 100%;
 	height: 50px;
+	color: gray;
 }
-.close_conversations{
+#close_conversations{
 	float: right;
+	margin-top: 5px;
+
 }

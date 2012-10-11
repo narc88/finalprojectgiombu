@@ -10,7 +10,7 @@ script(rel='text/javascript', src='/js/bootstrap.min.js')
 script
 	$(document).ready(function(){
 		$('#conversations_container').hide();
-		$('#contacts_container').hide();
+		$('#chat_container').hide();
 		$('.chats_btn').click(function(){
 			$('#conversations_container').hide();
 			$('#contacts_container').hide();
@@ -29,19 +29,18 @@ script
 
 		});
 
-
-
 div( class='contenedor' , id='#{user_id}' )
 	.user_profile
 		h4 #{user.username}
+	h3#close_conversations.btn.btn-inverse X
 	#menu
 		.btn-group
-			a(href='#').btn.chats_btn Chats
-			a(href='#').btn.conversations_btn Conversaciones 
-			a(href='#').btn.contacts_btn Contactos
+			a(href='#').btn.conversations_btn.btn-inverse Conversaciones 
+			a(href='#').btn.contacts_btn.btn-inverse Contactos
 	.contenedor_chat
 		#chat_container
-			p.header Conversacion actual
+			#conversation_title
+				p.header Conversacion actual
 			.columna.log
 			textarea(type='text', class='message', placeholder='Escribe un mensaje y presiona Enter')
 		#conversations_container
