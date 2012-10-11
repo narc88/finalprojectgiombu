@@ -27,91 +27,91 @@ block content
 				input(name='deal_id', type='hidden', value='#{deal._id}')
 				.control-group
 					label.control-label Titulo			
-					input(name='deal[title]', type='text', value='#{deal.title}').control 
-				br
+					input(name='deal[title]', type='text', value='#{deal.title}',class="required").control 
+				hr
 				.control-group
 					label.control-label Tagline			
-					input(name='deal[tagline]', type='text', value='#{deal.tagline}').control 
-				br
+					input(name='deal[tagline]', type='text', value='#{deal.tagline}',class="required").control 
+				hr
 				.control-group
 					label.control-label Slug			
-					input(name='deal[slug]', type='text', value='#{deal.slug}').control 
-				br
+					input(name='deal[slug]', type='text', value='#{deal.slug}',class="required").control 
+				hr
 				.control-group
 					label.control-label Características			
-					input(name='deal[characteristics]', type='text', value='#{deal.characteristics}').control 
-				br
+					input(name='deal[characteristics]', type='text', value='#{deal.characteristics}',class="required",rows="13", cols="70").control 
+				hr
 				.control-group
 					label.control-label Condiciones			
-					input(name='deal[conditions]', type='text', value='#{deal.conditions}').control 
-				br
+					input(name='deal[conditions]', type='text', value='#{deal.conditions}',class="required",rows="13", cols="70").control 
+				hr
 				.control-group
 					label.control-label Precio			
-					input(name='deal[price]', type='text', value='#{deal.price}').control 
-				br
+					input(name='deal[price]', type='text', value='#{deal.price}',class="required number" ,minlength="1",minlength="6").control 
+				hr
 				.control-group
 					label.control-label Descuento			
-					input(name='deal[discount]', type='text', value='#{deal.discount}').control
-				br
+					input(name='deal[discount]', type='text', value='#{deal.discount}',class="required number" ,minlength="1",minlength="2").control
+				hr
 				.control-group
 					label.control-label Precio especial			
-					input(name='deal[special_price]', type='text', value='#{deal.special_price}').control 
-				br
+					input(name='deal[special_price]', type='text', value='#{deal.special_price}',class="required number" ,minlength="1",minlength="6").control 
+				hr
 				.control-group
 					label.control-label Fecha de comienzo
-					input(name='deal[start_date]', type='date', value='#{deal.start_date_string}', placeholder="dd/mm/yyyy").control#start_date
-				br
+					input(name='deal[start_date]', type='date', value='#{deal.start_date_string}', placeholder="dd/mm/yyyy" ,class="required date").control#start_date
+				hr
 				.control-group
 					label.control-label Hora de comienzo
-					input(name='deal[start_time]', type='time', value='#{deal.start_time}').control#start_time
-				br
+					input(name='deal[start_time]', type='time', value='#{deal.start_time}' ,class="required").control#start_time
+				hr
 				.control-group
 					label.control-label Fecha de fin
-					input(name='deal[end_date]', type='date', value='#{deal.end_date_string}', placeholder="dd/mm/yyyy").control#end_date
-				br
+					input(name='deal[end_date]', type='date', value='#{deal.end_date_string}', placeholder="dd/mm/yyyy" ,class="required date").control#end_date
+				hr
 				.control-group
 					label.control-label Hora de fin
-					input(name='deal[end_time]', type='time', value='#{deal.end_time}').control#end_time
-				br
+					input(name='deal[end_time]', type='time', value='#{deal.end_time}' ,class="required").control#end_time
+				hr
 				.control-group
 					label.control-label Inicio fecha de canje
-					input(name='deal[start_redeem]', type='date', value='#{deal.start_redeem_string}', placeholder="dd/mm/yyyy").control#start_redeem
-				br
+					input(name='deal[start_redeem]', type='date', value='#{deal.start_redeem_string}', placeholder="dd/mm/yyyy" ,class="required date").control#start_redeem
+				hr
 				.control-group
 					label.control-label Fin fecha de canje
-					input(name='deal[end_redeem]', type='date', value='#{deal.end_redeem_string}', placeholder="dd/mm/yyyy").control#end_redeem
-				br
+					input(name='deal[end_redeem]', type='date', value='#{deal.end_redeem_string}', placeholder="dd/mm/yyyy" ,class="required date").control#end_redeem
+				hr
 				.control-group
 					label.control-label Maximo de cupones			
-					input(name='deal[max_coupons]', type='text', value='#{deal.max_coupons}').control 
-				br
+					input(name='deal[max_coupons]', type='text', value='#{deal.max_coupons}' ,class="required number" ,minlength="1",minlength="3").control 
+				hr
 				.control-group
 					label.control-label Maximo de cupones por usuario			
-					input(name='deal[max_coupons_by_user]', type='text', value='#{deal.max_coupons_by_user}').control 
-				br
+					input(name='deal[max_coupons_by_user]', type='text', value='#{deal.max_coupons_by_user}' ,class="required number" ,minlength="1",minlength="2").control 
+				hr
 				.control-group
 					label.control-label Porcentaje para el vendedor			
-					input(name='deal[seller_percentage]', type='text', value='#{deal.seller_percentage}').control
-				br
+					input(name='deal[seller_percentage]', type='text', value='#{deal.seller_percentage}',class="required number" ,minlength="1",minlength="2").control
+				hr
 				.control-group
 					label.control-label Porcentaje giombu			
-					input(name='deal[giombu_percentage]', type='text', value='#{deal.giombu_percentage}').control 
-				br
+					input(name='deal[giombu_percentage]', type='text', value='#{deal.giombu_percentage}' ,class="required number" ,minlength="1",minlength="2").control 
+				hr
 				.control-group
 					label.control-label  Porcentaje para promotor			
-					input(name='deal[promoter_percentage]', type='text', value='#{deal.promoter_percentage}').control 
-				br
+					input(name='deal[promoter_percentage]', type='text', value='#{deal.promoter_percentage}'class="required number" ,minlength="1",minlength="2").control 
+				hr
 				.control-group
 					label.control-label Estado			
 					select(name='deal[status]').control
-						option(value="draft") draft
-						option(value="active") active
-						option(value="closed") closed
-					br
+						option(value="draft") Borrador
+						option(value="active") Activa
+						option(value="closed") Cerrada
+					hr
 				.control-group
 					label.control-label Costo de envío			
-					input(name='deal[shipping_cost]', type='text', value='#{deal.shipping_cost}').control 
-				br
+					input(name='deal[shipping_cost]', type='text', value='#{deal.shipping_cost}',class="required number",minlength="1", maxlength="5").control 
+				hr
 				.control-group
 					input(name='submit', type='submit', value="Guardar").btn.control
 					br

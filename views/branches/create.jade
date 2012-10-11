@@ -8,32 +8,32 @@ block content
 			form(method='post', action='/branches/add')
 				label name
 				br
-				input(name='name', type='text') 
+				input(name='name', type='text',class="required") 
 				br
-				label email
+				label Dirección
 				br
-				input(name='address', type='text') 
+				input(name='address', type='text' ,class="required") 
 				br
-				label zip
+				label Codigo Postal
 				br
-				input(name='zip', type='text')
-				label phone
+				input(name='zip', type='text' ,class="required")
+				label Teléfono
 				br
-				input(name='phone', type='text') 
-				label email
+				input(name='phone', type='text' ,class="required") 
+				label Email
 				br
-				input(name='email', type='text') 
-				label website
+				input(name='email', type='text' ,class="required") 
+				label Sitio Web
 				br
-				input(name='website', type='text') 
-				label fanpage
+				input(name='website', type='text' ,class="required url") 
+				label Fan Page (Facebook)
 				br
-				input(name='fanpage', type='text') 
-				label twitter
+				input(name='fanpage', type='text' ,class="required") 
+				label Titter
 				br
-				input(name='twitter', type='text') 
-				label contact
+				input(name='twitter', type='text' ,class="required") 
+				label Contact
 				br
-				input(name='contact', type='text') 
+				input(name='contact', type='text' ,class="required") 
 				br
 				input(type='submit', value='Save')

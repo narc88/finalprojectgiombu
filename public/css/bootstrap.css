@@ -893,6 +893,13 @@ legend small {
   color: #999999;
 }
 
+label.error{
+  color:#B40404;
+  font-weight: bold;
+  padding-left: 42%;
+  text-align: left;
+}
+
 label,
 input,
 button,

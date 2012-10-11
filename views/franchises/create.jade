@@ -9,21 +9,21 @@ block content
 			br
 			form(method='post', action='/franchises/add').form-horizontal
 				.control-group
-					label.control-label Name
+					label.control-label Nombre
 					input(name='franchise[name]', type='text').control
 					br
 				.control-group
-					label.control-label slug
+					label.control-label Slug
 					input(name='franchise[slug]', type='text').control
 					br
 				.control-group
-					label.control-label is_default
+					label.control-label Default
 					select(name='franchise[is_default]', type='text').control
-						option(val=0) no  
-						option(val=1) si
+						option(val=0) No  
+						option(val=1) Si
 					br
 				.control-group
-					label.control-label timezone
+					label.control-label Zona Horaria
 					input(name='franchise[timezone]', type='text').control
 				.control-group
 					input(type='submit', value='Save').control.btn

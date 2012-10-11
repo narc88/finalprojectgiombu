@@ -177,3 +177,10 @@ a {
 	margin-left: 220px;
 
 }
+
+//VALIDATION ERROR
+
+.control-label{
+	color:#B40404;
+	font-weight: bold;
+}
