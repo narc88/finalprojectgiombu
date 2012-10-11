@@ -10,21 +10,21 @@ block content
 			form(method='post', action='/intranet/franchises/update').form-horizontal
 				input(name='franchise_id', type='hidden', value='#{franchise._id}')
 				.control-group
-					label.control-label Name
-					input(name='franchise[name]', type='text', value="#{franchise.name}").control
+					label.control-label Nombre
+					input(name='franchise[name]', type='text', value="#{franchise.name}" ,class="required").control
 					br
 				.control-group
-					label.control-label slug
-					input(name='franchise[slug]', type='text', value="#{franchise.slug}").control
+					label.control-label Slug
+					input(name='franchise[slug]', type='text', value="#{franchise.slug}" ,class="required").control
 					br
 				.control-group
-					label.control-label is_default
-					select(name='franchise[is_default]', type='text').control
+					label.control-label Default
+					select(name='franchise[is_default]', type='text' ,class="required").control
 						option(	value='0', selected=franchise.is_default) no  
 						option(	value='1', selected=franchise.is_default) si  
 					br
 				.control-group
-					label.control-label timezone
-					input(name='franchise[timezone]', type='text', value="#{franchise.timezone}").control
+					label.control-label Zona Horaria
+					input(name='franchise[timezone]', type='text', value="#{franchise.timezone}" ,class="required").control
 				.control-group
 					input(type='submit', value='Save').control.btn

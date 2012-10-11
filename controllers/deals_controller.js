@@ -56,7 +56,7 @@ exports.add = function (req, res, next) {
 		if (!err) {
 			console.log('deals - add - Guardo una nueva deal');
 			console.log('deals - add - Redirecciono a deals/create');
-			res.render('deals/view', {title: 'Deals View', user: req.session.user, deals : [deal]});
+			res.render('deals/view', {title: 'Deals View', user: req.session.user, deal : [deal]});
 		} else {
 			console.log('deals - add - '.red.bold + err);
 			console.log('deals - add - Redirecciono a /');
@@ -68,7 +68,7 @@ exports.add = function (req, res, next) {
 }
 //Muestra deals activos.
 exports.home = function(req, res, next){
-	DealModel.find({  deal: req.params.id }).sort('weight',-1).sort('created',-1)
+	DealModel.find({  deal: req.params.id }).sort("-created")
 		.exec(function (err, deals) {
 			  if (err) return handleError(err);
 			  console.log(err);
