@@ -52,7 +52,7 @@ $(function() {
 						message			: message,
 						conversation_id	: chat.current_conversation,
 						username		: user.username,
-						user_id			: user.id //Revisar este id, si es el de mongo o el interno
+						user_id			: user._id //Revisar este id, si es el de mongo o el interno
 					});
 					$('.message').val('');
 				}else{
@@ -75,7 +75,7 @@ $(function() {
 					nickname = user.username;
 				}else{
 					user.contacts.forEach(function(contact){
-						if(contact.id == data.sender){
+						if(contact._id == data.sender){
 							nickname = contact.username;
 						}
 					});
@@ -102,7 +102,7 @@ $(function() {
 				$('.conv_element#'+data.conversation_id).css("color","orange");
 				socket.emit('unread', { 
 					conversation_id : data.conversation_id,
-					user_id 		: user.id
+					user_id 		: user._id
 				});
 			}
 		},
@@ -112,7 +112,7 @@ $(function() {
 			
 			socket.emit('change_conversation', {
 				conversation_id	: event.target.id,
-				user_id			: user.id
+				user_id			: user._id
 			});
 		},
 
@@ -133,20 +133,22 @@ $(function() {
 			chat.current_conversation = conversation._id;
 			chat.participants = conversation.participants;
 			//Quito el id del usuario logueado de la conversacion
-			var idx = conversation.participants.indexOf(user.id); // Find the index
+			var idx = conversation.participants.indexOf(user._id); // Find the index
 			if(idx!=-1) conversation.participants.splice(idx, 1); // Remove it if really found!
 			//Armo una lista con los nombres de los participantes y se la asigno como nombre a la conversacion
 			var name_conversation = '';
 			conversation.participants.forEach(function(participant_id){
 				//busco los nombres de los participantes
 				user.contacts.forEach(function(contact){
-					if(contact.id == participant_id){
+					if(contact._id == participant_id){
 						name_conversation = name_conversation + contact.username + "  ";
 					}
 				});
 			});
-
 			$('.current_conversation').text(name_conversation);
+			$('#conversation_title').empty()
+			$('#conversation_title').append("<p class='header'>" + name_conversation + "</p>");
+			
 			conversation.messages.forEach(function(msg){
 				var message = $('<div class="message_line"></div>'),
 				message_nickname = $('<div class="message_nickname"></div>'),
@@ -182,12 +184,14 @@ $(function() {
 			});
 
 			//alert('largo '+$(".log").prop("scrollHeight"));
-			log.scrollTop(log.prop("scrollHeight"));
+			
 			//log.scrollTop = log.scrollHeight;
 
 			$('#conversations_container').hide();
 			$('#contacts_container').hide();
 			$('#chat_container').show();
+
+			log.scrollTop(log.prop("scrollHeight"));
 
 		},
 
@@ -201,10 +205,8 @@ $(function() {
 			socket.emit('new_conversation', {
 				target_user_id	: target_user_id,
 				username		: user.username,
-				user_id			: user.id
+				user_id			: user._id
 			});
-
-
 			
 		},
 
@@ -219,7 +221,7 @@ $(function() {
 		//Solicito las conversaciones en las que el contacto participa
 		req_conversations: function(event){
 			socket.emit('req_conversations', {
-				user_id		: user.id
+				user_id		: user._id
 			});
 		},
 
@@ -232,7 +234,7 @@ $(function() {
 			
 			data.conversations.forEach(function(con){
 				//Quito el id del usuario logueado de la conversacion
-				var idx = con.participants.indexOf(user.id); // Find the index
+				var idx = con.participants.indexOf(user._id); // Find the index
 				if(idx!=-1) con.participants.splice(idx, 1); // Remove it if really found!
 				//Armo una lista con los nombres de los participantes y se la asigno como nombre a la conversacion
 				var name_conversation = '';
@@ -252,7 +254,7 @@ $(function() {
 				conversation_element.append($("<div class='conversation' id="+con._id+" >"+name_conversation+" </div>"));
 				
 				//Si el user no leyo los ultimos mensajes de la conversacion
-				if( con.unread.indexOf(user.id) != -1 ){
+				if( con.unread.indexOf(user._id) != -1 ){
 					conversation_element.css('color', 'orange');
 				}
 				$('#conversations').append(conversation_element);
@@ -262,7 +264,7 @@ $(function() {
 		//Desde el server le notifican que debe actualizar su lista de conversaciones
 		check_conversations: function(data){
 			//alert('check_conversations - ' + data.target_user_id);
-			if(user.id == data.target_user_id){
+			if(user._id == data.target_user_id){
 				
 				chat.req_conversations();
 			}
@@ -277,7 +279,7 @@ $(function() {
 				socket.emit('add_contact_to_conversation', {
 					target_user_id : target_user_id,
 					current_conversation : chat.current_conversation,
-					user_id : user.id,
+					user_id : user._id,
 					participants : chat.participants
 				});
 
@@ -292,11 +294,11 @@ $(function() {
 			if( chat.current_conversation == id){
 				socket.emit('change_conversation', {
 					conversation_id	: 0,
-					user_id			: user.id
+					user_id			: user._id
 				});
 			}
 			socket.emit('quit_from_conversation', {
-				user_id 			: user.id,
+				user_id 			: user._id,
 				conversation_id		: id
 			});
 
@@ -342,7 +344,7 @@ $(function() {
 
 			//Seteo el username y el id de usuario a UserView
 			this.username = data.user.username;
-			this.id = data.user._id;
+			this._id = data.user._id;
 
 			$('.logued_user').text('Usuario Logueado: ' + data.user.username);
 			$('.userLogIn').val('');
@@ -355,22 +357,23 @@ $(function() {
 			//CARGO LA LISTA DE CONTACTOS
 
 			data.contacts.forEach(function(contact){
-				var contact_button = $('<div class="contact_element" id='+contact._id+'></div>');
-				
-				
-				if(contact.facebook_id != 0){
-						//var contact_image_html = '<img id='+contact._id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
-						var contact_image_html = '<img id='+contact._id+'  src="http://a0.twimg.com/profile_images/1849565288/ahhh_reasonably_small.JPG" width="30" height="30" />';
-				}else{
-						//var contact_image_html = '<img id='+contact._id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
-						var contact_image_html = '<img id='+contact._id+'  src="http://a0.twimg.com/profile_images/1849565288/ahhh_reasonably_small.JPG" width="30" height="30" />';
+				if(contact._id != user._id){
+					var contact_button = $('<div class="contact_element" id='+contact._id+'></div>');
+					
+					if(contact.facebook_id != 0){
+							//var contact_image_html = '<img id='+contact._id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
+							var contact_image_html = '<img id='+contact._id+'  src="http://a0.twimg.com/profile_images/1849565288/ahhh_reasonably_small.JPG" width="30" height="30" />';
+					}else{
+							//var contact_image_html = '<img id='+contact._id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
+							var contact_image_html = '<img id='+contact._id+'  src="http://a0.twimg.com/profile_images/1849565288/ahhh_reasonably_small.JPG" width="30" height="30" />';
+					}
+					var contact_button_html = $("<div class='contact_button_html contact' id="+contact._id+" ></div>");	
+					contact_button_html.append($("<div class='contact_image' id="+contact._id+">"+contact_image_html+"</div>"));
+					contact_button_html.append($("<div class='contact_username' id="+contact._id+">"+contact.username+"</div>"));					
+					contact_button.append(contact_button_html);
+					//contact_button.append($("<div id="+contact._id+" class='add_contact_to_conversation'><img id="+contact._id+" src='http://cdn1.iconfinder.com/data/icons/hamburg/16/plus.png' alt='add contact to conversation' width='15' height='15'></div>"));
+					contacts_div.append(contact_button);
 				}
-				var contact_button_html = $("<div class='contact_button_html contact' id="+contact._id+" ></div>");	
-				contact_button_html.append($("<div class='contact_image' id="+contact._id+">"+contact_image_html+"</div>"));
-				contact_button_html.append($("<div class='contact_username' id="+contact._id+">"+contact.username+"</div>"));					
-				contact_button.append(contact_button_html);
-				contact_button.append($("<div id="+contact._id+" class='add_contact_to_conversation'><img id="+contact._id+" src='http://cdn1.iconfinder.com/data/icons/hamburg/16/plus.png' alt='add contact to conversation' width='15' height='15'></div>"));
-				contacts_div.append(contact_button);
 			});
 
 			//solicita las conversaciones del usuario
@@ -385,15 +388,18 @@ $(function() {
 
 		//Lista los usuarios conectados
 		list_logued_users: function(data){
+			alert('list_logued_users');
 			var contacts_div = $('#contacts');
 			var logued_user_id = $('.contenedor').attr('id');
 			contacts_div.empty();
 			this.contacts = data.contacts;
-			if(this.id != 0 ){
+			if(this._id != 0){
 				data.contacts.forEach(function(contact){
-					var contact_button = $('<button class="contact" id='+contact.id+'></button>');
-					contact_button.text(contact.username);
-					contacts_div.append(contact_button);
+					if(contact._id != this._id){
+						var contact_button = $('<button class="contact" id='+contact._id+'></button>');
+						contact_button.text(contact.username);
+						contacts_div.append(contact_button);
+					}
 				});
 			}
 		}

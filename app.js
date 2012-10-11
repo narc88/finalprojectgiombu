@@ -136,7 +136,7 @@ app.get('/users/login', users.login );
 app.post('/users/login_user' , users.login_user );
 app.get('/users/edit', users.edit );
 app.post('/users/update' , users.update );
-app.get('/users/dashboard', users.dashboard );
+app.get('/users/dashboard', checkAuth, users.dashboard );
 //Users invitation
 app.get('/users/accept_invitation/:id', users.accept_invitation );
 app.post('/users/save_guest/:id', users.save_guest );
