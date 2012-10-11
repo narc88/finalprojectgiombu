@@ -6,45 +6,45 @@ block content
 	.container
 		.form_container
 			form(method='post', action='/franchisors/add')
-				label name
-				br
-				input(name='franchisor[name]', type='text') 
-				br
-				label default_domain
-				br
-				input(name='franchisor[default_domain]', type='text') 
-				br
-				label secure_domain
-				br
-				input(name='franchisor[secure_domain]', type='text') 
-				br
-				label tlc
-				br
-				input(name='franchisor[tlc]', type='text') 
-				br
-				label email
-				br
-				input(name='franchisor[email]', type='text') 
-				br
-				label smtp
-				br
-				input(name='franchisor[smtp]', type='text') 
-				br
-				label default_timezone
-				br
-				input(name='franchisor[default_timezone]', type='text') 
-				br
-				label locale
-				br
-				input(name='franchisor[locale]', type='text') 
-				br
-				label language
-				br
+				label Nombre
+				hr
+				input(name='franchisor[name]', type='text' ,class="required") 
+				hr
+				label Dominio 
+				hr
+				input(name='franchisor[default_domain]', type='text' ,class="required") 
+				hr
+				label Dominio Seguro
+				hr
+				input(name='franchisor[secure_domain]', type='text' ,class="required") 
+				hr
+				label Tlc
+				hr
+				input(name='franchisor[tlc]', type='text' ,class="required") 
+				hr
+				label Email
+				hr
+				input(name='franchisor[email]', type='text' ,class="required") 
+				hr
+				label Smtp
+				hr
+				input(name='franchisor[smtp]', type='text' ,class="required") 
+				hr
+				label Zona Horaria
+				hr
+				input(name='franchisor[default_timezone]', type='text' ,class="required") 
+				hr
+				label Locale
+				hr
+				input(name='franchisor[locale]', type='text' ,class="locale") 
+				hr
+				label Idioma
+				hr
 				input(name='franchisor[language]', type='text') 
-				br
-				label fanpage
-				br
+				hr
+				label Fan Page
+				hr
 				input(name='franchisor[fanpage]', type='text')  
-				br
-				br
+				hr
+				hr
 				input(type='submit', value='Save')

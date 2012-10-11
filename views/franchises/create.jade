@@ -10,20 +10,20 @@ block content
 			form(method='post', action='/franchises/add').form-horizontal
 				.control-group
 					label.control-label Nombre
-					input(name='franchise[name]', type='text').control
-					br
+					input(name='franchise[name]', type='text' ,class="required").control
+					hr
 				.control-group
 					label.control-label Slug
-					input(name='franchise[slug]', type='text').control
-					br
+					input(name='franchise[slug]', type='text',class="required").control
+					hr
 				.control-group
 					label.control-label Default
-					select(name='franchise[is_default]', type='text').control
+					select(name='franchise[is_default]', type='text',class="required").control
 						option(val=0) No  
 						option(val=1) Si
-					br
+					hr
 				.control-group
 					label.control-label Zona Horaria
-					input(name='franchise[timezone]', type='text').control
+					input(name='franchise[timezone]', type='text',class="required").control
 				.control-group
 					input(type='submit', value='Save').control.btn

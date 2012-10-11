@@ -7,16 +7,16 @@ block content
 		div( class='container_form')
 			form(method='post', action='/users/save/')
 				label Nombre de Usuario
-					input(name='username', type='text') 
+					input(name='username', type='text' ,class="required") 
 					br
-				label Nombre completo
-					input(name='name', type='text') 
+				label Nombres
+					input(name='name', type='text' ,class="required") 
 					br
 				label Apellido(s)
-					input(name='lname', type='text') 
+					input(name='lname', type='text' ,class="required") 
 					br
 				label Email
-					input(name='email', type='text') 
+					input(name='email', type='text' ,class="required email") 
 					br
 				label Contraseña
 					input(name='password', type='password') 
@@ -42,13 +42,13 @@ block content
 					input(name='address', type='text') 
 					br
 				label Pais
-					input(name='country', type='select')
+					select(name='country', type='text' ,class="required")
 					br
 				label Provincia
-					input(name='state', type='select')
+					select(name='state', type='text' ,class="required")
 					br
 				label Ciudad
-					input(name='city', type='text')
+					select(name='city', type='text' ,class="required")
 					br
 				label Zip
 					input(name='zip', type='text') 

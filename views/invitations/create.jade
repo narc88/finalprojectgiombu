@@ -9,13 +9,13 @@ block content
 		.form_container
 			form(method='post', action='/invitations/add')
 				label Nombre
-				input(name='invitation[name]', type='text') 
+				input(name='invitation[name]', type='text' ,class="required") 
 				label Email
-				input(name='invitation[email]', type='text') 
+				input(name='invitation[email]', type='text' ,class="required") 
 				label Asunto
-				input(name='invitation[subject]', type='text') 
+				textarea(name='invitation[subject]', type='text' ,class="required") 
 				label Cuerpo
-				input(name='invitation[body]', type='text') 
+				textarea(name='invitation[body]', type='text' ,class="required") 
 				label Tipo de Invitacion
 				select(name='invitation[invitation_type]', type='text') 
 					option(value='usuario') Usuario

@@ -8,22 +8,22 @@ block content
 			form(method='post', action='/stores/add_store_branch')
 				label name
 				br
-				input(name='store_name', type='text') 
+				input(name='store_name', type='text' ,class="required") 
 				br
 				label email
 				br
-				input(name='store_email', type='text') 
+				input(name='store_email', type='text',class="required")  
 				br
 				label about
 				br
-				input(name='store_about', type='text')
+				input(name='store_about', type='text' ,class="required")
 				fieldset Informacion de la Sucursal
 					br
 					label name
-					input(name='name', type='text') 
+					input(name='name', type='text' ,class="required") 
 					br
 					label email
-					input(name='address', type='text') 
+					input(name='address', type='text' ,class="required") 
 					br
 					label zip
 					input(name='zip', type='text')
@@ -32,7 +32,7 @@ block content
 					input(name='phone', type='text') 
 					br
 					label email
-					input(name='email', type='text') 
+					input(name='email', type='text' ,class="required email") 
 					br
 					label website
 					input(name='website', type='text') 
