@@ -5,12 +5,18 @@ extends ../layout
 //Bloque de contenido.
 block content
 	.contenedor
-		h3 Cargar oferta
+		h3 Cargar Moneda Nueva
 		.span5
-			form(method='post',id="countries_create", action='/countries/add').form-horizontal
+			form(method='post',id="currencies_create", action='/currencies/add').form-horizontal
 				.control-group
-					label.control-label Titulo
-					input(name='country[name]', type='text' ,class="required").control
+					label.control-label Nombre
+					input(name='currency[name]', type='text' ,class="required",minlength="1",maxlength="40").control
+					hr
+					label.control-label Nombre ISO (3 Caractéres)
+					input(name='currency[name]', type='text' ,class="required" ,minlength="1",maxlength="4").control
+					hr
+					label.control-label Simbolo
+					input(name='currency[name]', type='text' ,class="required" ,minlength="1",maxlength="3").control
 				br
 				.control-group
 					input(name='submit', type='submit', value="Crear").btn.control

@@ -193,10 +193,11 @@ app.post('/questions/add/:id', questions.add);
 app.get('/questions/list/:id', questions.list);
 
 //Currencies
-app.post('/currencies/admin_answer/:id', currencies.add_admin_answer);
-app.post('/currencies/answer/:id', currencies.add_answer);
-app.post('/currencies/add/:id', currencies.add);
-app.get('/currencies/list/:id', currencies.list);
+app.get('/intranet/currencies/create', currencies.create);
+app.post('/currencies/add', currencies.add);
+app.get('/intranet/currencies/edit/:id', currencies.edit);
+app.post('/intranet/currencies/update/:id', currencies.update);
+app.get('/intranet/currencies/list', currencies.list);
 
 /*
 //countries

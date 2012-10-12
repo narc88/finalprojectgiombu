@@ -3,7 +3,7 @@ var colors = require('colors');
 
 
 exports.create = function (req, res, next) {
-  res.render('currencies/create', {title: 'Create Currency'})
+  res.render('currencies/create', {title: 'Create Currency', user:req.session.user})
 }
 
 exports.add = function (req, res, next) {
@@ -30,21 +30,18 @@ exports.add = function (req, res, next) {
 
 
 exports.list = function(req, res, next){
-
-	console.log('Currency - list'.cyan.bold);
-
 	CurrencyModel.find( {} , function(err, currencies){
 		if(!err){
 			if(currencies){
 				console.log('Currency - list - Se envian los currencies encontrados');
-				res.render('currencies/list', {title: 'Lista de Monedas', currencies : currencies});
+				res.render('currencies/list', {title: 'Lista de Monedas', user:req.session.user,currencies : currencies});
 			}else{
-				console.log('Currency - list - No hay currencies');
+				res.render('currencies/list', {title: 'Lista de Monedas', user:req.session.user});
+	
 			}
 		}else{
 			console.log('Currency - list - '.red.bold + err);
 		}
-
   });
 }
 
