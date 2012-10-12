@@ -5,15 +5,15 @@ extends ../layout
 block content
 	div( class='contenedor')
 		div( class='container_form')
-			form(method='post', action='/promoters/add/')
+			form(method='post', id="promoters_register" ,action='/promoters/add/')
 				label Titulo de tu página personal
-					input(name='page_title', type='text') 
+					input(name='page_title', type='text' ,class="required") 
 					br
 				label Cuerpo de la página personal
-					input(name='page_body', type='textarea') 
+					textarea(name='page_body', rows="13", cols="70",type='text' ,class="required") 
 					br
 				label Invitación a suscriptores
-					input(name='subscribers_invite', type='textarea') 
+					textarea(name='subscribers_invite',rows="13", cols="70", type='text' ,class="required") 
 					br
 				label Fuiste invitado por
 					input(name='parent_id', type='select') 

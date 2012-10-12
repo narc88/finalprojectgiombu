@@ -35,10 +35,6 @@ a {
 	float:right;
 }
 
-#center {
-	width:900px;
-}
-
 .feed {
 	border:1px solid black;
 	background-color: gray;
@@ -167,3 +163,4 @@ a {
 	right: 0px;
 
 }
+

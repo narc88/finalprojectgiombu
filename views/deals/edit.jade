@@ -20,10 +20,10 @@ block content
 				defaultTime: '#{deal.end_time}'
 			});
 		});
-	.container
+	.content
 		h3 Edicion de oferta
 		.span5
-			form(method='post', action='/deals/add').form-horizontal
+			form(method='post',id="deals_edit", action='/deals/add').form-horizontal
 				input(name='deal_id', type='hidden', value='#{deal._id}')
 				.control-group
 					label.control-label Titulo			
@@ -55,7 +55,7 @@ block content
 				hr
 				.control-group
 					label.control-label Precio especial			
-					input(name='deal[special_price]', type='text', value='#{deal.special_price}',class="required number" ,minlength="1",minlength="6").control 
+					input(name='deal[special_price]', type='text', value='#{deal.special_price}',class="required number" ,minlength="1",maxlength="6").control 
 				hr
 				.control-group
 					label.control-label Fecha de comienzo
@@ -83,23 +83,23 @@ block content
 				hr
 				.control-group
 					label.control-label Maximo de cupones			
-					input(name='deal[max_coupons]', type='text', value='#{deal.max_coupons}' ,class="required number" ,minlength="1",minlength="3").control 
+					input(name='deal[max_coupons]', type='text', value='#{deal.max_coupons}' ,class="required number" ,minlength="1",maxlength="3").control 
 				hr
 				.control-group
 					label.control-label Maximo de cupones por usuario			
-					input(name='deal[max_coupons_by_user]', type='text', value='#{deal.max_coupons_by_user}' ,class="required number" ,minlength="1",minlength="2").control 
+					input(name='deal[max_coupons_by_user]', type='text', value='#{deal.max_coupons_by_user}' ,class="required number" ,minlength="1",maxlength="2").control 
 				hr
 				.control-group
 					label.control-label Porcentaje para el vendedor			
-					input(name='deal[seller_percentage]', type='text', value='#{deal.seller_percentage}',class="required number" ,minlength="1",minlength="2").control
+					input(name='deal[seller_percentage]', type='text', value='#{deal.seller_percentage}',class="required number" ,minlength="1",maxlength="2").control
 				hr
 				.control-group
 					label.control-label Porcentaje giombu			
-					input(name='deal[giombu_percentage]', type='text', value='#{deal.giombu_percentage}' ,class="required number" ,minlength="1",minlength="2").control 
+					input(name='deal[giombu_percentage]', type='text', value='#{deal.giombu_percentage}' ,class="required number" ,minlength="1",maxlength="2").control 
 				hr
 				.control-group
 					label.control-label  Porcentaje para promotor			
-					input(name='deal[promoter_percentage]', type='text', value='#{deal.promoter_percentage}'class="required number" ,minlength="1",minlength="2").control 
+					input(name='deal[promoter_percentage]', type='text', value='#{deal.promoter_percentage}',class="required number" ,minlength="1",maxlength="2").control 
 				hr
 				.control-group
 					label.control-label Estado			

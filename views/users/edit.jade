@@ -5,18 +5,18 @@ extends ../layout
 block content
 	div( class='contenedor')
 		div( class='container_form')
-			form(method='post', action='/users/update/')
+			form(method='post',id="users_edit", action='/users/update/')
 				label Nombre de Usuario
-					input(name='username', type='text', value='#{user.username}') 
+					input(name='username', type='text', value='#{user.username}' ,class="required") 
 					br
 				label Nombre completo
-					input(name='name', type='text', value='#{user.name}') 
+					input(name='name', type='text', value='#{user.name}' ,class="required") 
 					br
 				label Apellido(s)
-					input(name='lname', type='text', value='#{user.lname}') 
+					input(name='lname', type='text', value='#{user.lname}' ,class="required") 
 					br
 				label Email
-					input(name='email', type='text', value='#{user.email}') 
+					input(name='email', type='text', value='#{user.email}'  ,class="required email") 
 					br
 				label Phone
 					input(name='phone', type='text', value='#{user.phone}')
@@ -28,13 +28,13 @@ block content
 					input(name='address', type='text', value='#{user.address}') 
 					br
 				label Pais
-					input(name='country', type='select', value='#{user.country}')
+					input(name='country', type='select', value='#{user.country}' ,class="required")
 					br
 				label Provincia
-					input(name='state', type='select', value='#{user.state}')
+					input(name='state', type='select', value='#{user.state}' ,class="required")
 					br
 				label Ciudad
-					input(name='city', type='text', value='#{user.city}')
+					input(name='city', type='text', value='#{user.city}' ,class="required")
 					br
 				label Zip
 					input(name='zip', type='text', value='#{user.zip}') 

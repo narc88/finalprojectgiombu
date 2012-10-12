@@ -5,21 +5,21 @@ extends ../layout
 block content
 	div( class='contenedor')
 		div( class='container_form')
-			form(method='post', action='/users/save_guest/#{invitation.user}')
+			form(method='post', id="users_accept_invitation", action='/users/save_guest/#{invitation.user}')
 				label Nombre de Usuario
-					input(name='username', type='text') 
-				label Nombre completo
-					input(name='name', type='text', value='#{invitation.name}') 
+					input(name='username', type='text' ,class="required") 
+				label Nombres
+					input(name='name', type='text', value='#{invitation.name}' ,class="required") 
 				label Apellido(s)
-					input(name='lname', type='text') 
+					input(name='lname', type='text' ,class="required") 
 				label Email
-					input(name='email', type='text', value='#{invitation.email}') 
+					input(name='email', type='text', value='#{invitation.email}' ,class="required email") 
 				label Contraseña
-					input(name='password', type='password') 
+					input(name='password', type='password' ,class="required") 
 				label Confirmar contraseña
-					input(name='confirm_password', type='password') 
+					input(name='confirm_password', type='password' ,class="required") 
 				label Fecha de nacimiento
-					input(name='birthday', type='date') 
+					input(name='birthday', type='date' ,class="required") 
 				label Genero
 					input(name='gender', type='select') 
 						option(value='m') Masculino
@@ -31,11 +31,11 @@ block content
 				label Direccion 
 					input(name='address', type='text') 
 				label Pais
-					input(name='country', type='select')
+					input(name='country', type='select' ,class="required")
 				label Provincia
-					input(name='state', type='select')
+					input(name='state', type='select' ,class="required")
 				label Ciudad
-					input(name='city', type='text')
+					input(name='city', type='text' ,class="required")
 				label Zip
-					input(name='zip', type='text') 
+					input(name='zip', type='text' ) 
 				input(name='submit', type='submit') 

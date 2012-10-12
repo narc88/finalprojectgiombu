@@ -42,6 +42,7 @@ var events = require('./controllers/events_controller');
 var news = require('./controllers/news_controller');
 var conversations = require('./controllers/conversations_controller');
 var questions = require('./controllers/questions_controller');
+var currencies = require('./controllers/currencies_controller');
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -190,6 +191,12 @@ app.post('/questions/admin_answer/:id_question', questions.add_admin_answer);
 app.post('/questions/answer/:id_question', questions.add_answer);
 app.post('/questions/add/:id', questions.add);
 app.get('/questions/list/:id', questions.list);
+
+//Currencies
+app.post('/currencies/admin_answer/:id', currencies.add_admin_answer);
+app.post('/currencies/answer/:id', currencies.add_answer);
+app.post('/currencies/add/:id', currencies.add);
+app.get('/currencies/list/:id', currencies.list);
 
 /*
 //countries
