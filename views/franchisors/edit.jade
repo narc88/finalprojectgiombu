@@ -5,7 +5,7 @@ extends ../layout
 block content
 	.container
 		.form_container.span5
-			form(method='post', action='/franchisors/update' ).form-horizontal
+			form(method='post', id="franchisors_edit" ,action='/franchisors/update' ).form-horizontal
 				input(name='franchisor_id', type='hidden', value='#{franchisor._id}',class="required") 
 				.control-group
 					label.control-label name

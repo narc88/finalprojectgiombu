@@ -5,7 +5,7 @@ extends ../layout
 block content
 	div( class='contenedor')
 		div( class='container_form')
-			form(method='post', action='/users/update/')
+			form(method='post',id="users_edit", action='/users/update/')
 				label Nombre de Usuario
 					input(name='username', type='text', value='#{user.username}' ,class="required") 
 					br

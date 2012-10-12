@@ -7,7 +7,7 @@ block content
 		-if(typeof messagge !== "undefined")
 			.alert.alert #{messagge}
 		.form_container
-			form(method='post', action='/invitations/add')
+			form(method='post',id="invitations_create" ,action='/invitations/add')
 				label Nombre
 				input(name='invitation[name]', type='text' ,class="required") 
 				label Email

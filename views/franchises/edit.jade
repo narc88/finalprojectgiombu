@@ -7,7 +7,7 @@ block content
 		.span6
 			h3 Editar Franquicia
 			br
-			form(method='post', action='/intranet/franchises/update').form-horizontal
+			form(method='post',id="franchises_edit", action='/intranet/franchises/update').form-horizontal
 				input(name='franchise_id', type='hidden', value='#{franchise._id}')
 				.control-group
 					label.control-label Nombre

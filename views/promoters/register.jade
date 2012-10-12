@@ -5,7 +5,7 @@ extends ../layout
 block content
 	div( class='contenedor')
 		div( class='container_form')
-			form(method='post', action='/promoters/add/')
+			form(method='post', id="promoters_register" ,action='/promoters/add/')
 				label Titulo de tu página personal
 					input(name='page_title', type='text' ,class="required") 
 					br

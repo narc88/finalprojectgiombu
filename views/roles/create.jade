@@ -5,7 +5,7 @@ extends ../layout
 block content
 	div( class='contenedor')
 		div( class='container_form')
-			form(method='post', action='/roles/add/')
+			form(method='post',id="roles_create", action='/roles/add/')
 				label Nombre
 					input(name='name', type='text',class="required") 
 					br

@@ -5,7 +5,7 @@ extends ../layout
 block content
 	div( class='contenedor')
 		div( class='container_form')
-			form(method='post', action='/users/save_guest/#{invitation.user}')
+			form(method='post', id="users_accept_invitation", action='/users/save_guest/#{invitation.user}')
 				label Nombre de Usuario
 					input(name='username', type='text' ,class="required") 
 				label Nombres
