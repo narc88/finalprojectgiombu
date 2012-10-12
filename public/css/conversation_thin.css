@@ -2,17 +2,17 @@ body{
 	background-image: url("http://www.giombu.com.mx/theme/FrontEndV3/img/bg_layout.jpg");
 	background-repeat: no-repeat;
 }
-.contenedor{
+.conversation_container{
 	width: 100%;
 	height: 100%;
 	color: #333333;  
 	margin-top: -10px;
 	padding-right: 10px;
-	//background-image: url("http://www.giombu.com.mx/theme/FrontEndV3/img/bg_layout.jpg");
+	/*background-image: url("http://www.giombu.com.mx/theme/FrontEndV3/img/bg_layout.jpg");*/
 	background-repeat: no-repeat;
 	background-color: #484848 ;
 	border:3px solid gray;
-
+	/*background-color: white;*/
 	color: white;
 }
 .add_contact_to_conversation img{
