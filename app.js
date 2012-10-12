@@ -193,9 +193,9 @@ app.post('/questions/add/:id', questions.add);
 app.get('/questions/list/:id', questions.list);
 
 //Currencies
-app.post('/currencies/admin_answer/:id', currencies.add_admin_answer);
-app.post('/currencies/answer/:id', currencies.add_answer);
+app.get('/currencies/create', currencies.create);
 app.post('/currencies/add/:id', currencies.add);
+app.post('/currencies/edit/:id', currencies.edit);
 app.get('/currencies/list/:id', currencies.list);
 
 /*
