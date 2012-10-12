@@ -194,7 +194,7 @@ app.get('/questions/list/:id', questions.list);
 
 //Currencies
 app.get('/intranet/currencies/create', currencies.create);
-app.post('/intranet/currencies/add', currencies.add);
+app.post('/currencies/add', currencies.add);
 app.get('/intranet/currencies/edit/:id', currencies.edit);
 app.post('/intranet/currencies/update/:id', currencies.update);
 app.get('/intranet/currencies/list', currencies.list);
