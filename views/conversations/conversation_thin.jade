@@ -9,27 +9,22 @@ link(rel='stylesheet', href='/css/bootstrap.css')
 script(rel='text/javascript', src='/js/bootstrap.min.js')
 script
 	$(document).ready(function(){
-		$('#conversations_container').hide();
+		$('#conversations_list').hide();
 		$('#chat_container').hide();
-		$('.chats_btn').click(function(){
-			$('#conversations_container').hide();
-			$('#contacts_container').hide();
-			$('#chat_container').show();
-		});
 		$('.conversations_btn').click(function(){
-			$('#conversations_container').show();
-			$('#contacts_container').hide();
+			$('#conversations_list').show();
+			$('#contacts_list').hide();
 			$('#chat_container').hide();
 		});
 		$('.contacts_btn').click(function(){
-			$('#conversations_container').hide();
-			$('#contacts_container').show();
+			$('#conversations_list').hide();
+			$('#contacts_list').show();
 			$('#chat_container').hide();
 		});
 
 		});
 
-div( class='contenedor' , id='#{user_id}' )
+div( class='conversation_container' , id='#{user_id}' )
 	.user_profile
 		h4 #{user.username}
 	h3#close_conversations.btn.btn-inverse X
@@ -43,10 +38,10 @@ div( class='contenedor' , id='#{user_id}' )
 				p.header Conversacion actual
 			.columna.log
 			textarea(type='text', class='message', placeholder='Escribe un mensaje y presiona Enter')
-		#conversations_container
+		#conversations_list
 			p.header Conversaciones
 			#conversations.columna
-		#contacts_container
+		#contacts_list
 			p.header Contactos
 			#contacts.columna
 			

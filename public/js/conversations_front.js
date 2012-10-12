@@ -3,7 +3,7 @@ $(function() {
 
 	//CHAT VIEW --------------------------------
 	var ChatView = Backbone.View.extend({
-		el: '.contenedor',
+		el: '.conversation_container',
 
 		scroll: 0,
 
@@ -12,7 +12,10 @@ $(function() {
 			'click .contact': 'new_conversation',
 			'click .conversation': 'change_conversation',
 			'click .add_contact_to_conversation' : 'add_contact_to_conversation',
-			'click .remove' : 'remove_conversation'
+			'click .remove' : 'remove_conversation',
+			'click .conversations_btn' : 'reset_conversation_id',
+			'click .contacts_btn' : 'reset_conversation_id',
+			'click #close_conversations' : 'reset_conversation_id'
 		},
 
 		initialize: function() {
@@ -35,7 +38,7 @@ $(function() {
 
 		auto_login: function(){
 			//alert('auto_login');
-			var user_id = $('.contenedor').attr('id');
+			var user_id = $('.conversation_container').attr('id');
 			socket.emit('auto_login', {
 				user_id: user_id
 			});
@@ -187,8 +190,8 @@ $(function() {
 			
 			//log.scrollTop = log.scrollHeight;
 
-			$('#conversations_container').hide();
-			$('#contacts_container').hide();
+			$('#conversations_list').hide();
+			$('#contacts_list').hide();
 			$('#chat_container').show();
 
 			log.scrollTop(log.prop("scrollHeight"));
@@ -304,6 +307,10 @@ $(function() {
 				conversation_id		: id
 			});
 
+		},
+
+		reset_conversation_id: function(){
+			chat.current_conversation = 0;
 		}
 
 
@@ -392,7 +399,7 @@ $(function() {
 		list_logued_users: function(data){
 			alert('list_logued_users');
 			var contacts_div = $('#contacts');
-			var logued_user_id = $('.contenedor').attr('id');
+			var logued_user_id = $('.conversation_container').attr('id');
 			contacts_div.empty();
 			this.contacts = data.contacts;
 			if(this._id != 0){
