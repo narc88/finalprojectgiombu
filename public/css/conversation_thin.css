@@ -67,18 +67,7 @@ message_row{
 	padding-top: 5px;
 	height: 255px;
 }
-.contact_element{
-	width: 100%;
-	margin:5px;
-	height: 40px;
-	float:left;
-}
-.conversation{
-	width: 80%;
-	min-height: 1em;
-	float: left;
-	min-height: 40px;
-}
+
 .conversation img{
 	float:right;
 	margin: 0px;
@@ -117,16 +106,24 @@ message_row{
 .conv_element,.contact_element {
 	width: 100%;
 	background-color: transparent ;
-	margin:5px;
-	margin-right: 20px;
+	margin:2px 20px 2px 5px;
 	display:inline-block;
 	color: #505050;
 	font-family:arial;
 	font-size:15px;
-	padding:5px;
 	text-decoration:none;
+	height: 30px;
+}
+.conversation{
+	height: 100%;
+	padding-left: 20px;
+	padding-top: 4px;
 }
 
+.contact_element img{
+	height: 30px;
+	width: 30px;
+}
 .message_line, .message_nickname {
 	font-size: 13px;
 	/*color: #707070;*/
@@ -156,13 +153,13 @@ message_row{
 	float:right;
 }
 .contact_image{
-	width:25%;
 	float:left;
-	height: 40px;
 }
 .contact_username{
-	width:60%;
-	height: 40px;
+	width: 200px;
+	height: 26px;
+	padding-left: 20px;
+	padding-top: 4px;
 	float:left;
 }
 #giombu_logo{
