@@ -32,25 +32,27 @@ html
 				$('#conversations_div').load('/conversations_thin',function(){
 					$('#close_conversations').click(function(){
 					//$('#conversations_div').hide();
-					$('#close_conversations').hide();
-					$('#conversations_div').animate({right: -300}, function(){
-							$('#open_conversations').show();							
+					//$('#close_conversations').hide();
+					$('#open_conversations').show();
+					$('#conversations_div').animate({right: -310}, function(){
+														
 						});
 					});
+					$('#open_conversations').click(function(){
+						$('#open_conversations').hide();
+						$('#close_conversations').show();
+						$('#conversations_div').animate({right: -70}, function(){
+							$('#btn_message').addClass('btn-inverse');
+							$('#btn_message').removeClass('btn-warning');
+								
+						});
 				});
-				$('#open_conversations').click(function(){
-					$('#open_conversations').hide();
-					$('#close_conversations').show();
-					$('#conversations_div').animate({right: 15}, function(){
-							
-					});
 				});
+
 			});
 		
 	body
 		#conversations_div
-		#open_conversations.btn.btn-inverse
-			i.icon-envelope.icon-white
 		#body_container
 			#header
 				#navbar

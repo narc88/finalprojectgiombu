@@ -107,6 +107,9 @@ $(function() {
 					conversation_id : data.conversation_id,
 					user_id 		: user._id
 				});
+				$('#btn_message').addClass('btn-warning');
+				$('#btn_message').removeClass('btn-inverse');
+				
 			}
 		},
 
@@ -312,7 +315,6 @@ $(function() {
 		reset_conversation_id: function(){
 			chat.current_conversation = 0;
 		}
-
 
 	});
 

@@ -148,15 +148,15 @@ a {
 #conversations_div{
 	position: fixed;
 	height: 460px;
-	width: 270px;
+	width: 360px;
 	z-index: 9000;
 	margin-top: 0px;
 	/*margin-left: -50px;*/
-	right: -300px;
+	right: -310px;
 
 }
 
-#open_conversations{
+#open_conversationsAAA{
 	position: fixed;
 	z-index: 9000;
 	margin-top: -10px;
