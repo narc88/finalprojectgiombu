@@ -107,6 +107,9 @@ $(function() {
 					conversation_id : data.conversation_id,
 					user_id 		: user._id
 				});
+				$('#btn_message').addClass('btn-warning');
+				$('#btn_message').removeClass('btn-inverse');
+				
 			}
 		},
 
@@ -313,7 +316,6 @@ $(function() {
 			chat.current_conversation = 0;
 		}
 
-
 	});
 
 	//USER VIEW --------------------------------
@@ -371,10 +373,10 @@ $(function() {
 					
 					if(contact.facebook_id != 0){
 							//var contact_image_html = '<img id='+contact._id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
-							var contact_image_html = '<img id='+contact._id+'  src="http://a0.twimg.com/profile_images/1849565288/ahhh_reasonably_small.JPG" width="30" height="30" />';
+							var contact_image_html = '<img id='+contact._id+'  src="http://a0.twimg.com/profile_images/1849565288/ahhh_reasonably_small.JPG" />';
 					}else{
 							//var contact_image_html = '<img id='+contact._id+'  src="https://c324764.ssl.cf1.rackcdn.com/'+contact.image+'" width="30" height="30"/>';
-							var contact_image_html = '<img id='+contact._id+'  src="http://a0.twimg.com/profile_images/1849565288/ahhh_reasonably_small.JPG" width="30" height="30" />';
+							var contact_image_html = '<img id='+contact._id+'  src="http://a0.twimg.com/profile_images/1849565288/ahhh_reasonably_small.JPG" />';
 					}
 					var contact_button_html = $("<div class='contact_button_html contact' id="+contact._id+" ></div>");	
 					contact_button_html.append($("<div class='contact_image' id="+contact._id+">"+contact_image_html+"</div>"));
