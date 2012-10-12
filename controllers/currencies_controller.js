@@ -10,16 +10,14 @@ exports.add = function (req, res, next) {
 
   console.log('Currency - add'.cyan.bold);
 
-	var Currency_new = new CurrencyModel(req.param('Currency'));
-
-	Currency_new.franchise_count = 0;
+	var Currency_new = new CurrencyModel(req.param('currency'));
 
 	// Validar los objetos embebidos
 	Currency_new.save(function (err) {
 	if (!err) {
 	    console.log('Currency - add - Save');
 		console.log('Currency - add - Redirecciono a currencies/view');
-		res.render('currencies/view', {title: 'Currencies View', currencies : [Currency]});
+		res.redirect('/intranet/currencies/create');
 	} else {
 	  console.log('Currency - add - '.red.bold + err);
 	  res.redirect('/');

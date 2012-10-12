@@ -1,5 +1,6 @@
 var DealModel = require('../models/deal').DealModel;
 var StoreModel = require('../models/store').StoreModel;
+var CurrencyModel = require('../models/currency').CurrencyModel;
 var colors = require('colors');
 var util = require('./util_controller');
 

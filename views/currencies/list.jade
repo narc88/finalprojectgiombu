@@ -2,12 +2,21 @@ extends ../layout
 
 block content
 	table.table
+		tr
+			td
+				h2 Sigla
+			td
+				h2 Name
+			td
+				h2 Simbolo
 		-each currency in currencies
 			tr
 				td
+					h4 #{currency.iso}
+				td
 					h4 #{currency.name}
 				td
-					p #{currency.default_domain}
+					h4 #{currency.symbol}
 				td.span1
 					a(href="/currencys/view/#{currency._id}").btn.pull-right Ver
 				td.span1

@@ -27,3 +27,19 @@ exports.add = function (req, res, next) {
     }
   });
 }
+
+
+exports.list = function(req, res, next){
+  InvitationModel.find( {user :req.session.user._id } , function(err, invitations){
+    if(!err){
+      if(invitations){
+        console.log('invitation - list - Se envian los invitations encontrados');
+        res.render('invitations/list', {title: 'Lista de Invitaciones', user:req.session.user,invitations : invitations});
+      }else{
+        res.render('invitations/list', {title: 'Lista de Invitaciones', user:req.session.user});
+      }
+    }else{
+      console.log('invitation - list - '.red.bold + err);
+    }
+  });
+}

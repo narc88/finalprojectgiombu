@@ -178,8 +178,9 @@ app.get('/franchisors/view/:franchisor_id', franchisors.view);
 app.get('/franchisors/edit/:franchisor_id', franchisors.edit);
 
 //Invitations
-app.get('/invitations/create', invitations.create);
-app.post('/invitations/add', invitations.add);
+app.get('/intranet/invitations/create', invitations.create);
+app.post('/intranet/invitations/add', invitations.add);
+app.get('/intranet/invitations/list', invitations.list);
 
 //Sales
 app.get('/sales/checkout/:id', sales.checkout);

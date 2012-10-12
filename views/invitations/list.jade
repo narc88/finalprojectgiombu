@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+	table.table
+		tr
+			td
+				h5 Nombre
+			td
+				h5 Email
+			td
+				h5 Tipo
+			td
+				h5 Aceptada
+			td
+				h5 Declinada
+			td
+		-each invitation in invitations
+			tr
+				td
+					a(href="/invitations/view/#{invitation._id}")
+						p #{invitation.name}
+				td
+					a(href="/invitations/view/#{invitation._id}")
+						p #{invitation.email}
+				td
+					a(href="/invitations/view/#{invitation._id}")
+						p #{invitation.invitation_type}
+				td
+					a(href="/invitations/view/#{invitation._id}")
+						p #{invitation.accepted_date}
+				td
+					a(href="/invitations/view/#{invitation._id}")
+						p #{invitation.declined_date}
+				td.span1
+					a(href="/invitations/edit/#{invitation._id}", rel="tooltip", title="Editar").btn.btn-mini
+						i.icon-pencil
