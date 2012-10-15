@@ -20,6 +20,10 @@ a {
 	float:left;
 	width:200px;
 }
+
+#center{
+	width:700px;
+}
 #body_container{
 	background-color: white;
 	min-height: 1000px;
