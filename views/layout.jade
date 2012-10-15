@@ -25,18 +25,12 @@ html
 
 		script
 			$(document).ready(function(){
-				//$('#conversations_div').hide();
-				//$('#close_conversations').hide();
 				$('#open_conversations').hide();
 				$('#open_conversations').show();
-				$('#conversations_div').load('/conversations_thin',function(){
+				$('#conversations_div').load('/conversations/chat_window',function(){
 					$('#close_conversations').click(function(){
-					//$('#conversations_div').hide();
-					//$('#close_conversations').hide();
-					$('#open_conversations').show();
-					$('#conversations_div').animate({right: -310}, function(){
-														
-						});
+						$('#open_conversations').show();
+						$('#conversations_div').animate({right: -310});
 					});
 					$('#open_conversations').click(function(){
 						$('#open_conversations').hide();
@@ -46,9 +40,8 @@ html
 							$('#btn_message').removeClass('btn-warning');
 								
 						});
-				});
-				});
-
+					});
+				});	
 			});
 		
 	body

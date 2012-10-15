@@ -10,12 +10,21 @@ exports.conversation = function(req, res, next){
 							user: req.session.user});
 }
 
-exports.conversation_thin = function(req, res, next){
-	console.log('conversations - conversation_thin');
-	res.render('conversations/conversation_thin', { 	title: ' - Chat de Giombu',
+exports.chat_window = function(req, res, next){
+	console.log('conversations - chat_window');
+	res.render('conversations/chat_window', { 	title: ' - Chat de Giombu',
 							user_id : req.session.user._id,
 							user: req.session.user});
 }
+
+
+exports.panel = function(req, res, next){
+	console.log('conversations - panel');
+	res.render('conversations/panel', { 	title: ' - Chat de Giombu',
+							user_id : req.session.user._id,
+							user: req.session.user});
+}
+
 
 
 

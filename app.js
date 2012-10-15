@@ -212,7 +212,8 @@ app.get('/countries/update', countries.create);
 
 //Conversations
 app.get('/conversations', conversations.conversation);
-app.get('/conversations_thin', conversations.conversation_thin);
+app.get('/conversations/chat_window', conversations.chat_window);
+app.get('/conversations/panel', conversations.panel);
 
 server.listen(3000, function(){
   console.log("Express server listening on port 3000".cyan.bold);
