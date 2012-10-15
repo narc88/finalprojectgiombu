@@ -51,7 +51,7 @@ block content
 				hr
 				.control-group
 					label.control-label Precio
-					input(name='deal[price]', type='text',class="required number" ,minlength="1",minlength="6").control 
+					input(name='deal[price]', type='text',class="required number" ,minlength="1",maxlength="6").control 
 				hr
 				.control-group
 					label.control-label Descuento
@@ -59,7 +59,7 @@ block content
 				hr
 				.control-group 
 					label.control-label Precio especial
-					input(name='deal[special_price]', type='text',class="required number" ,minlength="1",minlength="6").control 
+					input(name='deal[special_price]', type='text',class="required number" ,minlength="1",maxlength="6").control 
 				hr
 				.control-group
 					label.control-label Fecha de comienzo
@@ -87,11 +87,11 @@ block content
 				hr
 				.control-group
 					label.control-label Maximo de cupones
-					input(name='deal[max_coupons]', type='text' ,class="required number" ,minlength="1",minlength="3").control
+					input(name='deal[max_coupons]', type='text' ,class="required number" ,minlength="1",maxlength="3").control
 				hr
 				.control-group
 					label.control-label Maximo de cupones por usuario
-					input(name='deal[max_coupons_by_user]', type='text' ,class="required number" ,minlength="1",minlength="3").control 
+					input(name='deal[max_coupons_by_user]', type='text' ,class="required number" ,minlength="1",maxlength="3").control 
 				hr
 				.control-group
 					label.control-label Porcentaje para el vendedor

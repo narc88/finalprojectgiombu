@@ -43,13 +43,13 @@ block content
 						label Descuento 
 						span #{deals[0].discount} %
 				.row.time
-					div.clock.span
+					div.clock
 						img(src="http://83b0c28c61b2c8602f7c-5408f05fecb415ed1f9fde302a13d016.r42.cf1.rackcdn.com/countdown.png")
-					div(class="span countdown hasCountdown",id="ppal01", data-end="#{deals[0].end_date.getMonth()+1}/#{deals[0].end_date.getDate()}/#{deals[0].end_date.getFullYear()} #{deals[0].end_date.getHours()}:#{deals[0].end_date.getMinutes()}:#{deals[0].end_date.getSeconds()}", data-gmt="-#{deals[0].end_date.getTimezoneOffset()/60}")
+					div(class="countdown",id="Deal0", data-end="#{deals[0].end_date.getMonth()+1}/#{deals[0].end_date.getDate()}/#{deals[0].end_date.getFullYear()} #{deals[0].end_date.getHours()}:#{deals[0].end_date.getMinutes()}:#{deals[0].end_date.getSeconds()}", data-gmt="-#{deals[0].end_date.getTimezoneOffset()/60}")
 			a(class="carousel-control left" , href="#myCarousel",  data-slide="prev")‹
 			a(class="carousel-control right" , href="#myCarousel",  data-slide="next")›
 	-for (var i = deals.length - 1; i >= 1; i--) {
-		.row.items
+		.row.items.span4
 			.span4.item
 				.image
 					a(href="alalalallong/checkout") 
@@ -75,7 +75,7 @@ block content
 					.span1
 						.clock
 							img(src="http://83b0c28c61b2c8602f7c-5408f05fecb415ed1f9fde302a13d016.r42.cf1.rackcdn.com/countdown.png")
-					.span3
-						.countdown(id='#{i}' ,data-end="#{deals[i].end_date.getMonth()+1}/#{deals[i].end_date.getDate()}/#{deals[i].end_date.getFullYear()} #{deals[i].end_date.getHours()}:#{deals[i].end_date.getMinutes()}:#{deals[i].end_date.getSeconds()}", data-gmt="-#{deals[i].end_date.getTimezoneOffset()/60}")
+					.span2
+						.countdown(id='Deal#{i}' ,data-end="#{deals[i].end_date.getMonth()+1}/#{deals[i].end_date.getDate()}/#{deals[i].end_date.getFullYear()} #{deals[i].end_date.getHours()}:#{deals[i].end_date.getMinutes()}:#{deals[i].end_date.getSeconds()}", data-gmt="-#{deals[i].end_date.getTimezoneOffset()/60}")
 	-};	
 	
