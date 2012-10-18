@@ -129,6 +129,7 @@ app.get('/intranet/deals/list', deals.list);
 app.get('/intranet/deals/edit/:deal_id', deals.edit);
 app.get('/intranet/deals/admin', deals.intranet_admin);
 app.get('/deals/home', deals.home);
+app.get('/intranet/deals/erase_image/:id/:image_id', deals.erase_image);
 
 //Users
 app.get('/users/register', users.register );
@@ -165,8 +166,13 @@ app.get('/intranet/franchises/edit/:id', checkAuth, franchises.edit);
 app.post('/intranet/franchises/update', checkAuth, franchises.update);
 
 //Images
+
+//Se va a dejar de usar
 app.get('/images/upload', images.upload);
 app.post('/images/save_image', images.save_image);
+
+//Se seguirán usando
+app.post('/images/save_image/:id', images.save_image);
 app.post('/images/crop', images.crop);
 
 //Franchisors
@@ -180,7 +186,8 @@ app.get('/franchisors/edit/:franchisor_id', franchisors.edit);
 //Invitations
 app.get('/intranet/invitations/create', invitations.create);
 app.post('/intranet/invitations/add', invitations.add);
-app.get('/intranet/invitations/list', invitations.list);
+app.get('/intranet/invitations/list_promoters', invitations.list_promoters);
+app.get('/intranet/invitations/list_contacts', invitations.list_contacts);
 
 //Sales
 app.get('/sales/checkout/:id', sales.checkout);

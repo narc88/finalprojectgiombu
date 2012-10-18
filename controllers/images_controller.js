@@ -1,6 +1,8 @@
 var StoreModel = require('../models/store').StoreModel;
 var BranchModel = require('../models/branch').BranchModel;
 var ImageModel = require('../models/image').ImageModel;
+var DealModel = require('../models/deal').DealModel;
+
 var fs = require('fs');
 var mkdirp = require('mkdirp');
 var im = require('imagemagick');
@@ -48,13 +50,62 @@ exports.save_temp = function (req, res, next) {
     });
   });
 }
-
+/*
 exports.save_image = function (req, res, next) {
   //console.log(JSON.stringify(req.files));
   //userPhoto is the value of the name attribute in the form
+  DealModel.findById( req.params.id , function(err, deal){
+    if(!err){
+      if(deal){
+          var serverPath =  req.files.image.name;
+          var pathToServer = "C:/Users/Nicolas/Pictures/";
+          fs.rename(
+            //userPhoto is the input name
+            req.files.image.path,
+            pathToServer + serverPath,
+            function(error){
+              if(error){
+                console.log(error)
+                res.send({
+                  error: 'File uploaded cancelled, error.'
+                });
+                return;
+              }
+              res.send({
+                path: serverPath
+              });
+              var image_new = new ImageModel();
+              image_new.filename = req.files.image.name;
+              deal.images.push(image_new);
+              deal.save(function (err) {
+                if (!err) {
+                  console.log('agrego imagen');
+                  
+                } else {
+                  console.log('error '.red.bold + err);
+                  
+                }
+
+              });
+              res.redirect('intranet/deals/view/'+  req.params.id );
+            })
+
+          console.log('deals - view - No se encontro el deal ( ' + req.body.deal_id +' )');
+      }else{
+        console.log('deals - view - No se encontro el deal ( ' + req.body.deal_id +' )');
+      }
+    }else{
+      console.log('deals - view - '.red.bold + err);
+    }
+  });
+
+}*/
+exports.save_image = function (req, res) {
+   //console.log(JSON.stringify(req.files));
+  //userPhoto is the value of the name attribute in the form
   var serverPath =  req.files.image.name;
   var pathToServer = "C:/Users/Nicolas/Pictures/";
-  fs.rename(
+  require('fs').rename(
     //userPhoto is the input name
     req.files.image.path,
     pathToServer + serverPath,
@@ -65,14 +116,15 @@ exports.save_image = function (req, res, next) {
           error: 'File uploaded cancelled, error.'
         });
         return;
+      }else{
+        res.send({
+          path: serverPath
+        });
       }
-
-      res.send({
-        path: serverPath
-      });
     }
   )
 }
+
 
 exports.crop = function (res, req, next){
   console.log(req.body);
@@ -93,9 +145,6 @@ exports.crop = function (res, req, next){
   })
 }
 
-exports.erase_image = function (req, res, next) {
- 
-}
 
 exports.get_image = function (container , name) { 
   cloudfiles_client.setAuth(function () {

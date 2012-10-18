@@ -9,7 +9,7 @@ var ImageSchema = exports.ImageSchema = new Schema({
 	default				: { type: Boolean },
 	active				: { type: Boolean },
 	created    		    :  {type: Date, default: Date.now },
-	modified			:   Date	
+	modified			:   {type: Date, default: Date.now }
 })	
 
 exports.ImageModel = mongoose.model('Image', exports.ImageSchema);

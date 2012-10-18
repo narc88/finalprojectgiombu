@@ -6,86 +6,71 @@ block content
 		h2 Deal View
 		table.table
 			tr
-				td	title
+				td	Titulo
 				td	#{deal.title}
 			tr
-				td	tagline
+				td	Subtitulo
 				td	#{deal.tagline}
 			tr
-				td	slug
+				td	Link
 				td	#{deal.slug}
 			tr
-				td	characteristics
+				td	Caracteristicas
 				td	#{deal.characteristics}
 			tr
-				td	conditions
+				td	Condiciones
 				td	#{deal.conditions}
 			tr
-				td	price
+				td	Precio original
 				td	#{deal.price}
 			tr
-				td	special_price
+				td	Precio Final
 				td	#{deal.special_price}
 			tr
-				td	discount
+				td	Descuento
 				td	#{deal.discount}
 			tr
-				td	start_date
+				td	Fecha inicio de la oferta
 				td	#{deal.start_date}
 			tr
-				td	end_date
+				td	Fecha fin de la oferta
 				td	#{deal.end_date}
 			tr
-				td	start_redeem
+				td	Fecha inicio de canje
 				td	#{deal.start_redeem}
 			tr
-				td	end_redeem
+				td	Fecha fin de canje
 				td	#{deal.end_redeem}
 			tr
-				td	max_coupons
+				td	Cantidad maxima de Cupones
 				td	#{deal.max_coupons}
 			tr
-				td	max_coupons_by_user
+				td	Cantidad maxima de Cupones por Usuario
 				td	#{deal.max_coupons_by_user}
 			tr
-				td	seller_percentage
+				td	Porcentaje Vendedor
 				td	#{deal.seller_percentage}
 			tr
-				td	giombu_percentage
+				td	Porcentaje Giombu
 				td	#{deal.giombu_percentage}
 			tr
-				td	promoter_percentage
+				td	Porcentaje Promotor
 				td	#{deal.promoter_percentage}
 			tr
-				td	status
+				td	Estado
 				td	#{deal.status}
 			tr
-				td	shipping_cost
+				td	Costo de Envío
 				td	#{deal.shipping_cost}
 			tr
-				td	store
+				td	Tienda
 				td	#{deal.store}
 			tr
-				td	seller
+				td	Vendedor
 				td	#{deal.seller}
 			tr
-				td	franchisor
+				td	Franquiciante
 				td	#{deal.franchisor}
-			tr
-				td	franchise
-				td	#{deal.franchise}
-			tr
-				td	currency
-				td	#{deal.currency}
-			tr
-				td	images
-				td	#{deal.images}
-			tr
-				td	created
-				td	#{deal.created}
-			tr
-				td	modifiend
-				td	#{deal.modifiend}
 			tr
 				td
 					a(href='/deals/edit/' + deal._id.toString()) Editar 
@@ -94,3 +79,21 @@ block content
 					a(href='/deals/remove/' + deal._id.toString()) Eliminar 
 		br
 		br
+
+block options
+	form(action="/images/save_image",id="uploadForm", method="post", enctype="multipart/form-data")
+		input(type="file", id="userImageInput", name="image")
+		input(type="button", id="sendCrop",value="Crop",disabled="disabled")
+		input(type="submit", name="sulbmit")
+		span(id="status")
+		img(src="" , id="uploadedImage")
+
+block dealimages
+	-each image in deal.images 
+		img(src="/images/"+image.filename , id="uploadedImage")
+		.btn-group
+			.btn 
+				a( href='/image/hide/' + image._id.toString() ) Ocultar
+			.btn 
+				a( href='/intranet/deals/erase_image/'+deal._id.toString()+ '/' + image._id.toString() ) Borrar
+

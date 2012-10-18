@@ -95,6 +95,18 @@ exports.view = function(req, res, next){
 }
 
 
+exports.erase_image = function (req, res, next) {
+    DealModel.update({_id: req.params.id}, 
+        {$pull: {images: {_id: req.params.image_id}}}, {upsert: true}, function(err, deal){
+        	console.log(err)
+        }
+		
+    );
+    
+    res.redirect('/intranet/deals/view/' + req.params.id);
+ 
+}
+
 //No se que hace esto?
 exports.review = function(req, res, next){
 	DealModel.findById( req.params.id , function(err, deal){

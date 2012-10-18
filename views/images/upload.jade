@@ -4,7 +4,6 @@ block content
 	form(action="/images/save_image",id="uploadForm", method="post", enctype="multipart/form-data")
 		input(type="file", id="userImageInput", name="image")
 		input(type="button", id="sendCrop",value="Crop",disabled="disabled")
-		input(type="submit", name="submit")
-
+		input(type="submit", name="ssubmit")
 		span(id="status")
 		img(src="" , id="uploadedImage")

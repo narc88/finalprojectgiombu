@@ -17,7 +17,6 @@ exports.add = function (req, res, next) {
     promoter_text_new.page_title = req.body.page_title
     promoter_text_new.page_body = req.body.page_body
     promoter_text_new.subscribers_invite = req.body.subscribers_invite
-
     promoter_new.parent_id = req.body.parent_id
     promoter_new.promoter_text = promoter_text_new
 

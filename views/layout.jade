@@ -21,7 +21,7 @@ html
 		link(rel='stylesheet', href='/css/datepicker.css')
 		link(rel='stylesheet', href='/css/timepicker.css')
 		link(rel='stylesheet', href='/css/jquery.Jcrop.css')
-		link(rel='stylesheet', href='/css/jquery.Jcrop.css')
+
 
 		script
 			$(document).ready(function(){
@@ -103,7 +103,7 @@ html
 							li 
 								a(href='/intranet/promoters/list_sons') Listado
 							li	
-								a(href='h1') Invitaciones
+								a(href='/intranet/invitations/list_promoters') Invitaciones
 							li	
 								a(href='h1') Mis Bonos
 						-if (!(typeof user.partner[0] === "undefined"))
@@ -121,9 +121,9 @@ html
 						
 						li.nav-header Contactos
 						li 
-							a(href='h1') Listado
+							a(href='/intranet/invitations/list_contacts') Listado
 						li	
-							a(href='h1') Invitaciones
+							a(href='/intranet/invitations/list_contacts') Invitaciones
 
 						li.nav-header Administración
 						li 
@@ -159,15 +159,9 @@ html
 				#center
 					block content
 				#right
+					block options
 					block feed
-					#level
-						.alert
-							.alert-heading
-								h4 Tu nivel
-								p Te faltan 99 contactos para logar el bono del 20%</p>
-								.progress.progress-success.progress-striped.active
-									.bar(style="width:60%")
-								p Tienes el nivel granito, Invita a  más para obtener le nivel.
+					block dealimages
 			#footer
 				p
 				| Comercializadora Giombu, S.A. de C.V -

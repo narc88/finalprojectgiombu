@@ -8,8 +8,6 @@ block content
 			td
 				h5 Email
 			td
-				h5 Tipo
-			td
 				h5 Aceptada
 			td
 				h5 Declinada
@@ -22,9 +20,6 @@ block content
 				td
 					a(href="/invitations/view/#{invitation._id}")
 						p #{invitation.email}
-				td
-					a(href="/invitations/view/#{invitation._id}")
-						p #{invitation.invitation_type}
 				td
 					a(href="/invitations/view/#{invitation._id}")
 						p #{invitation.accepted_date}
