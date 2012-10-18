@@ -1,0 +1,43 @@
+script(type='text/javascript', src='/js/jquery.js')
+script(type='text/javascript', src='/js/underscore-min.js')
+script(type='text/javascript', src='/js/backbone.js')
+script(type='text/javascript', src='/socket.io/socket.io.js')
+script(type='text/javascript', src='/js/md5-min.js')
+script(type='text/javascript', src='/js/conversations_panel_front.js')
+link(rel='stylesheet', href='/css/style.css')
+link(rel='stylesheet', href='/css/bootstrap.css')
+script(rel='text/javascript', src='/js/bootstrap.min.js')
+script
+	$(document).ready(function(){
+		//$('#conversations_list').hide();
+		//$('#chat_container').hide();
+		$('.conversations_btn').click(function(){
+			$('#conversations_list').show();
+			$('#contacts_list').hide();
+			$('#chat_container').hide();
+		});
+		$('.contacts_btn').click(function(){
+			$('#conversations_list').hide();
+			$('#contacts_list').show();
+			$('#chat_container').hide();
+		});
+
+		});
+div( class='conversation_container' , id='#{user_id}' )
+	.user_profile
+		h4 #{user.username}
+	#menu
+	.contenedor_chat
+		#conversations_list.span3.thumbnail.conversations_column
+			p.header Conversaciones
+			#conversations
+		#chat_container.span9.thumbnail.conversations_column
+			#conversation_title
+				p.header Conversacion actual
+			.log.message_list
+			textarea(type='text', placeholder='Escribe un mensaje y presiona Enter').message.message_send_box
+		#contacts_list.span3.thumbnail.conversations_column
+			p.header Contactos
+			#contacts
+				
+		
