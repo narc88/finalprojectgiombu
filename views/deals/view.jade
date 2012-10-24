@@ -3,7 +3,7 @@ extends ../layout
 
 block content
 	.span8
-		h2 Deal View
+		h2 Oferta
 		table.table
 			tr
 				td	Titulo
@@ -93,7 +93,11 @@ block dealimages
 		img(src="/images/"+image.filename , id="uploadedImage")
 		.btn-group
 			.btn 
-				a( href='/image/hide/' + image._id.toString() ) Ocultar
+				-if(image.default){
+					a( href='/intranet/deals/set_as_principal/'+deal._id.toString()+ '/' + image._id.toString()) Principal
+				-}else{
+					a( href='/intranet/deals/set_as_principal/'+deal._id.toString()+ '/' + image._id.toString() , disabled) Principal
+				-}
 			.btn 
 				a( href='/intranet/deals/erase_image/'+deal._id.toString()+ '/' + image._id.toString() ) Borrar
 

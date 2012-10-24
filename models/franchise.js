@@ -8,9 +8,6 @@ var FranchiseSchema = exports.FranchiseSchema = new Schema({
 	slug				: { type: String },
 	is_default			: { type: Boolean },
 	timezone			: { type: Number},
-	user_count			: { type: Number, min:0},
-	subscriber_count	: { type: Number, min:0},
-	store_count			: { type: Number, min:0},
 	created    		    :  {type: Date, default: Date.now },
 	modified			:  {type: Date, default: Date.now }	
 });	

@@ -6,37 +6,37 @@ block content
 	-each franchisor in franchisors
 		table.table.span5
 			tr
-				td	name
+				td	Nombre
 				td	#{franchisor.name}
 			tr
-				td	default_domain
+				td	Dominio por defecto
 				td	#{franchisor.default_domain}
 			tr
-				td	secure_domain
+				td	Dominio seguro
 				td	#{franchisor.secure_domain}
 			tr
-				td	tlc
-				td	#{franchisor.tlc}
+				td	cctdl
+				td	#{franchisor.cctdl}
 			tr
-				td	email
+				td	Email
 				td	#{franchisor.email}
 			tr
 				td	smtp
 				td	#{franchisor.smtp}
 			tr
-				td	default_timezone
+				td	Zona Horaria
 				td	#{franchisor.default_timezone}
 			tr
-				td	locale
-				td	#{franchisor.locale}
-			tr
-				td	language
+				td	Lenguaje
 				td	#{franchisor.language}
 			tr
-				td	fanpage
+				td	FanPage
 				td	#{franchisor.fanpage}
 			tr
 				td
-					a(href='/franchisors/edit/' + franchisor._id.toString()) Editar 
+					a(href='/intranet/franchisors/edit/' + franchisor._id.toString()) Editar 
+			tr
+				td
+					a(href='/intranet/franchises/create/' + franchisor._id.toString()) Crear Franquicia 
 		br
 		br

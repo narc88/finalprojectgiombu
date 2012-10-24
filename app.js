@@ -129,7 +129,9 @@ app.get('/intranet/deals/list', deals.list);
 app.get('/intranet/deals/edit/:deal_id', deals.edit);
 app.get('/intranet/deals/admin', deals.intranet_admin);
 app.get('/deals/home', deals.home);
+//DealImage Treatment
 app.get('/intranet/deals/erase_image/:id/:image_id', deals.erase_image);
+app.get('/intranet/deals/set_as_principal/:id/:image_id', deals.set_ppal);
 
 //Users
 app.get('/users/register', users.register );
@@ -158,12 +160,10 @@ app.get('/bankAccount/view', bank_accounts.view);
 
 //Franchises
 app.get('/intranet/franchises/admin', checkAuth, franchises.admin);
-app.get('/intranet/franchises/create', checkAuth, franchises.create);
-app.post('/intranet/franchises/add', checkAuth, franchises.add);
-app.get('/intranet/franchises/list', checkAuth, franchises.list);
-app.get('/intranet/franchises/view/:id', checkAuth, franchises.view);
+app.get('/intranet/franchises/create/:franchisor_id', checkAuth, franchises.create);
+app.post('/franchises/add/:franchisor_id', checkAuth, franchises.add);
 app.get('/intranet/franchises/edit/:id', checkAuth, franchises.edit);
-app.post('/intranet/franchises/update', checkAuth, franchises.update);
+app.post('/franchises/update', checkAuth, franchises.update);
 
 //Images
 
@@ -176,12 +176,12 @@ app.post('/images/save_image/:id', images.save_image);
 app.post('/images/crop', images.crop);
 
 //Franchisors
-app.get('/franchisors/create', franchisors.create);
+app.get('/intranet/franchisors/create', franchisors.create);
 app.post('/franchisors/add', franchisors.add);
 app.post('/franchisors/update', franchisors.update);
-app.get('/franchisors/list', franchisors.list);
-app.get('/franchisors/view/:franchisor_id', franchisors.view);
-app.get('/franchisors/edit/:franchisor_id', franchisors.edit);
+app.get('/intranet/franchisors/list', franchisors.list);
+app.get('/intranet/franchisors/view/:franchisor_id', franchisors.view);
+app.get('/intranet/franchisors/edit/:franchisor_id', franchisors.edit);
 
 //Invitations
 app.get('/intranet/invitations/create', invitations.create);

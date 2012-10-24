@@ -10,7 +10,6 @@ var InvitationSchema = exports.InvitationSchema = new Schema({
 	body        		: { type: String, required: true },
 	accepted_date  		:   Date,
 	declined_date  		:   Date,
-	resend_date   		:   Date,
 	invitation_type		: { type: String },
 	//Usuario que Realizó la invitación.
 	user				: [{ type: Schema.ObjectId, ref: 'User' }],

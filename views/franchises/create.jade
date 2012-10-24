@@ -7,7 +7,7 @@ block content
 		.span6
 			h3 Crear Franquicia
 			br
-			form(method='post', id="franchises_create",action='/franchises/add').form-horizontal
+			form(method='post', id="franchises_create",action='/franchises/add/#{franchisor}').form-horizontal
 				.control-group
 					label.control-label Nombre
 					input(name='franchise[name]', type='text' ,class="required").control

@@ -1,84 +1,49 @@
 var FranchiseModel = require('../models/franchise').FranchiseModel;
+var FranchisorModel = require('../models/franchisor').FranchisorModel;
 var colors = require('colors');
 
 
 exports.create = function (req, res, next) {
 	console.log('franchises - create'.cyan.bold);
 	res.render('franchises/create', {title: 'Cargar Franquicia',
-										user : req.session.user});
+										user : req.session.user,
+										franchisor : req.params.franchisor_id});
 }
 
 exports.add = function (req, res, next) {
-
-	console.log('franchises - add'.cyan.bold);
-
-	var franchise_new = new FranchiseModel(req.param('franchise'));
-
-
-	franchise_new.save(function (err) {
-		if (!err) {
-			console.log('franchises - add - Guardo una nueva franchise');
-			console.log('franchises - add - Redirecciono a franchises/create');
-			//res.render('franchises/create', {title: 'Cargar Franquicia'});
-			res.render('franchises/view', {title: 'Franchises View', franchises : [franchise_new]});
-		} else {
-			console.log('franchises - add - '.red.bold + err);
-			console.log('franchises - add - Redirecciono a /');
-			res.redirect('/');
-		}
-	});
-
-
-}
-
-
-
-exports.view = function(req, res, next){
-
-	console.log('franchises - view'.cyan.bold);
-	console.log('franchises - view - Busco el franchise ( ' + req.params.id +' )');
-
-	FranchiseModel.findById( req.params.id , function(err, franchise){
+	FranchisorModel.findById( req.params.franchisor_id , function(err, franchisor){
 		if(!err){
-			if(franchise){
-				console.log('franchises - view - Se encontro el franchise ( ' + req.params.id +' )');
-				res.render('franchises/view', {	title: 'franchise',
-												franchise : franchise,
-												user : req.session.user
-											});
+			if(franchisor){
+				console.log('franchises - add'.cyan.bold);
+				var franchise_new = new FranchiseModel(req.param('franchise'));
+				franchisor.franchises.push(franchise_new);
+				franchisor.save(function (err) {
+					if (!err) {
+						//res.render('franchises/create', {title: 'Cargar Franquicia'});
+						res.redirect('/intranet/franchisors/view/'+req.params.franchisor_id);
+					} else {
+						res.redirect('/');
+					}
+				});
 			}else{
-				console.log('franchises - view - No se encontro el franchise ( ' + req.params.id +' )');
+				console.log('franchisor - view - No se encontro el franchisor ( ' + req.params.franchisor_id +' )');
 			}
 		}else{
-			console.log('franchises - view - '.red.bold + err);
+			console.log('franchisor - view - '.red.bold + err);
 		}
-
-  });
+  	});
 }
 
 
-exports.list = function(req, res, next){
-
-	console.log('franchise - list'.cyan.bold);
-
+exports.franchises_list = function(req, res, next){
 	FranchiseModel.find( {} , function(err, franchises){
 		if(!err){
-			if(franchises.length){
-				console.log('franchise - list - Se envian los franchises encontrados');
-				res.render('franchises/list', {	title: 'Lista de franchises',
-												franchises : franchises,
-												user: req.session.user
-											});
-			}else{
-				console.log('franchise - list - No hay franchises');
-			}
+			return franchises;
 		}else{
 			console.log('franchise - list - '.red.bold + err);
 		}
-
   });
 }
-
 
 
 exports.update = function(req, res, next){

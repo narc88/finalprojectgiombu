@@ -98,13 +98,37 @@ exports.view = function(req, res, next){
 exports.erase_image = function (req, res, next) {
     DealModel.update({_id: req.params.id}, 
         {$pull: {images: {_id: req.params.image_id}}}, {upsert: true}, function(err, deal){
-        	console.log(err)
+        	console.log(err);
+        	res.redirect('/intranet/deals/view/' + req.params.id);
         }
-		
     );
-    
-    res.redirect('/intranet/deals/view/' + req.params.id);
- 
+}
+
+exports.set_ppal = function (req, res, next) {
+	DealModel.findOne().where('_id').equals(req.params.id).exec(function (err, deal) {
+ 	 if(!err){
+			if(deal){
+				console.log(deal.discount);
+				for (var i = deal.images.length - 1; i >= 0; i--) {
+					if(deal.images[i]._id == req.params.image_id){
+						deal.images[i].default = true;
+					}else{
+						deal.images[i].default = false;
+					}
+					
+				};
+				deal.save(function (err) {});
+			}else{
+				console.log('deals - view - No se encontro el deal ( ' + req.body.deal_id +' )');
+			}
+		}else{
+			console.log('deals - view - '.red.bold + err);
+		}
+	});
+	DealModel.update({_id:req.params.id,'images._id':req.params.image_id},{$set:{'images.$.default':true}},{upsert: true}, function(err){        	
+		res.redirect('/intranet/deals/view/' + req.params.id);
+	});
+
 }
 
 //No se que hace esto?

@@ -9,7 +9,7 @@ var LevelSchema = exports.LevelSchema = new Schema({
 	bonus				: { type: Number, required: true, min:0},
 	description	   		: { type: String },
 	created    		    :  {type: Date, default: Date.now }
-	modifiend        	:   Date
+	modified        	:  {type: Date, default: Date.now }
 })
 
 exports.LevelModel = mongoose.model('Level', exports.LevelSchema);

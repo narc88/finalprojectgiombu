@@ -8,8 +8,7 @@ var BonusSchema = exports.BonusSchema = new Schema({
 	bonus				: { type: String, required: true},
 	paid				: { type: Boolean, required: true},
 	paid_date			: { type: Date, required: true},
-	sale				: { type: Schema.ObjectId, ref: 'Sale'},
-	sponsor				: { type: Schema.ObjectId, ref: 'Sponsor'},
+	//El sponsor es el que tiene embebido el objeto este
 	promoter			: { type: Schema.ObjectId, ref: 'Promoter'},
 	currency			: { type: Schema.ObjectId, ref: 'Currency'},
 	created				: { type: Date, required: true},

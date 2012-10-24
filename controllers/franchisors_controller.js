@@ -3,7 +3,7 @@ var colors = require('colors');
 
 
 exports.create = function (req, res, next) {
-  res.render('franchisors/create', {title: 'Create Franchisor'})
+  res.render('franchisors/create', {title: 'Create Franchisor', user:req.session.user})
 }
 
 exports.add = function (req, res, next) {
@@ -19,7 +19,7 @@ exports.add = function (req, res, next) {
 	if (!err) {
 	    console.log('franchisor - add - Save');
 		console.log('franchisor - add - Redirecciono a franchisors/view');
-		res.render('franchisors/view', {title: 'Franchises View', franchisors : [franchisor]});
+		res.redirect('/intranet/franchisors/view/'+franchisor_new._id, {title: 'Franchises View', user:req.session.user});
 	} else {
 	  console.log('franchisor - add - '.red.bold + err);
 	  res.redirect('/');
@@ -32,21 +32,18 @@ exports.add = function (req, res, next) {
 
 
 exports.list = function(req, res, next){
-
 	console.log('franchisor - list'.cyan.bold);
-
 	FranchisorModel.find( {} , function(err, franchisors){
 		if(!err){
 			if(franchisors){
 				console.log('franchisor - list - Se envian los franchisors encontrados');
-				res.render('franchisors/list', {title: 'Lista de Franchisors', franchisors : franchisors});
+				res.render('franchisors/list', {title: 'Lista de Franchisors', franchisors : franchisors, user:req.session.user});
 			}else{
 				console.log('franchisor - list - No hay franchisors');
 			}
 		}else{
 			console.log('franchisor - list - '.red.bold + err);
 		}
-
   });
 }
 
@@ -61,7 +58,7 @@ exports.view = function(req, res, next){
 		if(!err){
 			if(franchisor){
 				console.log('franchisor - view - Se encontro el franchisor ( ' + req.params.franchisor_id +' )');
-				res.render('franchisors/view', {title: 'franchisor', franchisors : [franchisor]});
+				res.render('franchisors/view', {title: 'franchisor', franchisors : [franchisor], user:req.session.user});
 			}else{
 				console.log('franchisor - view - No se encontro el franchisor ( ' + req.params.franchisor_id +' )');
 			}
@@ -149,10 +146,8 @@ exports.edit = function(req, res, next){
 
 
 exports.delete = function(req, res, next){
-
 	console.log('franchisor - delete'.cyan.bold);
 	console.log('franchisor - delete - Busco el franchisor ( ' + req.body.franchisor_id +' )');
-
 	FranchisorModel.findById( req.body.franchisor_id , function(err, franchisor){
 		if(!err){
 			if(franchisor){
@@ -166,14 +161,11 @@ exports.delete = function(req, res, next){
 						console.log('franchisor - delete - '.red.bold + err);
 					}
 				})
-
 			}else{
 				console.log('franchisor - delete - No se encontro el franchisor ( ' + req.body.franchisor_id +' )');
 			}
 		}else{
 			console.log('franchisor - delete - '.red.bold + err);
 		}
-
   });
-
 }
